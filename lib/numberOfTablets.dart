@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_application_2/elevatedButton.dart';
 import 'package:flutter_application_2/resultBox.dart';
-
 import 'getTextFromField.dart';
 
-class VolumeAndTime extends StatelessWidget {
+class NumberOfTablets extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView(children: [
@@ -16,7 +15,7 @@ class VolumeAndTime extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
           children: [
             Text(
-              "Calulate  the  total volume  of  fluid  in a given  time",
+              "Calulate  Number of Tablets",
               style: TextStyle(
                 fontSize: 15.0,
                 fontWeight: FontWeight.w600,
@@ -28,7 +27,7 @@ class VolumeAndTime extends StatelessWidget {
               children: [
                 SizedBox(height: 10.0),
                 getTextFromTextField(
-                    "Enter Infusion Rate", "Infusion Rate", "ml")
+                    "Enter Required Dosage", "Required Dosage", "mg"),
               ],
             ),
             SizedBox(height: 20.0),
@@ -36,16 +35,7 @@ class VolumeAndTime extends StatelessWidget {
               children: [
                 SizedBox(height: 10.0),
                 getTextFromTextField(
-                    "Enter Drop Factors", "Drop Factors", "gtt/mL")
-              ],
-            ),
-            SizedBox(height: 20.0),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                SizedBox(height: 10.0),
-                getTextFromTextField(
-                    "Enter Total Time", "Total Time", "minutes")
+                    "Enter Stock Strength", "Stock Strength", "mg"),
               ],
             ),
             SizedBox(height: 20.0),

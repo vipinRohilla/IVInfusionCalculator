@@ -2,6 +2,10 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_application_2/elevatedButton.dart';
+import 'package:flutter_application_2/resultBox.dart';
+
+import 'getTextFromField.dart';
 
 class Medication extends StatelessWidget {
   @override
@@ -25,32 +29,16 @@ class Medication extends StatelessWidget {
             Column(
               children: [
                 SizedBox(height: 10.0),
-                TextField(
-                  decoration: InputDecoration(
-                    hintText: "Enter Patient Weight",
-                    labelText: "Patient Weight",
-                    labelStyle: TextStyle(fontSize: 16, color: Colors.black),
-                    border: OutlineInputBorder(),
-                    suffixText: "Kg",
-                  ),
-                  keyboardType: TextInputType.number,
-                )
+                getTextFromTextField(
+                    "Enter Patient Weight", "Patient Weight", "Kg"),
               ],
             ),
             SizedBox(height: 20.0),
             Column(
               children: [
                 SizedBox(height: 10.0),
-                TextField(
-                  decoration: InputDecoration(
-                    hintText: "Enter Drug Dose",
-                    labelText: "Drug Dose",
-                    labelStyle: TextStyle(fontSize: 16, color: Colors.black),
-                    border: OutlineInputBorder(),
-                    suffixText: "mg/kg/hour",
-                  ),
-                  keyboardType: TextInputType.number,
-                )
+                getTextFromTextField(
+                    "Enter Drug Dose", "Drug Dose", "mg/kg/hour")
               ],
             ),
             SizedBox(height: 20.0),
@@ -107,40 +95,13 @@ class Medication extends StatelessWidget {
             Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                ElevatedButton(
-                    style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.all<Color>(Colors.blue),
-                        minimumSize: MaterialStateProperty.all<Size>(
-                            Size(double.infinity, 40))),
-                    onPressed: () {},
-                    child: Text("Calculate")),
+                getElevatedButton("Calculate", Colors.blue),
                 SizedBox(height: 10),
-                ElevatedButton(
-                    style: ButtonStyle(
-                      backgroundColor:
-                          MaterialStateProperty.all<Color>(Colors.red),
-                      minimumSize: MaterialStateProperty.all<Size>(
-                          Size(double.infinity, 40)),
-                    ),
-                    onPressed: () {},
-                    child: Text("Clear"))
+                getElevatedButton("Clear", Colors.red)
               ],
             ),
             SizedBox(height: 10),
-            SizedBox(
-              height: 100,
-              child: Container(
-                  padding: EdgeInsets.all(10.0),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
-                      color: Colors.green[600]),
-                  child: Text("Result : ",
-                      style: TextStyle(
-                          letterSpacing: 2,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white))),
-            )
+            getResultBox()
           ],
         ),
       ),

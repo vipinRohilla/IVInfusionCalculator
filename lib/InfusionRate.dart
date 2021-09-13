@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_application_2/elevatedButton.dart';
+import 'package:flutter_application_2/resultBox.dart';
+import 'getTextFromField.dart';
 
 class InfusionRate extends StatelessWidget {
   @override
@@ -23,32 +26,15 @@ class InfusionRate extends StatelessWidget {
             Column(
               children: [
                 SizedBox(height: 10.0),
-                TextField(
-                  decoration: InputDecoration(
-                    hintText: "Enter Fluid Volume",
-                    labelText: "Fluid Volume",
-                    labelStyle: TextStyle(fontSize: 16, color: Colors.black),
-                    border: OutlineInputBorder(),
-                    suffixText: "ml",
-                  ),
-                  keyboardType: TextInputType.number,
-                )
+                getTextFromTextField(
+                    "Enter Fluid Volume", "Fluid Volume", "ml"),
               ],
             ),
             SizedBox(height: 20.0),
             Column(
               children: [
                 SizedBox(height: 10.0),
-                TextField(
-                  decoration: InputDecoration(
-                    hintText: "Enter Total Time",
-                    labelText: "Total Time",
-                    labelStyle: TextStyle(fontSize: 16, color: Colors.black),
-                    border: OutlineInputBorder(),
-                    suffixText: "hr",
-                  ),
-                  keyboardType: TextInputType.number,
-                )
+                getTextFromTextField("Enter Total Time", "Total Time", "hr"),
               ],
             ),
             SizedBox(height: 20.0),
@@ -56,56 +42,21 @@ class InfusionRate extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 SizedBox(height: 10.0),
-                TextField(
-                  decoration: InputDecoration(
-                    hintText: "Enter Drop Factors",
-                    labelText: "Drop Factors",
-                    labelStyle: TextStyle(fontSize: 16, color: Colors.black),
-                    border: OutlineInputBorder(),
-                    suffixText: "gtt/mL",
-                  ),
-                  keyboardType: TextInputType.number,
-                )
+                getTextFromTextField(
+                    "Enter Drop Factors", "Drop Factors", "gtt/mL")
               ],
             ),
             SizedBox(height: 20.0),
             Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                ElevatedButton(
-                    style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.all<Color>(Colors.blue),
-                        minimumSize: MaterialStateProperty.all<Size>(
-                            Size(double.infinity, 40))),
-                    onPressed: () {},
-                    child: Text("Calculate")),
+                getElevatedButton("Calculate", Colors.blue),
                 SizedBox(height: 10),
-                ElevatedButton(
-                    style: ButtonStyle(
-                      backgroundColor:
-                          MaterialStateProperty.all<Color>(Colors.red),
-                      minimumSize: MaterialStateProperty.all<Size>(
-                          Size(double.infinity, 40)),
-                    ),
-                    onPressed: () {},
-                    child: Text("Clear"))
+                getElevatedButton("Clear", Colors.red),
               ],
             ),
             SizedBox(height: 10),
-            SizedBox(
-              height: 100,
-              child: Container(
-                  padding: EdgeInsets.all(10.0),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
-                      color: Colors.green[600]),
-                  child: Text("Result : ",
-                      style: TextStyle(
-                          letterSpacing: 2,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white))),
-            )
+            getResultBox()
           ],
         ),
       ),
