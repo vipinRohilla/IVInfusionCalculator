@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_2/appBar.dart';
-import 'package:flutter_application_2/bodyFour.dart';
-import 'package:flutter_application_2/bodyOne.dart';
-import 'package:flutter_application_2/bodyThree.dart';
-import 'package:flutter_application_2/bodyTwo.dart';
-import 'package:flutter_application_2/card.dart';
+import 'widgets/appBar.dart';
+import 'widgets/card.dart';
+import '/pages/BodyOfInfusionRate.dart';
+import '/pages/BodyOfIvVolumeRateAndDropRate.dart';
+import 'pages/BodyOfBmiCalculator.dart';
+import 'pages/BodyOfBsaCalculator.dart';
+import 'pages/BodyOfDosageByWeight.dart';
+import 'pages/BodyOfNumberOfTablets.dart';
+import 'pages/BodyOfVolumeInLiquid.dart';
 
 class GridViewHomeScreen extends StatelessWidget {
   @override
@@ -18,18 +21,20 @@ class GridViewHomeScreen extends StatelessWidget {
           mainAxisSpacing: 15,
           crossAxisCount: 2,
           children: [
-            getCard("Infusion \nRate", Colors.red.shade600, context, BodyOne()),
-            getCard("Volume and \nTime", Colors.purple.shade500, context,
-                BodyTwo()),
-            getCard("Medication", Colors.orange.shade600, context, BodyThree()),
+            getCard("Infusion \nRate", Colors.blue.shade500, context,
+                BodyOfInfusionRate()),
             getCard("Number of \nTablets", Colors.blue.shade500, context,
-                BodyFour()),
-            getCard("Pediatric \nCalculation", Colors.blue.shade800, context,
-                BodyThree()),
-            getCard("Volume of \nLiquid", Colors.green.shade600, context,
-                BodyThree()),
-            getCard("Dosage by \nBodyWeight", Colors.pinkAccent, context,
-                BodyThree()),
+                BodyOfNumberOfTablets()),
+            getCard("Volume in \nLiquid", Colors.blue.shade500, context,
+                BodyOfVolumeInLiquid()),
+            getCard("Doses by\nBody Weight", Colors.blue.shade500, context,
+                BodyOfDosageByWeight()),
+            getCard("Volume Rate\nand\nDrop Rate", Colors.blue.shade500,
+                context, BodyOfIvVolumeAndDropRate()),
+            getCard("BMI \nCalculator", Colors.blue.shade500, context,
+                BodyOfBmiCalculator()),
+            getCard("BSA \nCalculator", Colors.blue.shade500, context,
+                BodyOfBsaCalculator()),
           ],
         ));
   }

@@ -2,12 +2,21 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_application_2/elevatedButton.dart';
-import 'package:flutter_application_2/resultBox.dart';
+import 'package:flutter_application_2/widgets/elevatedButton.dart';
+import 'package:flutter_application_2/widgets/resultBox.dart';
 
-import 'getTextFromField.dart';
+import '../widgets/getTextFromField.dart';
 
-class Medication extends StatelessWidget {
+class Medication extends StatefulWidget {
+  @override
+  _MedicationState createState() => _MedicationState();
+}
+
+class _MedicationState extends State<Medication> {
+  List<String> unit = ["mg", "g", "kg", "lg"];
+
+  String currentItem = "mg";
+
   @override
   Widget build(BuildContext context) {
     return ListView(children: [
@@ -29,8 +38,8 @@ class Medication extends StatelessWidget {
             Column(
               children: [
                 SizedBox(height: 10.0),
-                getTextFromTextField(
-                    "Enter Patient Weight", "Patient Weight", "Kg"),
+                getTextFromTextField("Enter Patient Weight", "Patient Weight",
+                    unit, currentItem),
               ],
             ),
             SizedBox(height: 20.0),
@@ -38,7 +47,7 @@ class Medication extends StatelessWidget {
               children: [
                 SizedBox(height: 10.0),
                 getTextFromTextField(
-                    "Enter Drug Dose", "Drug Dose", "mg/kg/hour")
+                    "Enter Drug Dose", "Drug Dose", unit, currentItem)
               ],
             ),
             SizedBox(height: 20.0),

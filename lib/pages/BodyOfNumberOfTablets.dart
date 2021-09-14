@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_2/appBar.dart';
-import 'package:flutter_application_2/medication.dart';
+import 'package:flutter_application_2/widgets/appBar.dart';
+import 'package:flutter_application_2/calculators/numberOfTablets.dart';
 
-class BodyThree extends StatefulWidget {
+class BodyOfNumberOfTablets extends StatefulWidget {
   @override
-  _BodyThreeState createState() => _BodyThreeState();
+  _BodyOfNumberOfTabletsState createState() => _BodyOfNumberOfTabletsState();
 }
 
-class _BodyThreeState extends State<BodyThree> {
+class _BodyOfNumberOfTabletsState extends State<BodyOfNumberOfTablets> {
   int _currentIndex = 0;
   @override
   Widget build(BuildContext context) {
@@ -15,8 +15,8 @@ class _BodyThreeState extends State<BodyThree> {
       length: 3,
       child: Scaffold(
         backgroundColor: Colors.blue[50],
-        appBar: getAppBar("Medication"),
-        body: Medication(),
+        appBar: getAppBar("Number of Tablets"),
+        body: NumberOfTablets(),
         // body: Body(),
         bottomNavigationBar: BottomNavigationBar(
           elevation: 4.0,

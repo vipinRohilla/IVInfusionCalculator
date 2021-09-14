@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_2/appBar.dart';
-import 'InfusionRate.dart';
+import 'package:flutter_application_2/calculators/VolumeInLiquid.dart';
+import 'package:flutter_application_2/widgets/appBar.dart';
 
-class BodyOne extends StatefulWidget {
+class BodyOfVolumeInLiquid extends StatefulWidget {
   @override
-  _BodyOneState createState() => _BodyOneState();
+  _BodyOfVolumeInLiquidState createState() => _BodyOfVolumeInLiquidState();
 }
 
-class _BodyOneState extends State<BodyOne> {
+class _BodyOfVolumeInLiquidState extends State<BodyOfVolumeInLiquid> {
   int _currentIndex = 0;
   @override
   Widget build(BuildContext context) {
@@ -15,8 +15,8 @@ class _BodyOneState extends State<BodyOne> {
       length: 3,
       child: Scaffold(
         backgroundColor: Colors.blue[50],
-        appBar: getAppBar("Infusion Rate"),
-        body: InfusionRate(),
+        appBar: getAppBar("Volume in Liquid"),
+        body: VolumeInLiquid(),
         // body: Body(),
         bottomNavigationBar: BottomNavigationBar(
           elevation: 4.0,

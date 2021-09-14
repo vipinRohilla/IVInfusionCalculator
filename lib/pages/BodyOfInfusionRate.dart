@@ -1,22 +1,41 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_2/appBar.dart';
-import 'package:flutter_application_2/numberOfTablets.dart';
+import '../calculators/InfusionByUnit.dart';
+import '../calculators/InfusionByDose.dart';
 
-class BodyFour extends StatefulWidget {
+class BodyOfInfusionRate extends StatefulWidget {
   @override
-  _BodyFourState createState() => _BodyFourState();
+  _BodyOfInfusionRateState createState() => _BodyOfInfusionRateState();
 }
 
-class _BodyFourState extends State<BodyFour> {
+class _BodyOfInfusionRateState extends State<BodyOfInfusionRate> {
+  List<Widget> containers = [InfusionByUnit(), InfusionByDose()];
   int _currentIndex = 0;
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 3,
+      length: 2,
       child: Scaffold(
         backgroundColor: Colors.blue[50],
-        appBar: getAppBar("Number of Tablets"),
-        body: NumberOfTablets(),
+        appBar: AppBar(
+          iconTheme: IconThemeData(color: Colors.blue),
+          backgroundColor: Colors.blue[50],
+          elevation: 1,
+          title: Text(
+            "IV Infusion Calculator",
+            style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+          ),
+          bottom: TabBar(tabs: <Widget>[
+            Tab(
+              child: Text("Infusion by Unit",
+                  style: TextStyle(color: Colors.black)),
+            ),
+            Tab(
+              child: Text("Infusion by Dose",
+                  style: TextStyle(color: Colors.black)),
+            )
+          ]),
+        ),
+        body: TabBarView(children: containers),
         // body: Body(),
         bottomNavigationBar: BottomNavigationBar(
           elevation: 4.0,

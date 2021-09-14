@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_2/appBar.dart';
-import 'package:flutter_application_2/volume&time.dart';
+import 'package:flutter_application_2/calculators/BsaCalculator.dart';
+import 'package:flutter_application_2/widgets/appBar.dart';
 
-class BodyTwo extends StatefulWidget {
+class BodyOfBsaCalculator extends StatefulWidget {
   @override
-  _BodyTwoState createState() => _BodyTwoState();
+  _BodyOfBsaCalculatorState createState() => _BodyOfBsaCalculatorState();
 }
 
-class _BodyTwoState extends State<BodyTwo> {
+class _BodyOfBsaCalculatorState extends State<BodyOfBsaCalculator> {
   int _currentIndex = 0;
   @override
   Widget build(BuildContext context) {
@@ -15,9 +15,8 @@ class _BodyTwoState extends State<BodyTwo> {
       length: 3,
       child: Scaffold(
         backgroundColor: Colors.blue[50],
-        appBar: getAppBar("Volume and Time"),
-        body: VolumeAndTime(),
-        // body: Body(),
+        appBar: getAppBar("BSA Calculator"),
+        body: BsaCalculator(),
         bottomNavigationBar: BottomNavigationBar(
           elevation: 4.0,
           fixedColor: Colors.blue[50],
