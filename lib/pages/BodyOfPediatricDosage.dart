@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import '../calculators/InfusionByUnit.dart';
-import '../calculators/InfusionByDose.dart';
+import 'package:flutter_application_2/calculators/childDose.dart';
+import 'package:flutter_application_2/calculators/dose.dart';
 
-class BodyOfInfusionRate extends StatefulWidget {
+class BodyOfPediatricDosage extends StatefulWidget {
   @override
-  _BodyOfInfusionRateState createState() => _BodyOfInfusionRateState();
+  _BodyOfPediatricDosageState createState() => _BodyOfPediatricDosageState();
 }
 
-class _BodyOfInfusionRateState extends State<BodyOfInfusionRate> {
-  List<Widget> containers = [InfusionByUnit(), InfusionByDose()];
+class _BodyOfPediatricDosageState extends State<BodyOfPediatricDosage> {
+  List<Widget> containers = [ChildDose(), Dose()];
   int _currentIndex = 0;
   @override
   Widget build(BuildContext context) {
@@ -21,17 +21,15 @@ class _BodyOfInfusionRateState extends State<BodyOfInfusionRate> {
           backgroundColor: Colors.blue[50],
           elevation: 1,
           title: Text(
-            "IV Infusion Rate",
+            "Pediatric Dosage",
             style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
           ),
           bottom: TabBar(tabs: <Widget>[
             Tab(
-              child: Text("Infusion by Unit",
-                  style: TextStyle(color: Colors.black)),
+              child: Text("Child Dose", style: TextStyle(color: Colors.black)),
             ),
             Tab(
-              child: Text("Infusion by Dose",
-                  style: TextStyle(color: Colors.black)),
+              child: Text("Dose", style: TextStyle(color: Colors.black)),
             )
           ]),
         ),

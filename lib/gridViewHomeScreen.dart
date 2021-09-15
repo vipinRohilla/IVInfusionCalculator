@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'pages/BodyOfPediatricDosage.dart';
 import 'widgets/appBar.dart';
 import 'widgets/card.dart';
 import '/pages/BodyOfInfusionRate.dart';
@@ -23,6 +24,8 @@ class GridViewHomeScreen extends StatelessWidget {
           children: [
             getCard("Infusion \nRate", Colors.blue.shade500, context,
                 BodyOfInfusionRate()),
+            getCard("Pediatric \nDosage", Colors.blue.shade500, context,
+                BodyOfPediatricDosage()),
             getCard("Number of \nTablets", Colors.blue.shade500, context,
                 BodyOfNumberOfTablets()),
             getCard("Volume in \nLiquid", Colors.blue.shade500, context,
