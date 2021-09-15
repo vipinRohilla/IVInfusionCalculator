@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/widgets/dropDown.dart';
 
-getTextFromTextField(
+tempTextFromTextField(
     String hintTextData,
     String labelTextData,
     List<String> unit,

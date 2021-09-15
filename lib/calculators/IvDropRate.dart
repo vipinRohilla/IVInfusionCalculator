@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_application_2/formulas.dart/allFormulas.dart';
+import 'package:flutter_application_2/widgets/buttonStyle.dart';
 import 'package:flutter_application_2/widgets/elevatedButton.dart';
-import 'package:flutter_application_2/widgets/resultBox.dart';
 
 import '../widgets/getTextFromField.dart';
 
@@ -26,6 +27,21 @@ class _IvDropRateState extends State<IvDropRate> {
   ];
   String currentItemForDropFactor = "(drops/mL)/60(min/hr)";
 
+  var requiredDosage = 0.0;
+  var time = 0.0;
+  var dropFactor = 0.0;
+  var total = 0.0;
+
+  final requiredDosageCon = new TextEditingController();
+  final timeCon = new TextEditingController();
+  final dropFactorCon = new TextEditingController();
+
+  void numClick(String requiredDosage, String time, String dropFactor) {
+    setState(() {
+      total = getIvDropRate(requiredDosage, time, dropFactor);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return ListView(children: [
@@ -47,16 +63,20 @@ class _IvDropRateState extends State<IvDropRate> {
             Column(
               children: [
                 SizedBox(height: 10.0),
-                getTextFromTextField("Enter Value", "Required Dose",
-                    unitsForRequiredDosage, currentItemForRequiredDosage),
+                getTextFromTextField(
+                    "Enter Value",
+                    "Required Dose",
+                    unitsForRequiredDosage,
+                    currentItemForRequiredDosage,
+                    requiredDosageCon),
               ],
             ),
             SizedBox(height: 20.0),
             Column(
               children: [
                 SizedBox(height: 10.0),
-                getTextFromTextField(
-                    "Enter Value", "Time", unitsForTime, currentItemForTime),
+                getTextFromTextField("Enter Value", "Time", unitsForTime,
+                    currentItemForTime, timeCon),
               ],
             ),
             SizedBox(height: 20.0),
@@ -64,21 +84,55 @@ class _IvDropRateState extends State<IvDropRate> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 SizedBox(height: 10.0),
-                getTextFromTextField("Enter Value", "Drop Factor",
-                    unitsForDropFactor, currentItemForDropFactor),
+                getTextFromTextField(
+                    "Enter Value",
+                    "Drop Factor",
+                    unitsForDropFactor,
+                    currentItemForDropFactor,
+                    dropFactorCon),
               ],
             ),
             SizedBox(height: 20.0),
             Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                getElevatedButton("Calculate", Colors.blue),
+                ElevatedButton(
+                    onPressed: () {
+                      numClick(requiredDosageCon.text, timeCon.text,
+                          dropFactorCon.text);
+                    },
+                    style: getButtonStyle(),
+                    child: Text("Calculate")),
                 SizedBox(height: 10),
-                getElevatedButton("Clear", Colors.red),
+                GetElevatedButton(buttonText: "Clear", colorData: Colors.red),
               ],
             ),
             SizedBox(height: 10),
-            getResultBox()
+            SizedBox(
+              height: 100,
+              child: Container(
+                  padding: EdgeInsets.all(10.0),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                      color: Colors.green[600]),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("Result : ",
+                          style: TextStyle(
+                              letterSpacing: 2,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white)),
+                      SizedBox(height: 10.0),
+                      Text("$total",
+                          style: TextStyle(
+                              letterSpacing: 2,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white))
+                    ],
+                  )),
+            )
           ],
         ),
       ),

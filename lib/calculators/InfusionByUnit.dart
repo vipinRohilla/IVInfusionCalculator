@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_application_2/formulas.dart/allFormulas.dart';
+import 'package:flutter_application_2/widgets/buttonStyle.dart';
 import 'package:flutter_application_2/widgets/elevatedButton.dart';
-import 'package:flutter_application_2/widgets/resultBox.dart';
+
 import '../widgets/getTextFromField.dart';
 
 class InfusionByUnit extends StatefulWidget {
@@ -22,6 +24,21 @@ class _InfusionByUnitState extends State<InfusionByUnit> {
 
   List<String> unitsForDoseIvBag = ["unit"];
   String currentItemForDoseIvBag = "unit";
+
+  var requiredDosage = 0.0;
+  var ivBagVolume = 0.0;
+  var unitInIvBag = 0.0;
+  var total = 0.0;
+
+  final requiredDosageCon = new TextEditingController();
+  final ivBagVolumeCon = new TextEditingController();
+  final unitInIvBagCon = new TextEditingController();
+
+  void numClick(String requiredDosage, String ivBagVolume, String unitInIvBag) {
+    setState(() {
+      total = getInfusionByUnit(requiredDosage, ivBagVolume, unitInIvBag);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,16 +61,24 @@ class _InfusionByUnitState extends State<InfusionByUnit> {
             Column(
               children: [
                 SizedBox(height: 10.0),
-                getTextFromTextField("Enter Value", "Required Dose",
-                    unitsForRequiredDosage, currentItemForRequiredDosage),
+                getTextFromTextField(
+                    "Enter Value",
+                    "Required Dose",
+                    unitsForRequiredDosage,
+                    currentItemForRequiredDosage,
+                    requiredDosageCon),
               ],
             ),
             SizedBox(height: 20.0),
             Column(
               children: [
                 SizedBox(height: 10.0),
-                getTextFromTextField("Enter Value", "IV Bag Volume",
-                    unitsForIvBagVolume, currentItemForIvBagVolume),
+                getTextFromTextField(
+                    "Enter Value",
+                    "IV Bag Volume",
+                    unitsForIvBagVolume,
+                    currentItemForIvBagVolume,
+                    ivBagVolumeCon),
               ],
             ),
             SizedBox(height: 20.0),
@@ -62,20 +87,50 @@ class _InfusionByUnitState extends State<InfusionByUnit> {
               children: [
                 SizedBox(height: 10.0),
                 getTextFromTextField("Enter Value", "unit in IV Bag",
-                    unitsForDoseIvBag, currentItemForDoseIvBag)
+                    unitsForDoseIvBag, currentItemForDoseIvBag, unitInIvBagCon)
               ],
             ),
             SizedBox(height: 20.0),
             Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                getElevatedButton("Calculate", Colors.blue),
+                ElevatedButton(
+                    onPressed: () {
+                      numClick(requiredDosageCon.text, ivBagVolumeCon.text,
+                          unitInIvBagCon.text);
+                    },
+                    style: getButtonStyle(),
+                    child: Text("Calculate")),
                 SizedBox(height: 10),
-                getElevatedButton("Clear", Colors.red),
+                GetElevatedButton(buttonText: "Clear", colorData: Colors.red),
               ],
             ),
             SizedBox(height: 10),
-            getResultBox()
+            SizedBox(
+              height: 100,
+              child: Container(
+                  padding: EdgeInsets.all(10.0),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                      color: Colors.green[600]),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("Result : ",
+                          style: TextStyle(
+                              letterSpacing: 2,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white)),
+                      SizedBox(height: 10.0),
+                      Text("$total",
+                          style: TextStyle(
+                              letterSpacing: 2,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white))
+                    ],
+                  )),
+            )
           ],
         ),
       ),

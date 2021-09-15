@@ -18,21 +18,25 @@ class _DropDownState extends State<DropDown> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(10.0),
-      child: DropdownButton<String>(
-        iconSize: 30.0,
-        iconEnabledColor: Colors.blue,
-        items: unit.map((String dropDownStringItem) {
-          return DropdownMenuItem<String>(
-            value: dropDownStringItem,
-            child: Text(dropDownStringItem),
-          );
-        }).toList(),
-        onChanged: (newValue) {
-          setState(() {
-            this.currentItem = newValue.toString();
-          });
-        },
-        value: currentItem,
+      child: DropdownButtonHideUnderline(
+        child: DropdownButton<String>(
+          iconSize: 30.0,
+          iconEnabledColor: Colors.blue,
+          items: unit.map((String dropDownStringItem) {
+            return DropdownMenuItem<String>(
+              value: dropDownStringItem,
+              child: Text(dropDownStringItem),
+            );
+          }).toList(),
+          onChanged: (newValue) {
+            setState(() {
+              print(this.currentItem);
+              this.currentItem = newValue.toString();
+              print(this.currentItem);
+            });
+          },
+          value: currentItem,
+        ),
       ),
     );
   }

@@ -9,6 +9,7 @@ class BodyOfNumberOfTablets extends StatefulWidget {
 
 class _BodyOfNumberOfTabletsState extends State<BodyOfNumberOfTablets> {
   int _currentIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
