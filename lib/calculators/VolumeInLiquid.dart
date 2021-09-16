@@ -103,7 +103,7 @@ class _VolumeInLiquidState extends State<VolumeInLiquid> {
                       numClick(stockVolumeCon.text, requiredDosageCon.text,
                           stockStrengthCon.text);
                     },
-                    style: getButtonStyle(),
+                    style: getButtonStyle(Colors.green),
                     child: Text("Calculate")),
                 SizedBox(height: 10),
                 GetElevatedButton(buttonText: "Clear", colorData: Colors.red),

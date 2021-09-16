@@ -12,10 +12,10 @@ class TabletDosage extends StatefulWidget {
 }
 
 class _TabletDosageState extends State<TabletDosage> {
-  List<String> unitsForRequiredDosage = ["mg", "g", "Kg"];
-  String currentItemForRequiredDosage = "mg";
+  List<String> unitsForRequiredDosage = ["mg/Kg", "mg/lb"];
+  String currentItemForRequiredDosage = "mg/Kg";
 
-  List<String> unitsForWeight = ["Kg", "g"];
+  List<String> unitsForWeight = ["Kg", "lb"];
   String currentItemForWeight = "Kg";
 
   var requiredDosage = 0.0;
@@ -28,6 +28,41 @@ class _TabletDosageState extends State<TabletDosage> {
   void numClick(String requiredDosage, String weight) {
     setState(() {
       total = getTabletDosage(requiredDosage, weight);
+
+      if (currentItemForRequiredDosage == "mg/Kg") {
+        total = getTabletDosage(requiredDosage, weight);
+        switch (currentItemForWeight) {
+          case "Kg":
+            {
+              total = total;
+              total = double.parse(total.toStringAsFixed(2));
+            }
+
+            break;
+          case "lb":
+            {
+              total = total * 2.2046;
+              total = double.parse(total.toStringAsFixed(2));
+            }
+        }
+      } else if (currentItemForRequiredDosage == "mg/lb") {
+        total = getTabletDosage(requiredDosage, weight);
+        total = total / 2.2046;
+        switch (currentItemForWeight) {
+          case "Kg":
+            {
+              total = total;
+              total = double.parse(total.toStringAsFixed(2));
+            }
+            break;
+          case "lb":
+            {
+              total = total * 2.2046;
+              total = double.parse(total.toStringAsFixed(2));
+            }
+            break;
+        }
+      }
     });
   }
 
@@ -49,23 +84,73 @@ class _TabletDosageState extends State<TabletDosage> {
               ),
             ),
             SizedBox(height: 19.0),
-            Column(
+            Row(
               children: [
-                SizedBox(height: 10.0),
-                getTextFromTextField(
-                    "Enter Value",
-                    "Required Dosage",
-                    unitsForRequiredDosage,
-                    currentItemForRequiredDosage,
-                    requiredDosageCon),
+                Flexible(
+                    child: getTextFromTextField(
+                        "Enter Value",
+                        "Required Dosage",
+                        unitsForRequiredDosage,
+                        currentItemForRequiredDosage,
+                        requiredDosageCon)),
+                Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: DropdownButtonHideUnderline(
+                      child: DropdownButton<String>(
+                        iconSize: 30.0,
+                        iconEnabledColor: Colors.blue,
+                        items: unitsForRequiredDosage
+                            .map((String dropDownStringItem) {
+                          return DropdownMenuItem<String>(
+                            value: dropDownStringItem,
+                            child: Text(dropDownStringItem),
+                          );
+                        }).toList(),
+                        onChanged: (newValue) {
+                          setState(() {
+                            this.currentItemForRequiredDosage =
+                                newValue.toString();
+                          });
+                          if (weightCon.text != "" &&
+                              requiredDosageCon.text != "") {
+                            numClick(weightCon.text, requiredDosageCon.text);
+                          }
+                        },
+                        value: currentItemForRequiredDosage,
+                      ),
+                    ))
               ],
             ),
             SizedBox(height: 20.0),
-            Column(
+            Row(
               children: [
-                SizedBox(height: 10.0),
-                getTextFromTextField("Enter Value", "Body Weight",
-                    unitsForWeight, currentItemForWeight, weightCon),
+                Flexible(
+                    child: getTextFromTextField("Enter Value", "Body Weight",
+                        unitsForWeight, currentItemForWeight, weightCon)),
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: DropdownButtonHideUnderline(
+                    child: DropdownButton<String>(
+                        iconSize: 30.0,
+                        iconEnabledColor: Colors.blue,
+                        items: unitsForWeight.map((String dropDownStringItem) {
+                          return DropdownMenuItem<String>(
+                            value: dropDownStringItem,
+                            child: Text(dropDownStringItem),
+                          );
+                        }).toList(),
+                        onChanged: (newValue) {
+                          setState(() {
+                            this.currentItemForWeight = newValue.toString();
+                          });
+                          if (weightCon.text != "" &&
+                              requiredDosageCon.text != "") {
+                            numClick(weightCon.text, requiredDosageCon.text);
+                          }
+                        },
+                        value: currentItemForWeight),
+                  ),
+                )
               ],
             ),
             SizedBox(height: 20.0),
@@ -76,7 +161,7 @@ class _TabletDosageState extends State<TabletDosage> {
                     onPressed: () {
                       numClick(requiredDosageCon.text, weightCon.text);
                     },
-                    style: getButtonStyle(),
+                    style: getButtonStyle(Colors.green),
                     child: Text("Calculate")),
                 SizedBox(height: 10),
                 GetElevatedButton(buttonText: "Clear", colorData: Colors.red),

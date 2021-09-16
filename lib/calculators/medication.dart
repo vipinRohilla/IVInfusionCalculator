@@ -106,7 +106,7 @@ class _MedicationState extends State<Medication> {
                     onPressed: () {
                       // numClick(requiredDosageCon.text, stockStrengthCon.text);
                     },
-                    style: getButtonStyle(),
+                    style: getButtonStyle(Colors.green),
                     child: Text("Calculate")),
                 SizedBox(height: 10),
                 GetElevatedButton(buttonText: "Clear", colorData: Colors.red),

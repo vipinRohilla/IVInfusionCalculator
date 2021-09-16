@@ -11,10 +11,10 @@ class NumberOfTablets extends StatefulWidget {
 }
 
 class _NumberOfTabletsState extends State<NumberOfTablets> {
-  List<String> unitsForRequiredDosage = ["mg", "g", "Kg"];
+  List<String> unitsForRequiredDosage = ["mg", "g"];
   String currentItemForRequiredDosage = "mg";
 
-  List<String> unitsForStockStrength = ["mg", "g", "Kg"];
+  List<String> unitsForStockStrength = ["mg", "g"];
   String currentItemForStockStrength = "mg";
 
   var requiredDosage = 0.0;
@@ -26,7 +26,21 @@ class _NumberOfTabletsState extends State<NumberOfTablets> {
 
   void numClick(String requiredDosage, String stockStrength) {
     setState(() {
-      total = getNumberOfTablets(requiredDosage, stockStrength);
+      if (currentItemForRequiredDosage == "mg") {
+        if (currentItemForStockStrength == "mg") {
+          total = getNumberOfTablets(requiredDosage, stockStrength);
+        } else if (currentItemForStockStrength == "g") {
+          total = getNumberOfTablets(requiredDosage, stockStrength);
+          total = total / 1000;
+        }
+      } else if (currentItemForRequiredDosage == "g") {
+        if (currentItemForStockStrength == "mg") {
+          total = getNumberOfTablets(requiredDosage, stockStrength);
+          total = total * 1000;
+        } else if (currentItemForStockStrength == "g") {
+          total = getNumberOfTablets(requiredDosage, stockStrength);
+        }
+      }
     });
   }
 
@@ -48,27 +62,75 @@ class _NumberOfTabletsState extends State<NumberOfTablets> {
               ),
             ),
             SizedBox(height: 19.0),
-            Column(
+            Row(
               children: [
-                SizedBox(height: 10.0),
-                getTextFromTextField(
-                    "Enter Value",
-                    "Required Dosage",
-                    unitsForRequiredDosage,
-                    currentItemForRequiredDosage,
-                    requiredDosageCon)
+                Flexible(
+                    child: getTextFromTextField(
+                        "Enter Value",
+                        "Required Dosage",
+                        unitsForRequiredDosage,
+                        currentItemForRequiredDosage,
+                        requiredDosageCon)),
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: DropdownButtonHideUnderline(
+                    child: DropdownButton<String>(
+                      iconSize: 30.0,
+                      iconEnabledColor: Colors.blue,
+                      items: unitsForRequiredDosage
+                          .map((String dropDownStringItem) {
+                        return DropdownMenuItem<String>(
+                          value: dropDownStringItem,
+                          child: Text(dropDownStringItem),
+                        );
+                      }).toList(),
+                      onChanged: (newValue) {
+                        setState(() {
+                          this.currentItemForRequiredDosage =
+                              newValue.toString();
+                        });
+                        print(newValue);
+                      },
+                      value: currentItemForRequiredDosage,
+                    ),
+                  ),
+                )
               ],
             ),
             SizedBox(height: 20.0),
-            Column(
+            Row(
               children: [
-                SizedBox(height: 10.0),
-                getTextFromTextField(
-                    "Enter Value",
-                    "Stock Strength",
-                    unitsForStockStrength,
-                    currentItemForStockStrength,
-                    stockStrengthCon),
+                Flexible(
+                    child: getTextFromTextField(
+                        "Enter Value",
+                        "Stock Strength",
+                        unitsForStockStrength,
+                        currentItemForStockStrength,
+                        stockStrengthCon)),
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: DropdownButtonHideUnderline(
+                    child: DropdownButton<String>(
+                      iconSize: 30.0,
+                      iconEnabledColor: Colors.blue,
+                      items: unitsForStockStrength
+                          .map((String dropDownStringItem) {
+                        return DropdownMenuItem<String>(
+                          value: dropDownStringItem,
+                          child: Text(dropDownStringItem),
+                        );
+                      }).toList(),
+                      onChanged: (newValue) {
+                        setState(() {
+                          this.currentItemForStockStrength =
+                              newValue.toString();
+                        });
+                        print(newValue);
+                      },
+                      value: currentItemForStockStrength,
+                    ),
+                  ),
+                )
               ],
             ),
             SizedBox(height: 20.0),
@@ -78,10 +140,8 @@ class _NumberOfTabletsState extends State<NumberOfTablets> {
                 ElevatedButton(
                     onPressed: () {
                       numClick(requiredDosageCon.text, stockStrengthCon.text);
-                      print(currentItemForRequiredDosage);
-                      print(currentItemForStockStrength);
                     },
-                    style: getButtonStyle(),
+                    style: getButtonStyle(Colors.green),
                     child: Text("Calculate")),
                 SizedBox(height: 10),
                 GetElevatedButton(buttonText: "Clear", colorData: Colors.red),

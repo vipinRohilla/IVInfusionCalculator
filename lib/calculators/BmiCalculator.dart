@@ -1,8 +1,9 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_application_2/formulas.dart/allFormulas.dart';
 import 'package:flutter_application_2/widgets/buttonStyle.dart';
-import 'package:flutter_application_2/widgets/elevatedButton.dart';
 import '../widgets/getTextFromField.dart';
 
 class BmiCalculator extends StatefulWidget {
@@ -11,8 +12,8 @@ class BmiCalculator extends StatefulWidget {
 }
 
 class _BmiCalculatorState extends State<BmiCalculator> {
-  List<String> unitsOfWeight = ["Kg", "g"];
-  List<String> unitsOfHeight = ["m", "cm", "inches"];
+  List<String> unitsOfWeight = ["Kg", "lb"];
+  List<String> unitsOfHeight = ["m", "cm", "inches", "ft"];
 
   String currentItemOfWeight = "Kg";
   String currentItemOfHeight = "m";
@@ -25,7 +26,68 @@ class _BmiCalculatorState extends State<BmiCalculator> {
 
   void numClick(String weight, String height) {
     setState(() {
-      total = getBMI(weight, height);
+      if (currentItemOfWeight == "Kg") {
+        total = getBMI(weight, height);
+        // total.toStringAsFixed(2);
+        switch (currentItemOfHeight) {
+          case "m":
+            {
+              total = total;
+              total = double.parse(total.toStringAsFixed(2));
+            }
+            break;
+          case "cm":
+            {
+              total = total * 10000;
+              total = double.parse(total.toStringAsFixed(2));
+            }
+
+            break;
+          case "inches":
+            {
+              total = total * pow(39.37, 2);
+              total = double.parse(total.toStringAsFixed(2));
+            }
+
+            break;
+          case "ft":
+            {
+              total = total * pow(3.28084, 2);
+              total = double.parse(total.toStringAsFixed(2));
+            }
+            break;
+        }
+      } else if (currentItemOfWeight == "lb") {
+        total = getBMI(weight, height);
+        switch (currentItemOfHeight) {
+          case "m":
+            {
+              total = total / 2.2046;
+              total = double.parse(total.toStringAsFixed(2));
+            }
+            break;
+          case "cm":
+            {
+              total = (total * 10000) / 2.2046;
+              total = double.parse(total.toStringAsFixed(2));
+            }
+
+            break;
+          case "inches":
+            {
+              total = (total * pow(39.37, 2)) / 2.2046;
+              total = double.parse(total.toStringAsFixed(2));
+            }
+
+            break;
+          case "ft":
+            {
+              total = (total * pow(3.28084, 2)) / 2.2046;
+              total = double.parse(total.toStringAsFixed(2));
+            }
+            break;
+        }
+      }
     });
   }
 
@@ -47,19 +109,66 @@ class _BmiCalculatorState extends State<BmiCalculator> {
               ),
             ),
             SizedBox(height: 19.0),
-            Column(
+            Row(
               children: [
-                SizedBox(height: 10.0),
-                getTextFromTextField("Enter Value", "Weight", unitsOfWeight,
-                    currentItemOfWeight, weightCon),
+                Flexible(
+                    child: getTextFromTextField("Enter Value", "Weight",
+                        unitsOfWeight, currentItemOfWeight, weightCon)),
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: DropdownButtonHideUnderline(
+                    child: DropdownButton<String>(
+                      iconSize: 30.0,
+                      iconEnabledColor: Colors.blue,
+                      items: unitsOfWeight.map((String dropDownStringItem) {
+                        return DropdownMenuItem<String>(
+                          value: dropDownStringItem,
+                          child: Text(dropDownStringItem),
+                        );
+                      }).toList(),
+                      onChanged: (newValue) {
+                        setState(() {
+                          this.currentItemOfWeight = newValue.toString();
+                        });
+                        if (weightCon.text != "" && heightCon.text != "") {
+                          numClick(weightCon.text, heightCon.text);
+                        }
+                      },
+                      value: currentItemOfWeight,
+                    ),
+                  ),
+                )
               ],
             ),
             SizedBox(height: 20.0),
-            Column(
+            Row(
               children: [
-                SizedBox(height: 10.0),
-                getTextFromTextField("Enter Value", "Height", unitsOfHeight,
-                    currentItemOfHeight, heightCon),
+                Flexible(
+                    child: getTextFromTextField("Enter Value", "Height",
+                        unitsOfHeight, currentItemOfHeight, heightCon)),
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: DropdownButtonHideUnderline(
+                    child: DropdownButton<String>(
+                        iconSize: 30.0,
+                        iconEnabledColor: Colors.blue,
+                        items: unitsOfHeight.map((String dropDownStringItem) {
+                          return DropdownMenuItem<String>(
+                            value: dropDownStringItem,
+                            child: Text(dropDownStringItem),
+                          );
+                        }).toList(),
+                        onChanged: (newValue) {
+                          setState(() {
+                            this.currentItemOfHeight = newValue.toString();
+                          });
+                          if (weightCon.text != "" && heightCon.text != "") {
+                            numClick(weightCon.text, heightCon.text);
+                          }
+                        },
+                        value: currentItemOfHeight),
+                  ),
+                )
               ],
             ),
             SizedBox(height: 20.0),
@@ -68,12 +177,24 @@ class _BmiCalculatorState extends State<BmiCalculator> {
               children: [
                 ElevatedButton(
                     onPressed: () {
-                      numClick(weightCon.text, heightCon.text);
+                      if (weightCon.text != "" && heightCon.text != "") {
+                        numClick(weightCon.text, heightCon.text);
+                      }
                     },
-                    style: getButtonStyle(),
+                    style: getButtonStyle(Colors.green),
                     child: Text("Calculate")),
                 SizedBox(height: 10),
-                GetElevatedButton(buttonText: "Clear", colorData: Colors.red),
+                // GetElevatedButton(buttonText: "Clear", colorData: Colors.red),
+                ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        weightCon.text = "";
+                        heightCon.text = "";
+                        total = 0.0;
+                      });
+                    },
+                    style: getButtonStyle(Colors.red),
+                    child: Text("Clear"))
               ],
             ),
             SizedBox(height: 10),

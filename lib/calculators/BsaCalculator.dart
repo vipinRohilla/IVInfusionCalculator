@@ -1,9 +1,9 @@
+import 'dart:math';
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_application_2/formulas.dart/allFormulas.dart';
 import 'package:flutter_application_2/widgets/buttonStyle.dart';
-import 'package:flutter_application_2/widgets/elevatedButton.dart';
-
 import '../widgets/getTextFromField.dart';
 
 // ignore: must_be_immutable
@@ -13,11 +13,11 @@ class BsaCalculator extends StatefulWidget {
 }
 
 class _BsaCalculatorState extends State<BsaCalculator> {
-  List<String> unitsForHeight = ["m", "cm", "inches"];
-  List<String> unitsForWeight = ["Kg", "g"];
-
-  String currentItemForHeight = "m";
+  List<String> unitsForWeight = ["Kg", "lb"];
   String currentItemForWeight = "Kg";
+
+  List<String> unitsForHeight = ["cm", "inches"];
+  String currentItemForHeight = "cm";
 
   var weight = 0.0;
   var height = 0.0;
@@ -28,7 +28,42 @@ class _BsaCalculatorState extends State<BsaCalculator> {
 
   void numClick(String weight, String height) {
     setState(() {
-      total = getBSA(weight, height);
+      // total = getBSA(weight, height);
+      if (currentItemForWeight == "Kg") {
+        total = getBSA(weight, height);
+        // total.toStringAsFixed(2);
+        switch (currentItemForHeight) {
+          case "cm":
+            {
+              total = total;
+              total = double.parse(total.toStringAsFixed(2));
+            }
+
+            break;
+          case "inches":
+            {
+              total = total / sqrt(0.394);
+              total = double.parse(total.toStringAsFixed(2));
+            }
+        }
+      } else if (currentItemForWeight == "lb") {
+        total = getBSA(weight, height);
+        total = total / sqrt(2.2046);
+        switch (currentItemForHeight) {
+          case "cm":
+            {
+              total = total;
+              total = double.parse(total.toStringAsFixed(2));
+            }
+            break;
+          case "inches":
+            {
+              total = total / sqrt(0.394);
+              total = double.parse(total.toStringAsFixed(2));
+            }
+            break;
+        }
+      }
     });
   }
 
@@ -50,19 +85,65 @@ class _BsaCalculatorState extends State<BsaCalculator> {
               ),
             ),
             SizedBox(height: 19.0),
-            Column(
+            Row(
               children: [
-                SizedBox(height: 10.0),
-                getTextFromTextField("Enter Value", "Weight", unitsForWeight,
-                    currentItemForWeight, weightCon)
+                Flexible(
+                    child: getTextFromTextField("Enter Value", "Weight",
+                        unitsForWeight, currentItemForWeight, weightCon)),
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: DropdownButtonHideUnderline(
+                    child: DropdownButton<String>(
+                        iconSize: 30.0,
+                        iconEnabledColor: Colors.blue,
+                        items: unitsForWeight.map((String dropDownStringItem) {
+                          return DropdownMenuItem<String>(
+                            value: dropDownStringItem,
+                            child: Text(dropDownStringItem),
+                          );
+                        }).toList(),
+                        onChanged: (newValue) {
+                          setState(() {
+                            this.currentItemForWeight = newValue.toString();
+                          });
+                          if (weightCon.text != "" && heightCon.text != "") {
+                            numClick(weightCon.text, heightCon.text);
+                          }
+                        },
+                        value: currentItemForWeight),
+                  ),
+                )
               ],
             ),
             SizedBox(height: 20.0),
-            Column(
+            Row(
               children: [
-                SizedBox(height: 10.0),
-                getTextFromTextField("Enter Value", "Height", unitsForHeight,
-                    currentItemForHeight, heightCon),
+                Flexible(
+                    child: getTextFromTextField("Enter Value", "Height",
+                        unitsForHeight, currentItemForHeight, heightCon)),
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: DropdownButtonHideUnderline(
+                    child: DropdownButton<String>(
+                        iconSize: 30.0,
+                        iconEnabledColor: Colors.blue,
+                        items: unitsForHeight.map((String dropDownStringItem) {
+                          return DropdownMenuItem<String>(
+                            value: dropDownStringItem,
+                            child: Text(dropDownStringItem),
+                          );
+                        }).toList(),
+                        onChanged: (newValue) {
+                          setState(() {
+                            this.currentItemForHeight = newValue.toString();
+                          });
+                          if (weightCon.text != "" && heightCon.text != "") {
+                            numClick(weightCon.text, heightCon.text);
+                          }
+                        },
+                        value: currentItemForHeight),
+                  ),
+                )
               ],
             ),
             SizedBox(height: 20.0),
@@ -73,10 +154,19 @@ class _BsaCalculatorState extends State<BsaCalculator> {
                     onPressed: () {
                       numClick(weightCon.text, heightCon.text);
                     },
-                    style: getButtonStyle(),
+                    style: getButtonStyle(Colors.green),
                     child: Text("Calculate")),
                 SizedBox(height: 10),
-                GetElevatedButton(buttonText: "Clear", colorData: Colors.red),
+                ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        weightCon.text = "";
+                        heightCon.text = "";
+                        total = 0.0;
+                      });
+                    },
+                    style: getButtonStyle(Colors.red),
+                    child: Text("Clear"))
               ],
             ),
             SizedBox(height: 10),
@@ -97,8 +187,9 @@ class _BsaCalculatorState extends State<BsaCalculator> {
                               fontWeight: FontWeight.bold,
                               color: Colors.white)),
                       SizedBox(height: 10.0),
-                      Text("$total",
+                      Text("$total m^2 ",
                           style: TextStyle(
+                              // fontFeatures: [FontFeature.superscripts()],
                               letterSpacing: 2,
                               fontWeight: FontWeight.bold,
                               color: Colors.white))

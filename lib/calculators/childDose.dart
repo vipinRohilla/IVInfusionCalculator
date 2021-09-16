@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_application_2/formulas.dart/allFormulas.dart';
@@ -12,10 +14,10 @@ class ChildDose extends StatefulWidget {
 }
 
 class _ChildDoseState extends State<ChildDose> {
-  List<String> unitsForChildWeight = ["mg", "g", "Kg"];
-  String currentItemForChildWeight = "mg";
+  List<String> unitsForChildWeight = ["Kg", "lb"];
+  String currentItemForChildWeight = "Kg";
 
-  List<String> unitsForAverageAdultDose = ["mg", "g", "Kg"];
+  List<String> unitsForAverageAdultDose = ["mg", "g"];
   String currentItemForAverageAdultDose = "mg";
 
   var weight = 0.0;
@@ -27,6 +29,40 @@ class _ChildDoseState extends State<ChildDose> {
   void numClick(String weight, String adultDose) {
     setState(() {
       total = getChildDose(weight, adultDose);
+      if (currentItemForChildWeight == "Kg") {
+        total = getChildDose(weight, adultDose);
+        switch (currentItemForAverageAdultDose) {
+          case "mg":
+            {
+              total = total;
+              total = double.parse(total.toStringAsFixed(2));
+            }
+
+            break;
+          case "g":
+            {
+              total = total * 1000;
+              total = double.parse(total.toStringAsFixed(2));
+            }
+        }
+      } else if (currentItemForChildWeight == "lb") {
+        total = getChildDose(weight, adultDose);
+        total = total / 2.2046;
+        switch (currentItemForAverageAdultDose) {
+          case "mg":
+            {
+              total = total;
+              total = double.parse(total.toStringAsFixed(2));
+            }
+            break;
+          case "g":
+            {
+              total = total * 1000;
+              total = double.parse(total.toStringAsFixed(2));
+            }
+            break;
+        }
+      }
     });
   }
 
@@ -48,23 +84,77 @@ class _ChildDoseState extends State<ChildDose> {
               ),
             ),
             SizedBox(height: 19.0),
-            Column(
+            Row(
               children: [
-                SizedBox(height: 10.0),
-                getTextFromTextField("Enter Value", "Child Weight",
-                    unitsForChildWeight, currentItemForChildWeight, weightCon),
+                Flexible(
+                    child: getTextFromTextField(
+                        "Enter Value",
+                        "Child Weight",
+                        unitsForChildWeight,
+                        currentItemForChildWeight,
+                        weightCon)),
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: DropdownButtonHideUnderline(
+                    child: DropdownButton<String>(
+                        iconSize: 30.0,
+                        iconEnabledColor: Colors.blue,
+                        items: unitsForChildWeight
+                            .map((String dropDownStringItem) {
+                          return DropdownMenuItem<String>(
+                            value: dropDownStringItem,
+                            child: Text(dropDownStringItem),
+                          );
+                        }).toList(),
+                        onChanged: (newValue) {
+                          setState(() {
+                            this.currentItemForChildWeight =
+                                newValue.toString();
+                          });
+                          if (weightCon.text != "" && adultDoseCon.text != "") {
+                            numClick(weightCon.text, adultDoseCon.text);
+                          }
+                        },
+                        value: currentItemForChildWeight),
+                  ),
+                )
               ],
             ),
             SizedBox(height: 20.0),
-            Column(
+            Row(
               children: [
-                SizedBox(height: 10.0),
-                getTextFromTextField(
-                    "Enter Value",
-                    "Average Adult Dose",
-                    unitsForAverageAdultDose,
-                    currentItemForAverageAdultDose,
-                    adultDoseCon),
+                Flexible(
+                    child: getTextFromTextField(
+                        "Enter Value",
+                        "Average Adult Dose",
+                        unitsForAverageAdultDose,
+                        currentItemForAverageAdultDose,
+                        adultDoseCon)),
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: DropdownButtonHideUnderline(
+                    child: DropdownButton<String>(
+                        iconSize: 30.0,
+                        iconEnabledColor: Colors.blue,
+                        items: unitsForAverageAdultDose
+                            .map((String dropDownStringItem) {
+                          return DropdownMenuItem<String>(
+                            value: dropDownStringItem,
+                            child: Text(dropDownStringItem),
+                          );
+                        }).toList(),
+                        onChanged: (newValue) {
+                          setState(() {
+                            this.currentItemForAverageAdultDose =
+                                newValue.toString();
+                          });
+                          if (weightCon.text != "" && adultDoseCon.text != "") {
+                            numClick(weightCon.text, adultDoseCon.text);
+                          }
+                        },
+                        value: currentItemForAverageAdultDose),
+                  ),
+                )
               ],
             ),
             SizedBox(height: 20.0),
@@ -75,10 +165,19 @@ class _ChildDoseState extends State<ChildDose> {
                     onPressed: () {
                       numClick(weightCon.text, adultDoseCon.text);
                     },
-                    style: getButtonStyle(),
+                    style: getButtonStyle(Colors.green),
                     child: Text("Calculate")),
                 SizedBox(height: 10),
-                GetElevatedButton(buttonText: "Clear", colorData: Colors.red),
+                ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        weightCon.text = "";
+                        adultDoseCon.text = "";
+                        total = 0.0;
+                      });
+                    },
+                    style: getButtonStyle(Colors.red),
+                    child: Text("Clear"))
               ],
             ),
             SizedBox(height: 10),
@@ -99,7 +198,7 @@ class _ChildDoseState extends State<ChildDose> {
                               fontWeight: FontWeight.bold,
                               color: Colors.white)),
                       SizedBox(height: 10.0),
-                      Text("$total",
+                      Text("$total $currentItemForAverageAdultDose",
                           style: TextStyle(
                               letterSpacing: 2,
                               fontWeight: FontWeight.bold,

@@ -76,7 +76,7 @@ class _UnitDosageState extends State<UnitDosage> {
                     onPressed: () {
                       numClick(requiredDosageCon.text, weightCon.text);
                     },
-                    style: getButtonStyle(),
+                    style: getButtonStyle(Colors.green),
                     child: Text("Calculate")),
                 SizedBox(height: 10),
                 GetElevatedButton(buttonText: "Clear", colorData: Colors.red),

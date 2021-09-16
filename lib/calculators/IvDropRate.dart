@@ -101,7 +101,7 @@ class _IvDropRateState extends State<IvDropRate> {
                       numClick(requiredDosageCon.text, timeCon.text,
                           dropFactorCon.text);
                     },
-                    style: getButtonStyle(),
+                    style: getButtonStyle(Colors.green),
                     child: Text("Calculate")),
                 SizedBox(height: 10),
                 GetElevatedButton(buttonText: "Clear", colorData: Colors.red),

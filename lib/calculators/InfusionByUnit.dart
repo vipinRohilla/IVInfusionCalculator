@@ -99,7 +99,7 @@ class _InfusionByUnitState extends State<InfusionByUnit> {
                       numClick(requiredDosageCon.text, ivBagVolumeCon.text,
                           unitInIvBagCon.text);
                     },
-                    style: getButtonStyle(),
+                    style: getButtonStyle(Colors.green),
                     child: Text("Calculate")),
                 SizedBox(height: 10),
                 GetElevatedButton(buttonText: "Clear", colorData: Colors.red),

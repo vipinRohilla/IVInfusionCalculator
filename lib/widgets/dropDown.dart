@@ -30,9 +30,9 @@ class _DropDownState extends State<DropDown> {
           }).toList(),
           onChanged: (newValue) {
             setState(() {
-              print(this.currentItem);
+              // print(this.currentItem);
               this.currentItem = newValue.toString();
-              print(this.currentItem);
+              // print(this.currentItem);
             });
           },
           value: currentItem,
