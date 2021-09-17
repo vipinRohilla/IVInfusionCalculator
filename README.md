@@ -1,19 +1,20 @@
 
 # screen shots
-![Screenshot 2021-09-15 at 12 39 39 PM](https://user-images.githubusercontent.com/65539742/133387272-8dfe5593-85df-4dec-87ec-0a32d9969576.png)
-![Screenshot 2021-09-14 at 11 05 55 PM](https://user-images.githubusercontent.com/65539742/133306684-937c4a60-10ec-405a-a362-c4b9c804d080.png)
-![Screenshot 2021-09-14 at 11 06 01 PM](https://user-images.githubusercontent.com/65539742/133306683-0fe692ec-cd3c-481c-affc-c648ffd5f95d.png)
-![Screenshot 2021-09-15 at 12 38 13 PM](https://user-images.githubusercontent.com/65539742/133387398-e57307e9-f30a-4b0b-b6d3-eff7a27eff76.png)
-![Screenshot 2021-09-15 at 12 38 21 PM](https://user-images.githubusercontent.com/65539742/133387401-cbdf2d4e-85d4-4651-bbdb-5be21d2c42bd.png)
-![Screenshot 2021-09-14 at 11 06 09 PM](https://user-images.githubusercontent.com/65539742/133306682-3b21cfa5-4769-4804-a3d2-d8db29f59ec3.png)
-![Screenshot 2021-09-14 at 11 06 16 PM](https://user-images.githubusercontent.com/65539742/133306678-57622c8c-8e00-45d0-88b4-19cc9cc014d0.png)
-![Screenshot 2021-09-14 at 11 06 24 PM](https://user-images.githubusercontent.com/65539742/133306675-b2601ea1-f104-4483-b999-f10e5826b56e.png)
-![Screenshot 2021-09-14 at 11 06 30 PM](https://user-images.githubusercontent.com/65539742/133306672-c222e5ac-5d7b-4756-8873-534c2d3c6149.png)
-![Screenshot 2021-09-14 at 11 06 36 PM](https://user-images.githubusercontent.com/65539742/133306670-1d08e6bb-0aa3-4ee8-aa85-e595cf4c9ff7.png)
-![Screenshot 2021-09-14 at 11 06 48 PM](https://user-images.githubusercontent.com/65539742/133306669-84c06c45-ebe9-4752-a3ba-671edcd958d2.png)
-![Screenshot 2021-09-14 at 11 06 53 PM](https://user-images.githubusercontent.com/65539742/133306668-b1001994-31fd-4057-a7f0-510609b6ac0d.png)
-![Screenshot 2021-09-14 at 11 06 59 PM](https://user-images.githubusercontent.com/65539742/133306666-4d4c0cb2-7371-4d6e-ad7c-ec5050c0e9a6.png)
-![Screenshot 2021-09-14 at 11 07 08 PM](https://user-images.githubusercontent.com/65539742/133306657-329d6334-c089-4197-a8e7-73ff492a12f3.png)
+![Screenshot 2021-09-17 at 8 21 51 PM](https://user-images.githubusercontent.com/65539742/133803918-230a89da-10a6-4931-81f4-b7f95fe32d5f.png)
+![Screenshot 2021-09-17 at 8 22 17 PM](https://user-images.githubusercontent.com/65539742/133803931-3373642c-e0ce-456e-8bf5-0710d29b7ac4.png)
+![Screenshot 2021-09-17 at 8 22 25 PM](https://user-images.githubusercontent.com/65539742/133803936-3a0594d2-016b-404a-a096-df3d746ab6d2.png)
+![Screenshot 2021-09-17 at 8 22 33 PM](https://user-images.githubusercontent.com/65539742/133803941-d0392b99-cca7-4c23-94c3-2e01eb31c43f.png)
+![Screenshot 2021-09-17 at 8 22 42 PM](https://user-images.githubusercontent.com/65539742/133803947-6329e7a7-ec96-42bc-a260-473326ba759f.png)
+![Screenshot 2021-09-17 at 8 22 51 PM](https://user-images.githubusercontent.com/65539742/133803951-d830997f-a74c-4077-93df-f1a6fe0fbea6.png)
+![Screenshot 2021-09-17 at 8 22 59 PM](https://user-images.githubusercontent.com/65539742/133803954-e8b1a93e-6bb7-47ef-a238-af88b03ad5c4.png)
+![Screenshot 2021-09-17 at 8 23 07 PM](https://user-images.githubusercontent.com/65539742/133803957-c87d88e5-6626-4d06-8df3-90cfb2229b4f.png)
+![Screenshot 2021-09-17 at 8 23 15 PM](https://user-images.githubusercontent.com/65539742/133803958-b1b9d543-46c1-4547-a1a5-c4e6a4fb4153.png)
+![Screenshot 2021-09-17 at 8 23 21 PM](https://user-images.githubusercontent.com/65539742/133803961-5c1fc9ea-07b9-4b42-9287-f2aad3702efd.png)
+![Screenshot 2021-09-17 at 8 23 42 PM](https://user-images.githubusercontent.com/65539742/133803964-4d683da2-b5b9-4d6d-9cb1-1bde0c303cfc.png)
+![Screenshot 2021-09-17 at 8 23 49 PM](https://user-images.githubusercontent.com/65539742/133803967-a7c79060-8b7d-40ce-a618-3ee248c17a74.png)
+![Screenshot 2021-09-17 at 8 23 56 PM](https://user-images.githubusercontent.com/65539742/133803971-bca4c486-0fb3-4145-bbb2-14222c28d1b8.png)
+![Screenshot 2021-09-17 at 8 24 03 PM](https://user-images.githubusercontent.com/65539742/133803975-daa9938a-3578-468c-ba6c-ebcf8875affc.png)
+
 
 
 
