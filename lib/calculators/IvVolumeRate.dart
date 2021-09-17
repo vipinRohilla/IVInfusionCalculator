@@ -31,6 +31,57 @@ class _IvVolumeRateState extends State<IvVolumeRate> {
   void numClick(String requiredDosage, String time) {
     setState(() {
       total = getIvVolumeRate(requiredDosage, time);
+      if (currentItemForTime == "hr") {
+        total = getIvVolumeRate(requiredDosage, time);
+        switch (currentItemForRequiredDosage) {
+          case "ml":
+            {
+              total = total;
+              total = double.parse(total.toStringAsFixed(2));
+            }
+
+            break;
+          case "L":
+            {
+              total = total * 1000;
+              total = double.parse(total.toStringAsFixed(2));
+            }
+        }
+      } else if (currentItemForTime == "min") {
+        total = getIvVolumeRate(requiredDosage, time);
+        total = total * 60;
+        switch (currentItemForRequiredDosage) {
+          case "ml":
+            {
+              total = total;
+              total = double.parse(total.toStringAsFixed(2));
+            }
+            break;
+          case "L":
+            {
+              total = total * 1000;
+              total = double.parse(total.toStringAsFixed(2));
+            }
+            break;
+        }
+      } else if (currentItemForTime == "sec") {
+        total = getIvVolumeRate(requiredDosage, time);
+        total = total * 3600;
+        switch (currentItemForRequiredDosage) {
+          case "ml":
+            {
+              total = total;
+              total = double.parse(total.toStringAsFixed(2));
+            }
+            break;
+          case "L":
+            {
+              total = total * 1000;
+              total = double.parse(total.toStringAsFixed(2));
+            }
+            break;
+        }
+      }
     });
   }
 
@@ -52,23 +103,73 @@ class _IvVolumeRateState extends State<IvVolumeRate> {
               ),
             ),
             SizedBox(height: 19.0),
-            Column(
+            Row(
               children: [
-                SizedBox(height: 10.0),
-                getTextFromTextField(
-                    "Enter Value",
-                    "Required Dosage",
-                    unitsForRequiredDosage,
-                    currentItemForRequiredDosage,
-                    requiredDosageCon),
+                Flexible(
+                    child: getTextFromTextField(
+                        "Enter Value",
+                        "Required Dosage",
+                        unitsForRequiredDosage,
+                        currentItemForRequiredDosage,
+                        requiredDosageCon)),
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: DropdownButtonHideUnderline(
+                    child: DropdownButton<String>(
+                        iconSize: 30.0,
+                        iconEnabledColor: Colors.blue,
+                        items: unitsForRequiredDosage
+                            .map((String dropDownStringItem) {
+                          return DropdownMenuItem<String>(
+                            value: dropDownStringItem,
+                            child: Text(dropDownStringItem),
+                          );
+                        }).toList(),
+                        onChanged: (newValue) {
+                          setState(() {
+                            this.currentItemForRequiredDosage =
+                                newValue.toString();
+                          });
+                          if (requiredDosageCon.text != "" &&
+                              timeCon.text != "") {
+                            numClick(requiredDosageCon.text, timeCon.text);
+                          }
+                        },
+                        value: currentItemForRequiredDosage),
+                  ),
+                )
               ],
             ),
             SizedBox(height: 20.0),
-            Column(
+            Row(
               children: [
-                SizedBox(height: 10.0),
-                getTextFromTextField("Enter Value", "Time", unitsForTime,
-                    currentItemForTime, timeCon),
+                Flexible(
+                    child: getTextFromTextField("Enter Value", "Time",
+                        unitsForTime, currentItemForTime, timeCon)),
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: DropdownButtonHideUnderline(
+                    child: DropdownButton<String>(
+                        iconSize: 30.0,
+                        iconEnabledColor: Colors.blue,
+                        items: unitsForTime.map((String dropDownStringItem) {
+                          return DropdownMenuItem<String>(
+                            value: dropDownStringItem,
+                            child: Text(dropDownStringItem),
+                          );
+                        }).toList(),
+                        onChanged: (newValue) {
+                          setState(() {
+                            this.currentItemForTime = newValue.toString();
+                          });
+                          if (requiredDosageCon.text != "" &&
+                              timeCon.text != "") {
+                            numClick(requiredDosageCon.text, timeCon.text);
+                          }
+                        },
+                        value: currentItemForTime),
+                  ),
+                )
               ],
             ),
             SizedBox(height: 20.0),
@@ -82,7 +183,16 @@ class _IvVolumeRateState extends State<IvVolumeRate> {
                     style: getButtonStyle(Colors.green),
                     child: Text("Calculate")),
                 SizedBox(height: 10),
-                GetElevatedButton(buttonText: "Clear", colorData: Colors.red),
+                ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        timeCon.text = "";
+                        requiredDosageCon.text = "";
+                        total = 0.0;
+                      });
+                    },
+                    style: getButtonStyle(Colors.red),
+                    child: Text("Clear")),
               ],
             ),
             SizedBox(height: 10),
@@ -103,7 +213,8 @@ class _IvVolumeRateState extends State<IvVolumeRate> {
                               fontWeight: FontWeight.bold,
                               color: Colors.white)),
                       SizedBox(height: 10.0),
-                      Text("$total",
+                      Text(
+                          "$total $currentItemForRequiredDosage / $currentItemForTime",
                           style: TextStyle(
                               letterSpacing: 2,
                               fontWeight: FontWeight.bold,

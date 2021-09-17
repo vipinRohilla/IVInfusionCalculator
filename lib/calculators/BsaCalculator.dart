@@ -28,10 +28,8 @@ class _BsaCalculatorState extends State<BsaCalculator> {
 
   void numClick(String weight, String height) {
     setState(() {
-      // total = getBSA(weight, height);
       if (currentItemForWeight == "Kg") {
         total = getBSA(weight, height);
-        // total.toStringAsFixed(2);
         switch (currentItemForHeight) {
           case "cm":
             {

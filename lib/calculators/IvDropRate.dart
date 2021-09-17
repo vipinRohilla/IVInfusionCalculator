@@ -12,20 +12,16 @@ class IvDropRate extends StatefulWidget {
 }
 
 class _IvDropRateState extends State<IvDropRate> {
-  List<String> unitsForRequiredDosage = [
-    "mL",
-    "L",
-  ];
+  List<String> unitsForRequiredDosage = ["mL", "L"];
   String currentItemForRequiredDosage = "mL";
 
   List<String> unitsForTime = ["hr", "min", "sec"];
   String currentItemForTime = "hr";
 
   List<String> unitsForDropFactor = [
-    "(drops/mL)/60(min/hr)",
-    "(drops/L)/60(min/hr)"
+    "(drops/mL)",
   ];
-  String currentItemForDropFactor = "(drops/mL)/60(min/hr)";
+  String currentItemForDropFactor = "(drops/mL)";
 
   var requiredDosage = 0.0;
   var time = 0.0;
@@ -39,6 +35,57 @@ class _IvDropRateState extends State<IvDropRate> {
   void numClick(String requiredDosage, String time, String dropFactor) {
     setState(() {
       total = getIvDropRate(requiredDosage, time, dropFactor);
+      if (currentItemForTime == "hr") {
+        total = getIvDropRate(requiredDosage, time, dropFactor);
+        switch (currentItemForRequiredDosage) {
+          case "ml":
+            {
+              total = total;
+              total = double.parse(total.toStringAsFixed(2));
+            }
+
+            break;
+          case "L":
+            {
+              total = total * 1000;
+              total = double.parse(total.toStringAsFixed(2));
+            }
+        }
+      } else if (currentItemForTime == "min") {
+        total = getIvDropRate(requiredDosage, time, dropFactor);
+        total = total * 60;
+        switch (currentItemForRequiredDosage) {
+          case "ml":
+            {
+              total = total;
+              total = double.parse(total.toStringAsFixed(2));
+            }
+            break;
+          case "L":
+            {
+              total = total * 1000;
+              total = double.parse(total.toStringAsFixed(2));
+            }
+            break;
+        }
+      } else if (currentItemForTime == "sec") {
+        total = getIvDropRate(requiredDosage, time, dropFactor);
+        total = total * 3600;
+        switch (currentItemForRequiredDosage) {
+          case "ml":
+            {
+              total = total;
+              total = double.parse(total.toStringAsFixed(2));
+            }
+            break;
+          case "L":
+            {
+              total = total * 1000;
+              total = double.parse(total.toStringAsFixed(2));
+            }
+            break;
+        }
+      }
     });
   }
 
@@ -60,36 +107,116 @@ class _IvDropRateState extends State<IvDropRate> {
               ),
             ),
             SizedBox(height: 19.0),
-            Column(
+            Row(
               children: [
-                SizedBox(height: 10.0),
-                getTextFromTextField(
-                    "Enter Value",
-                    "Required Dose",
-                    unitsForRequiredDosage,
-                    currentItemForRequiredDosage,
-                    requiredDosageCon),
+                Flexible(
+                    child: getTextFromTextField(
+                        "Enter Value",
+                        "Required Dose",
+                        unitsForRequiredDosage,
+                        currentItemForRequiredDosage,
+                        requiredDosageCon)),
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: DropdownButtonHideUnderline(
+                    child: DropdownButton<String>(
+                        iconSize: 30.0,
+                        iconEnabledColor: Colors.blue,
+                        items: unitsForRequiredDosage
+                            .map((String dropDownStringItem) {
+                          return DropdownMenuItem<String>(
+                            value: dropDownStringItem,
+                            child: Text(dropDownStringItem),
+                          );
+                        }).toList(),
+                        onChanged: (newValue) {
+                          setState(() {
+                            this.currentItemForRequiredDosage =
+                                newValue.toString();
+                          });
+                          if (requiredDosageCon.text != "" &&
+                              timeCon.text != "" &&
+                              dropFactorCon.text != "") {
+                            numClick(requiredDosageCon.text, timeCon.text,
+                                dropFactorCon.text);
+                          }
+                        },
+                        value: currentItemForRequiredDosage),
+                  ),
+                )
               ],
             ),
             SizedBox(height: 20.0),
-            Column(
+            Row(
               children: [
-                SizedBox(height: 10.0),
-                getTextFromTextField("Enter Value", "Time", unitsForTime,
-                    currentItemForTime, timeCon),
+                Flexible(
+                    child: getTextFromTextField("Enter Value", "Time",
+                        unitsForTime, currentItemForTime, timeCon)),
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: DropdownButtonHideUnderline(
+                    child: DropdownButton<String>(
+                        iconSize: 30.0,
+                        iconEnabledColor: Colors.blue,
+                        items: unitsForTime.map((String dropDownStringItem) {
+                          return DropdownMenuItem<String>(
+                            value: dropDownStringItem,
+                            child: Text(dropDownStringItem),
+                          );
+                        }).toList(),
+                        onChanged: (newValue) {
+                          setState(() {
+                            this.currentItemForTime = newValue.toString();
+                          });
+                          if (requiredDosageCon.text != "" &&
+                              timeCon.text != "" &&
+                              dropFactorCon.text != "") {
+                            numClick(requiredDosageCon.text, timeCon.text,
+                                dropFactorCon.text);
+                          }
+                        },
+                        value: currentItemForTime),
+                  ),
+                )
               ],
             ),
             SizedBox(height: 20.0),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.start,
+            Row(
               children: [
-                SizedBox(height: 10.0),
-                getTextFromTextField(
-                    "Enter Value",
-                    "Drop Factor",
-                    unitsForDropFactor,
-                    currentItemForDropFactor,
-                    dropFactorCon),
+                Flexible(
+                    child: getTextFromTextField(
+                        "Enter Value",
+                        "Drop Factor",
+                        unitsForDropFactor,
+                        currentItemForDropFactor,
+                        dropFactorCon)),
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: DropdownButtonHideUnderline(
+                    child: DropdownButton<String>(
+                        iconSize: 30.0,
+                        iconEnabledColor: Colors.blue,
+                        items:
+                            unitsForDropFactor.map((String dropDownStringItem) {
+                          return DropdownMenuItem<String>(
+                            value: dropDownStringItem,
+                            child: Text(dropDownStringItem),
+                          );
+                        }).toList(),
+                        onChanged: (newValue) {
+                          setState(() {
+                            this.currentItemForDropFactor = newValue.toString();
+                          });
+                          if (requiredDosageCon.text != "" &&
+                              timeCon.text != "" &&
+                              dropFactorCon.text != "") {
+                            numClick(requiredDosageCon.text, timeCon.text,
+                                dropFactorCon.text);
+                          }
+                        },
+                        value: currentItemForDropFactor),
+                  ),
+                )
               ],
             ),
             SizedBox(height: 20.0),
@@ -104,7 +231,17 @@ class _IvDropRateState extends State<IvDropRate> {
                     style: getButtonStyle(Colors.green),
                     child: Text("Calculate")),
                 SizedBox(height: 10),
-                GetElevatedButton(buttonText: "Clear", colorData: Colors.red),
+                ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        timeCon.text = "";
+                        dropFactorCon.text = "";
+                        requiredDosageCon.text = "";
+                        total = 0.0;
+                      });
+                    },
+                    style: getButtonStyle(Colors.red),
+                    child: Text("Clear")),
               ],
             ),
             SizedBox(height: 10),
@@ -125,7 +262,7 @@ class _IvDropRateState extends State<IvDropRate> {
                               fontWeight: FontWeight.bold,
                               color: Colors.white)),
                       SizedBox(height: 10.0),
-                      Text("$total",
+                      Text("$total d/ $currentItemForTime",
                           style: TextStyle(
                               letterSpacing: 2,
                               fontWeight: FontWeight.bold,

@@ -1,10 +1,7 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_application_2/formulas.dart/allFormulas.dart';
 import 'package:flutter_application_2/widgets/buttonStyle.dart';
-import 'package:flutter_application_2/widgets/elevatedButton.dart';
 
 import '../widgets/getTextFromField.dart';
 
@@ -30,7 +27,6 @@ class _ChildDoseState extends State<ChildDose> {
     setState(() {
       total = getChildDose(weight, adultDose);
       if (currentItemForChildWeight == "Kg") {
-        total = getChildDose(weight, adultDose);
         switch (currentItemForAverageAdultDose) {
           case "mg":
             {
@@ -46,7 +42,6 @@ class _ChildDoseState extends State<ChildDose> {
             }
         }
       } else if (currentItemForChildWeight == "lb") {
-        total = getChildDose(weight, adultDose);
         total = total / 2.2046;
         switch (currentItemForAverageAdultDose) {
           case "mg":

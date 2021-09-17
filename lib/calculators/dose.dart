@@ -12,16 +12,16 @@ class Dose extends StatefulWidget {
 }
 
 class _DoseState extends State<Dose> {
-  List<String> unitsForStockStrength = ["mg", "g", "Kg"];
+  List<String> unitsForStockStrength = ["mg", "g"];
   String currentItemForStockStrength = "mg";
 
-  List<String> unitsForStockVolume = ["mL", "L"];
+  List<String> unitsForStockVolume = ["mL"];
   String currentItemForStockVolume = "mL";
 
-  List<String> unitsForRequiredDosage = ["mg/Kg", "g/Kg"];
+  List<String> unitsForRequiredDosage = ["mg/Kg"];
   String currentItemForRequiredDosage = "mg/Kg";
 
-  List<String> unitsForBodyWeight = ["Kg", "g"];
+  List<String> unitsForBodyWeight = ["Kg", "lb"];
   String currentItemForBodyWeight = "Kg";
 
   var stockStrength = 0.0;
@@ -39,6 +39,40 @@ class _DoseState extends State<Dose> {
       String weight) {
     setState(() {
       total = getDose(stockStrength, stockVolume, requiredDosage, weight);
+      if (currentItemForStockStrength == "mg") {
+        total = getDose(stockStrength, stockVolume, requiredDosage, weight);
+        switch (currentItemForBodyWeight) {
+          case "Kg":
+            {
+              total = total;
+              total = double.parse(total.toStringAsFixed(2));
+            }
+
+            break;
+          case "lb":
+            {
+              total = total * 2.2046;
+              total = double.parse(total.toStringAsFixed(2));
+            }
+        }
+      } else if (currentItemForStockStrength == "g") {
+        total = getDose(stockStrength, stockVolume, requiredDosage, weight);
+        total = total * 1000;
+        switch (currentItemForBodyWeight) {
+          case "Kg":
+            {
+              total = total;
+              total = double.parse(total.toStringAsFixed(2));
+            }
+            break;
+          case "lb":
+            {
+              total = total * 2.2046;
+              total = double.parse(total.toStringAsFixed(2));
+            }
+            break;
+        }
+      }
     });
   }
 
@@ -60,49 +94,166 @@ class _DoseState extends State<Dose> {
               ),
             ),
             SizedBox(height: 19.0),
-            Column(
+            Row(
               children: [
-                SizedBox(height: 10.0),
-                getTextFromTextField(
-                    "Enter Value",
-                    "Stock Strength",
-                    unitsForStockStrength,
-                    currentItemForStockStrength,
-                    stockStrengthCon),
+                Flexible(
+                    child: getTextFromTextField(
+                        "Enter Value",
+                        "Stock Strength",
+                        unitsForStockStrength,
+                        currentItemForStockStrength,
+                        stockStrengthCon)),
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: DropdownButtonHideUnderline(
+                    child: DropdownButton<String>(
+                        iconSize: 30.0,
+                        iconEnabledColor: Colors.blue,
+                        items: unitsForStockStrength
+                            .map((String dropDownStringItem) {
+                          return DropdownMenuItem<String>(
+                            value: dropDownStringItem,
+                            child: Text(dropDownStringItem),
+                          );
+                        }).toList(),
+                        onChanged: (newValue) {
+                          setState(() {
+                            this.currentItemForStockStrength =
+                                newValue.toString();
+                          });
+                          if (stockStrengthCon.text != "" &&
+                              stockVolumeCon.text != "" &&
+                              requiredDosageCon.text != "" &&
+                              weightCon.text != "") {
+                            numClick(stockStrengthCon.text, stockVolumeCon.text,
+                                requiredDosageCon.text, weightCon.text);
+                          }
+                        },
+                        value: currentItemForStockStrength),
+                  ),
+                )
               ],
             ),
             SizedBox(height: 20.0),
-            Column(
+            Row(
               children: [
-                SizedBox(height: 10.0),
-                getTextFromTextField(
-                    "Enter Value",
-                    "Stock Volume",
-                    unitsForStockVolume,
-                    currentItemForStockVolume,
-                    stockVolumeCon),
+                Flexible(
+                    child: getTextFromTextField(
+                        "Enter Value",
+                        "Stock Volume",
+                        unitsForStockVolume,
+                        currentItemForStockVolume,
+                        stockVolumeCon)),
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: DropdownButtonHideUnderline(
+                    child: DropdownButton<String>(
+                        iconSize: 30.0,
+                        iconEnabledColor: Colors.blue,
+                        items: unitsForStockVolume
+                            .map((String dropDownStringItem) {
+                          return DropdownMenuItem<String>(
+                            value: dropDownStringItem,
+                            child: Text(dropDownStringItem),
+                          );
+                        }).toList(),
+                        onChanged: (newValue) {
+                          setState(() {
+                            this.currentItemForStockVolume =
+                                newValue.toString();
+                          });
+                          if (stockStrengthCon.text != "" &&
+                              stockVolumeCon.text != "" &&
+                              requiredDosageCon.text != "" &&
+                              weightCon.text != "") {
+                            numClick(stockStrengthCon.text, stockVolumeCon.text,
+                                requiredDosageCon.text, weightCon.text);
+                          }
+                        },
+                        value: currentItemForStockVolume),
+                  ),
+                )
               ],
             ),
             SizedBox(height: 20.0),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.start,
+            Row(
               children: [
-                SizedBox(height: 10.0),
-                getTextFromTextField(
-                    "Enter Value",
-                    "Required Dosage",
-                    unitsForRequiredDosage,
-                    currentItemForRequiredDosage,
-                    requiredDosageCon)
+                Flexible(
+                    child: getTextFromTextField(
+                        "Enter Value",
+                        "Required Dosage",
+                        unitsForRequiredDosage,
+                        currentItemForRequiredDosage,
+                        requiredDosageCon)),
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: DropdownButtonHideUnderline(
+                    child: DropdownButton<String>(
+                        iconSize: 30.0,
+                        iconEnabledColor: Colors.blue,
+                        items: unitsForRequiredDosage
+                            .map((String dropDownStringItem) {
+                          return DropdownMenuItem<String>(
+                            value: dropDownStringItem,
+                            child: Text(dropDownStringItem),
+                          );
+                        }).toList(),
+                        onChanged: (newValue) {
+                          setState(() {
+                            this.currentItemForRequiredDosage =
+                                newValue.toString();
+                          });
+                          if (stockStrengthCon.text != "" &&
+                              stockVolumeCon.text != "" &&
+                              requiredDosageCon.text != "" &&
+                              weightCon.text != "") {
+                            numClick(stockStrengthCon.text, stockVolumeCon.text,
+                                requiredDosageCon.text, weightCon.text);
+                          }
+                        },
+                        value: currentItemForRequiredDosage),
+                  ),
+                )
               ],
             ),
             SizedBox(height: 20.0),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.start,
+            Row(
               children: [
-                SizedBox(height: 10.0),
-                getTextFromTextField("Enter Value", "Body Weight",
-                    unitsForBodyWeight, currentItemForBodyWeight, weightCon)
+                Flexible(
+                    child: getTextFromTextField(
+                        "Enter Value",
+                        "Body Weight",
+                        unitsForBodyWeight,
+                        currentItemForBodyWeight,
+                        weightCon)),
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: DropdownButtonHideUnderline(
+                    child: DropdownButton<String>(
+                        iconSize: 30.0,
+                        iconEnabledColor: Colors.blue,
+                        items:
+                            unitsForBodyWeight.map((String dropDownStringItem) {
+                          return DropdownMenuItem<String>(
+                            value: dropDownStringItem,
+                            child: Text(dropDownStringItem),
+                          );
+                        }).toList(),
+                        onChanged: (newValue) {
+                          setState(() {
+                            this.currentItemForBodyWeight = newValue.toString();
+                          });
+                          if (stockStrengthCon.text != "" &&
+                              stockVolumeCon.text != "" &&
+                              requiredDosageCon.text != "" &&
+                              weightCon.text != "") {
+                            numClick(stockStrengthCon.text, stockVolumeCon.text,
+                                requiredDosageCon.text, weightCon.text);
+                          }
+                        },
+                        value: currentItemForBodyWeight),
+                  ),
+                )
               ],
             ),
             SizedBox(height: 20.0),
@@ -117,7 +268,18 @@ class _DoseState extends State<Dose> {
                     style: getButtonStyle(Colors.green),
                     child: Text("Calculate")),
                 SizedBox(height: 10),
-                GetElevatedButton(buttonText: "Clear", colorData: Colors.red),
+                ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        weightCon.text = "";
+                        stockStrengthCon.text = "";
+                        stockVolumeCon.text = "";
+                        requiredDosageCon.text = "";
+                        total = 0.0;
+                      });
+                    },
+                    style: getButtonStyle(Colors.red),
+                    child: Text("Clear")),
               ],
             ),
             SizedBox(height: 10),
@@ -138,7 +300,7 @@ class _DoseState extends State<Dose> {
                               fontWeight: FontWeight.bold,
                               color: Colors.white)),
                       SizedBox(height: 10.0),
-                      Text("$total",
+                      Text("$total $currentItemForStockVolume",
                           style: TextStyle(
                               letterSpacing: 2,
                               fontWeight: FontWeight.bold,

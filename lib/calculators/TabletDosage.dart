@@ -164,7 +164,16 @@ class _TabletDosageState extends State<TabletDosage> {
                     style: getButtonStyle(Colors.green),
                     child: Text("Calculate")),
                 SizedBox(height: 10),
-                GetElevatedButton(buttonText: "Clear", colorData: Colors.red),
+                ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        weightCon.text = "";
+                        requiredDosageCon.text = "";
+                        total = 0.0;
+                      });
+                    },
+                    style: getButtonStyle(Colors.red),
+                    child: Text("Clear")),
               ],
             ),
             SizedBox(height: 10),
@@ -185,7 +194,7 @@ class _TabletDosageState extends State<TabletDosage> {
                               fontWeight: FontWeight.bold,
                               color: Colors.white)),
                       SizedBox(height: 10.0),
-                      Text("$total",
+                      Text("$total mg",
                           style: TextStyle(
                               letterSpacing: 2,
                               fontWeight: FontWeight.bold,

@@ -13,12 +13,12 @@ class VolumeInLiquid extends StatefulWidget {
 
 class _VolumeInLiquidState extends State<VolumeInLiquid> {
   List<String> unitsForStockVolume = [
-    "mL",
+    "ml",
     "L",
   ];
-  String currentItemForStockVolume = "mL";
+  String currentItemForStockVolume = "ml";
 
-  List<String> unitsForRequiredDosage = ["mg", "g", "Kg"];
+  List<String> unitsForRequiredDosage = ["mg"];
   String currentItemForRequiredDosage = "mg";
 
   List<String> unitsForStocksStrength = ["mg", "g", "Kg"];
@@ -37,6 +37,57 @@ class _VolumeInLiquidState extends State<VolumeInLiquid> {
       String stockVolume, String requiredDosage, String stockStrength) {
     setState(() {
       total = getVolumeInLiquid(stockVolume, requiredDosage, stockStrength);
+      if (currentItemForStocksStrength == "mg") {
+        total = getVolumeInLiquid(stockVolume, requiredDosage, stockStrength);
+        switch (currentItemForStockVolume) {
+          case "ml":
+            {
+              total = total;
+              total = double.parse(total.toStringAsFixed(2));
+            }
+
+            break;
+          case "L":
+            {
+              total = total * 1000;
+              total = double.parse(total.toStringAsFixed(2));
+            }
+        }
+      } else if (currentItemForStocksStrength == "g") {
+        total = getVolumeInLiquid(stockVolume, requiredDosage, stockStrength);
+        total = total / 1000;
+        switch (currentItemForStockVolume) {
+          case "ml":
+            {
+              total = total;
+              total = double.parse(total.toStringAsFixed(2));
+            }
+            break;
+          case "L":
+            {
+              total = total * 1000;
+              total = double.parse(total.toStringAsFixed(2));
+            }
+            break;
+        }
+      } else if (currentItemForStocksStrength == "Kg") {
+        total = getVolumeInLiquid(stockVolume, requiredDosage, stockStrength);
+        total = total * 1000000;
+        switch (currentItemForStockVolume) {
+          case "ml":
+            {
+              total = total;
+              total = double.parse(total.toStringAsFixed(2));
+            }
+            break;
+          case "L":
+            {
+              total = total * 1000;
+              total = double.parse(total.toStringAsFixed(2));
+            }
+            break;
+        }
+      }
     });
   }
 
@@ -58,40 +109,123 @@ class _VolumeInLiquidState extends State<VolumeInLiquid> {
               ),
             ),
             SizedBox(height: 19.0),
-            Column(
+            Row(
               children: [
-                SizedBox(height: 10.0),
-                getTextFromTextField(
-                    "Enter Value",
-                    "Stock Volume",
-                    unitsForStockVolume,
-                    currentItemForStockVolume,
-                    stockVolumeCon),
+                Flexible(
+                    child: getTextFromTextField(
+                        "Enter Value",
+                        "Stock Volume",
+                        unitsForStockVolume,
+                        currentItemForStockVolume,
+                        stockVolumeCon)),
+                Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: DropdownButtonHideUnderline(
+                      child: DropdownButton<String>(
+                        iconSize: 30.0,
+                        iconEnabledColor: Colors.blue,
+                        items: unitsForStockVolume
+                            .map((String dropDownStringItem) {
+                          return DropdownMenuItem<String>(
+                            value: dropDownStringItem,
+                            child: Text(dropDownStringItem),
+                          );
+                        }).toList(),
+                        onChanged: (newValue) {
+                          setState(() {
+                            this.currentItemForStockVolume =
+                                newValue.toString();
+                          });
+                          if (stockVolumeCon.text != "" &&
+                              requiredDosageCon.text != "" &&
+                              stockStrengthCon.text != "") {
+                            numClick(stockVolumeCon.text,
+                                requiredDosageCon.text, stockStrengthCon.text);
+                          }
+                        },
+                        value: currentItemForStockVolume,
+                      ),
+                    ))
               ],
             ),
             SizedBox(height: 20.0),
-            Column(
+            Row(
               children: [
-                SizedBox(height: 10.0),
-                getTextFromTextField(
-                    "Enter Value",
-                    "Required Dosage",
-                    unitsForRequiredDosage,
-                    currentItemForRequiredDosage,
-                    requiredDosageCon),
+                Flexible(
+                    child: getTextFromTextField(
+                        "Enter Value",
+                        "Required Dosage",
+                        unitsForRequiredDosage,
+                        currentItemForRequiredDosage,
+                        requiredDosageCon)),
+                Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: DropdownButtonHideUnderline(
+                      child: DropdownButton<String>(
+                        iconSize: 30.0,
+                        iconEnabledColor: Colors.blue,
+                        items: unitsForRequiredDosage
+                            .map((String dropDownStringItem) {
+                          return DropdownMenuItem<String>(
+                            value: dropDownStringItem,
+                            child: Text(dropDownStringItem),
+                          );
+                        }).toList(),
+                        onChanged: (newValue) {
+                          setState(() {
+                            this.currentItemForRequiredDosage =
+                                newValue.toString();
+                          });
+                          if (stockVolumeCon.text != "" &&
+                              requiredDosageCon.text != "" &&
+                              stockStrengthCon.text != "") {
+                            numClick(stockVolumeCon.text,
+                                requiredDosageCon.text, stockStrengthCon.text);
+                          }
+                        },
+                        value: currentItemForRequiredDosage,
+                      ),
+                    ))
               ],
             ),
             SizedBox(height: 20.0),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.start,
+            Row(
               children: [
-                SizedBox(height: 10.0),
-                getTextFromTextField(
-                    "Enter Value",
-                    "Stock Strength",
-                    unitsForStocksStrength,
-                    currentItemForStocksStrength,
-                    stockStrengthCon),
+                Flexible(
+                    child: getTextFromTextField(
+                        "Enter Value",
+                        "Stock Strength",
+                        unitsForStocksStrength,
+                        currentItemForStocksStrength,
+                        stockStrengthCon)),
+                Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: DropdownButtonHideUnderline(
+                      child: DropdownButton<String>(
+                        iconSize: 30.0,
+                        iconEnabledColor: Colors.blue,
+                        items: unitsForStocksStrength
+                            .map((String dropDownStringItem) {
+                          return DropdownMenuItem<String>(
+                            value: dropDownStringItem,
+                            child: Text(dropDownStringItem),
+                          );
+                        }).toList(),
+                        onChanged: (newValue) {
+                          setState(() {
+                            this.currentItemForStocksStrength =
+                                newValue.toString();
+                          });
+                          if (stockVolumeCon.text != "" &&
+                              requiredDosageCon.text != "" &&
+                              stockStrengthCon.text != "") {
+                            numClick(stockVolumeCon.text,
+                                requiredDosageCon.text, stockStrengthCon.text);
+                          }
+                        },
+                        value: currentItemForStocksStrength,
+                      ),
+                    ))
               ],
             ),
             SizedBox(height: 20.0),
@@ -106,7 +240,17 @@ class _VolumeInLiquidState extends State<VolumeInLiquid> {
                     style: getButtonStyle(Colors.green),
                     child: Text("Calculate")),
                 SizedBox(height: 10),
-                GetElevatedButton(buttonText: "Clear", colorData: Colors.red),
+                ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        stockVolumeCon.text = "";
+                        stockStrengthCon.text = "";
+                        requiredDosageCon.text = "";
+                        total = 0.0;
+                      });
+                    },
+                    style: getButtonStyle(Colors.red),
+                    child: Text("Clear")),
               ],
             ),
             SizedBox(height: 10),
@@ -127,7 +271,7 @@ class _VolumeInLiquidState extends State<VolumeInLiquid> {
                               fontWeight: FontWeight.bold,
                               color: Colors.white)),
                       SizedBox(height: 10.0),
-                      Text("$total",
+                      Text("$total $currentItemForStockVolume",
                           style: TextStyle(
                               letterSpacing: 2,
                               fontWeight: FontWeight.bold,

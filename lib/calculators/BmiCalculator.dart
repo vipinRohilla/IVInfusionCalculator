@@ -28,7 +28,6 @@ class _BmiCalculatorState extends State<BmiCalculator> {
     setState(() {
       if (currentItemOfWeight == "Kg") {
         total = getBMI(weight, height);
-        // total.toStringAsFixed(2);
         switch (currentItemOfHeight) {
           case "m":
             {

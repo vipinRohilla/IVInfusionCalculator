@@ -12,19 +12,21 @@ class InfusionByDose extends StatefulWidget {
 }
 
 class _InfusionByDoseState extends State<InfusionByDose> {
-  List<String> unitsForRequiredDosage = ["mg/hour", "mg/minutes", "mg/second"];
+  List<String> unitsForRequiredDosage = ["mg/hour", "mg/minute", "mg/second"];
   String currentItemForRequiredDosage = "mg/hour";
 
-  List<String> unitsForIvBagVolume = ["ml", "L"];
+  List<String> unitsForIvBagVolume = ["ml"];
   String currentItemForIvBagVolume = "ml";
 
-  List<String> unitsForDoseIvBag = ["mg", "g", "Kg"];
+  List<String> unitsForDoseIvBag = ["mg", "g"];
   String currentItemForDoseIvBag = "mg";
 
   var requiredDosage = 0.0;
   var ivBagVolume = 0.0;
   var doseInIvBag = 0.0;
   var total = 0.0;
+
+  String currentItemForRequireDosageLastPerUnit = "hour";
 
   final requiredDosageCon = new TextEditingController();
   final ivBagVolumeCon = new TextEditingController();
@@ -33,6 +35,59 @@ class _InfusionByDoseState extends State<InfusionByDose> {
   void numClick(String requiredDosage, String ivBagVolume, String doseInIvBag) {
     setState(() {
       total = getInfusionByDose(requiredDosage, ivBagVolume, doseInIvBag);
+      if (currentItemForRequiredDosage == "mg/hour") {
+        total = getInfusionByDose(requiredDosage, ivBagVolume, doseInIvBag);
+        switch (currentItemForDoseIvBag) {
+          case "mg":
+            {
+              total = total;
+              total = double.parse(total.toStringAsFixed(2));
+            }
+
+            break;
+          case "g":
+            {
+              total = total / 1000;
+              total = double.parse(total.toStringAsFixed(2));
+            }
+        }
+      } else if (currentItemForRequiredDosage == "mg/minute") {
+        total = getInfusionByDose(requiredDosage, ivBagVolume, doseInIvBag);
+        total = total * 60;
+        switch (currentItemForDoseIvBag) {
+          case "mg":
+            {
+              total = total;
+              total = double.parse(total.toStringAsFixed(2));
+            }
+            break;
+          case "g":
+            {
+              total = total / 1000;
+              total = double.parse(total.toStringAsFixed(2));
+            }
+            break;
+        }
+      } else if (currentItemForRequiredDosage == "mg/second") {
+        total = getInfusionByDose(requiredDosage, ivBagVolume, doseInIvBag);
+        total = total * 3600;
+        switch (currentItemForDoseIvBag) {
+          case "mg":
+            {
+              total = total;
+              total = double.parse(total.toStringAsFixed(2));
+            }
+            break;
+          case "g":
+            {
+              total = total / 1000;
+              total = double.parse(total.toStringAsFixed(2));
+            }
+            break;
+        }
+      }
+      currentItemForRequireDosageLastPerUnit =
+          currentItemForRequiredDosage.substring(3);
     });
   }
 
@@ -54,36 +109,122 @@ class _InfusionByDoseState extends State<InfusionByDose> {
               ),
             ),
             SizedBox(height: 19.0),
-            Column(
+            Row(
               children: [
-                SizedBox(height: 10.0),
-                getTextFromTextField(
-                    "Enter Value",
-                    "Required Dose",
-                    unitsForRequiredDosage,
-                    currentItemForRequiredDosage,
-                    requiredDosageCon),
+                Flexible(
+                    child: getTextFromTextField(
+                        "Enter Value",
+                        "Required Dose",
+                        unitsForRequiredDosage,
+                        currentItemForRequiredDosage,
+                        requiredDosageCon)),
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: DropdownButtonHideUnderline(
+                    child: DropdownButton<String>(
+                        iconSize: 30.0,
+                        iconEnabledColor: Colors.blue,
+                        items: unitsForRequiredDosage
+                            .map((String dropDownStringItem) {
+                          return DropdownMenuItem<String>(
+                            value: dropDownStringItem,
+                            child: Text(dropDownStringItem),
+                          );
+                        }).toList(),
+                        onChanged: (newValue) {
+                          setState(() {
+                            this.currentItemForRequiredDosage =
+                                newValue.toString();
+                          });
+                          if (requiredDosageCon.text != "" &&
+                              ivBagVolumeCon.text != "" &&
+                              doseInIvBagCon.text != "") {
+                            numClick(requiredDosageCon.text,
+                                ivBagVolumeCon.text, doseInIvBagCon.text);
+                          }
+                        },
+                        value: currentItemForRequiredDosage),
+                  ),
+                )
               ],
             ),
             SizedBox(height: 20.0),
-            Column(
+            Row(
               children: [
-                SizedBox(height: 10.0),
-                getTextFromTextField(
-                    "Enter Value",
-                    "IV Bag Volume",
-                    unitsForIvBagVolume,
-                    currentItemForIvBagVolume,
-                    ivBagVolumeCon),
+                Flexible(
+                    child: getTextFromTextField(
+                        "Enter Value",
+                        "IV Bag Volume",
+                        unitsForIvBagVolume,
+                        currentItemForIvBagVolume,
+                        ivBagVolumeCon)),
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: DropdownButtonHideUnderline(
+                    child: DropdownButton<String>(
+                        iconSize: 30.0,
+                        iconEnabledColor: Colors.blue,
+                        items: unitsForIvBagVolume
+                            .map((String dropDownStringItem) {
+                          return DropdownMenuItem<String>(
+                            value: dropDownStringItem,
+                            child: Text(dropDownStringItem),
+                          );
+                        }).toList(),
+                        onChanged: (newValue) {
+                          setState(() {
+                            this.currentItemForIvBagVolume =
+                                newValue.toString();
+                          });
+                          if (requiredDosageCon.text != "" &&
+                              ivBagVolumeCon.text != "" &&
+                              doseInIvBagCon.text != "") {
+                            numClick(requiredDosageCon.text,
+                                ivBagVolumeCon.text, doseInIvBagCon.text);
+                          }
+                        },
+                        value: currentItemForIvBagVolume),
+                  ),
+                )
               ],
             ),
             SizedBox(height: 20.0),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.start,
+            Row(
               children: [
-                SizedBox(height: 10.0),
-                getTextFromTextField("Enter Value", "Dose in IV Bag",
-                    unitsForDoseIvBag, currentItemForDoseIvBag, doseInIvBagCon)
+                Flexible(
+                    child: getTextFromTextField(
+                        "Enter Value",
+                        "Dose in IV Bag",
+                        unitsForDoseIvBag,
+                        currentItemForDoseIvBag,
+                        doseInIvBagCon)),
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: DropdownButtonHideUnderline(
+                    child: DropdownButton<String>(
+                        iconSize: 30.0,
+                        iconEnabledColor: Colors.blue,
+                        items:
+                            unitsForDoseIvBag.map((String dropDownStringItem) {
+                          return DropdownMenuItem<String>(
+                            value: dropDownStringItem,
+                            child: Text(dropDownStringItem),
+                          );
+                        }).toList(),
+                        onChanged: (newValue) {
+                          setState(() {
+                            this.currentItemForDoseIvBag = newValue.toString();
+                          });
+                          if (requiredDosageCon.text != "" &&
+                              ivBagVolumeCon.text != "" &&
+                              doseInIvBagCon.text != "") {
+                            numClick(requiredDosageCon.text,
+                                ivBagVolumeCon.text, doseInIvBagCon.text);
+                          }
+                        },
+                        value: currentItemForDoseIvBag),
+                  ),
+                )
               ],
             ),
             SizedBox(height: 20.0),
@@ -98,7 +239,17 @@ class _InfusionByDoseState extends State<InfusionByDose> {
                     style: getButtonStyle(Colors.green),
                     child: Text("Calculate")),
                 SizedBox(height: 10),
-                GetElevatedButton(buttonText: "Clear", colorData: Colors.red),
+                ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        ivBagVolumeCon.text = "";
+                        doseInIvBagCon.text = "";
+                        requiredDosageCon.text = "";
+                        total = 0.0;
+                      });
+                    },
+                    style: getButtonStyle(Colors.red),
+                    child: Text("Clear")),
               ],
             ),
             SizedBox(height: 10),
@@ -119,7 +270,8 @@ class _InfusionByDoseState extends State<InfusionByDose> {
                               fontWeight: FontWeight.bold,
                               color: Colors.white)),
                       SizedBox(height: 10.0),
-                      Text("$total",
+                      Text(
+                          "$total $currentItemForIvBagVolume / $currentItemForRequireDosageLastPerUnit",
                           style: TextStyle(
                               letterSpacing: 2,
                               fontWeight: FontWeight.bold,

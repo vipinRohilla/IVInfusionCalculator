@@ -13,17 +13,18 @@ class LiquidDosage extends StatefulWidget {
 
 class _LiquidDosageState extends State<LiquidDosage> {
   List<String> unitsForRequiredDosage = [
-    "mL",
-    "L",
+    "ml/Kg",
+    "L /kg",
   ];
-  String currentItemForRequiredDosage = "mL";
+  String currentItemForRequiredDosage = "ml/Kg";
 
-  List<String> unitsForWeight = ["Kg", "g"];
+  List<String> unitsForWeight = ["Kg", "lb"];
   String currentItemForWeight = "Kg";
 
   var requiredDosage = 0.0;
   var weight = 0.0;
   var total = 0.0;
+  String currentItemForRequiredDosagePerUnit = "ml";
 
   final requiredDosageCon = new TextEditingController();
   final weightCon = new TextEditingController();
@@ -31,6 +32,40 @@ class _LiquidDosageState extends State<LiquidDosage> {
   void numClick(String requiredDosage, String weight) {
     setState(() {
       total = getLiquidDosage(requiredDosage, weight);
+      if (currentItemForRequiredDosage == "ml/Kg") {
+        switch (currentItemForWeight) {
+          case "Kg":
+            {
+              total = total;
+              total = double.parse(total.toStringAsFixed(2));
+            }
+
+            break;
+          case "lb":
+            {
+              total = total * 2.2046;
+              total = double.parse(total.toStringAsFixed(2));
+            }
+        }
+      } else if (currentItemForRequiredDosage == "L /kg") {
+        total = total * 1000;
+        switch (currentItemForWeight) {
+          case "Kg":
+            {
+              total = total;
+              total = double.parse(total.toStringAsFixed(2));
+            }
+            break;
+          case "lb":
+            {
+              total = total * 2.2046;
+              total = double.parse(total.toStringAsFixed(2));
+            }
+            break;
+        }
+      }
+      currentItemForRequiredDosagePerUnit =
+          currentItemForRequiredDosage.substring(0, 2);
     });
   }
 
@@ -52,23 +87,74 @@ class _LiquidDosageState extends State<LiquidDosage> {
               ),
             ),
             SizedBox(height: 19.0),
-            Column(
+            Row(
               children: [
-                SizedBox(height: 10.0),
-                getTextFromTextField(
-                    "Enter Value",
-                    "Required Dosage",
-                    unitsForRequiredDosage,
-                    currentItemForRequiredDosage,
-                    requiredDosageCon),
+                Flexible(
+                    child: getTextFromTextField(
+                        "Enter Value",
+                        "Required Dosage",
+                        unitsForRequiredDosage,
+                        currentItemForRequiredDosage,
+                        requiredDosageCon)),
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: DropdownButtonHideUnderline(
+                    child: DropdownButton<String>(
+                        iconSize: 30.0,
+                        iconEnabledColor: Colors.blue,
+                        items: unitsForRequiredDosage
+                            .map((String dropDownStringItem) {
+                          return DropdownMenuItem<String>(
+                            value: dropDownStringItem,
+                            child: Text(dropDownStringItem),
+                          );
+                        }).toList(),
+                        onChanged: (newValue) {
+                          setState(() {
+                            this.currentItemForRequiredDosage =
+                                newValue.toString();
+                          });
+                          if (requiredDosageCon.text != "" &&
+                              weightCon.text != "") {
+                            numClick(requiredDosageCon.text, weightCon.text);
+                          }
+                        },
+                        value: currentItemForRequiredDosage),
+                  ),
+                )
               ],
             ),
             SizedBox(height: 20.0),
-            Column(
+            Row(
               children: [
                 SizedBox(height: 10.0),
-                getTextFromTextField("Enter Value", "Body Weight",
-                    unitsForWeight, currentItemForWeight, weightCon),
+                Flexible(
+                    child: getTextFromTextField("Enter Value", "Body Weight",
+                        unitsForWeight, currentItemForWeight, weightCon)),
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: DropdownButtonHideUnderline(
+                    child: DropdownButton<String>(
+                        iconSize: 30.0,
+                        iconEnabledColor: Colors.blue,
+                        items: unitsForWeight.map((String dropDownStringItem) {
+                          return DropdownMenuItem<String>(
+                            value: dropDownStringItem,
+                            child: Text(dropDownStringItem),
+                          );
+                        }).toList(),
+                        onChanged: (newValue) {
+                          setState(() {
+                            this.currentItemForWeight = newValue.toString();
+                          });
+                          if (requiredDosageCon.text != "" &&
+                              weightCon.text != "") {
+                            numClick(requiredDosageCon.text, weightCon.text);
+                          }
+                        },
+                        value: currentItemForWeight),
+                  ),
+                )
               ],
             ),
             SizedBox(height: 20.0),
@@ -82,7 +168,16 @@ class _LiquidDosageState extends State<LiquidDosage> {
                     style: getButtonStyle(Colors.green),
                     child: Text("Calculate")),
                 SizedBox(height: 10),
-                GetElevatedButton(buttonText: "Clear", colorData: Colors.red),
+                ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        weightCon.text = "";
+                        requiredDosageCon.text = "";
+                        total = 0.0;
+                      });
+                    },
+                    style: getButtonStyle(Colors.red),
+                    child: Text("Clear")),
               ],
             ),
             SizedBox(height: 10),
@@ -103,7 +198,7 @@ class _LiquidDosageState extends State<LiquidDosage> {
                               fontWeight: FontWeight.bold,
                               color: Colors.white)),
                       SizedBox(height: 10.0),
-                      Text("$total",
+                      Text("$total $currentItemForRequiredDosagePerUnit",
                           style: TextStyle(
                               letterSpacing: 2,
                               fontWeight: FontWeight.bold,

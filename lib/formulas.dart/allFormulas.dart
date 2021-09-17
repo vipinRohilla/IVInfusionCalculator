@@ -50,7 +50,7 @@ double getIvVolumeRate(String requiredDosage, String time) {
 
 double getIvDropRate(String requiredDosage, String time, String dropFactor) {
   return double.parse(requiredDosage) /
-      (double.parse(time) * double.parse(dropFactor));
+      (double.parse(time) * double.parse(dropFactor) / 60);
 }
 
 double getBMI(String weight, String height) {
