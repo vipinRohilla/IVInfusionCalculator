@@ -13,7 +13,7 @@ getTextFromTextField(
       hintText: hintTextData,
       labelText: labelTextData,
       labelStyle: TextStyle(fontSize: 16, color: Colors.black),
-      border: OutlineInputBorder(),
+      // border: OutlineInputBorder(),
     ),
     keyboardType: TextInputType.number,
   );

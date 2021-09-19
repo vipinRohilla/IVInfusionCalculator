@@ -40,7 +40,7 @@
 //                 //     unit, currentItem),
 //               ],
 //             ),
-//             SizedBox(height: 20.0),
+//             SizedBox(height: 10.0),
 //             Column(
 //               children: [
 //                 SizedBox(height: 10.0),
@@ -48,7 +48,7 @@
 //                 //     "Enter Drug Dose", "Drug Dose", unit, currentItem)
 //               ],
 //             ),
-//             SizedBox(height: 20.0),
+//             SizedBox(height: 10.0),
 //             Column(
 //               mainAxisAlignment: MainAxisAlignment.start,
 //               children: [
@@ -98,7 +98,7 @@
 //                 ),
 //               ],
 //             ),
-//             SizedBox(height: 20.0),
+//             SizedBox(height: 10.0),
 //             Column(
 //               mainAxisAlignment: MainAxisAlignment.spaceAround,
 //               children: [
@@ -106,7 +106,7 @@
 //                     onPressed: () {
 //                       // numClick(requiredDosageCon.text, stockStrengthCon.text);
 //                     },
-//                     style: getButtonStyle(Colors.green),
+//                     style: getButtonStyle(Colors.blueGrey.shade800),
 //                     child: Text("Calculate")),
 //                 SizedBox(height: 10),
 //                 GetElevatedButton(buttonText: "Clear", colorData: Colors.red),
@@ -119,7 +119,7 @@
 //                   padding: EdgeInsets.all(10.0),
 //                   decoration: BoxDecoration(
 //                       borderRadius: BorderRadius.circular(5),
-//                       color: Colors.green[600]),
+//                       color: Colors.cyan[900]),
 //                   child: Column(
 //                     mainAxisAlignment: MainAxisAlignment.start,
 //                     crossAxisAlignment: CrossAxisAlignment.start,

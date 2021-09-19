@@ -17,10 +17,10 @@ class GridViewHomeScreen extends StatelessWidget {
         backgroundColor: Colors.blue.shade50,
         appBar: getAppBar("IV Infusion Calculator"),
         body: GridView.count(
-          padding: EdgeInsets.all(20.0),
-          crossAxisSpacing: 15,
-          mainAxisSpacing: 15,
-          crossAxisCount: 2,
+          padding: EdgeInsets.all(10.0),
+          crossAxisSpacing: 10,
+          mainAxisSpacing: 10,
+          crossAxisCount: 3,
           children: [
             getCard("Infusion \nRate", Colors.blue.shade500, context,
                 BodyOfInfusionRate()),

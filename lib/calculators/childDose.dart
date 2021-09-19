@@ -115,7 +115,7 @@ class _ChildDoseState extends State<ChildDose> {
                 )
               ],
             ),
-            SizedBox(height: 20.0),
+            SizedBox(height: 10.0),
             Row(
               children: [
                 Flexible(
@@ -152,37 +152,14 @@ class _ChildDoseState extends State<ChildDose> {
                 )
               ],
             ),
-            SizedBox(height: 20.0),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                ElevatedButton(
-                    onPressed: () {
-                      numClick(weightCon.text, adultDoseCon.text);
-                    },
-                    style: getButtonStyle(Colors.green),
-                    child: Text("Calculate")),
-                SizedBox(height: 10),
-                ElevatedButton(
-                    onPressed: () {
-                      setState(() {
-                        weightCon.text = "";
-                        adultDoseCon.text = "";
-                        total = 0.0;
-                      });
-                    },
-                    style: getButtonStyle(Colors.red),
-                    child: Text("Clear"))
-              ],
-            ),
-            SizedBox(height: 10),
+            SizedBox(height: 10.0),
             SizedBox(
               height: 100,
               child: Container(
                   padding: EdgeInsets.all(10.0),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(5),
-                      color: Colors.green[600]),
+                      color: Colors.cyan[900]),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -200,7 +177,31 @@ class _ChildDoseState extends State<ChildDose> {
                               color: Colors.white))
                     ],
                   )),
-            )
+            ),
+            SizedBox(height: 10.0),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                ElevatedButton(
+                    onPressed: () {
+                      numClick(weightCon.text, adultDoseCon.text);
+                    },
+                    style: getButtonStyle(Colors.blueGrey.shade800),
+                    child: Text("Calculate")),
+                SizedBox(height: 10),
+                ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        weightCon.text = "";
+                        adultDoseCon.text = "";
+                        total = 0.0;
+                      });
+                    },
+                    style: getButtonStyle(Colors.red.shade600),
+                    child: Text("Clear"))
+              ],
+            ),
+            SizedBox(height: 10),
           ],
         ),
       ),

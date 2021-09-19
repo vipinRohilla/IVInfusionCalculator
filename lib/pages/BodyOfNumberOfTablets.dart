@@ -18,7 +18,6 @@ class _BodyOfNumberOfTabletsState extends State<BodyOfNumberOfTablets> {
         backgroundColor: Colors.blue[50],
         appBar: getAppBar("Number of Tablets"),
         body: NumberOfTablets(),
-        // body: Body(),
         bottomNavigationBar: BottomNavigationBar(
           elevation: 4.0,
           fixedColor: Colors.blue[50],
@@ -27,20 +26,20 @@ class _BodyOfNumberOfTabletsState extends State<BodyOfNumberOfTablets> {
             BottomNavigationBarItem(
               icon: Icon(Icons.home),
               label: 'Home',
-              backgroundColor: Colors.blue,
+              backgroundColor: Colors.blue[900],
             ),
             BottomNavigationBarItem(
                 icon: Icon(Icons.search),
                 label: 'Search',
-                backgroundColor: Colors.blue),
+                backgroundColor: Colors.blue[900]),
             BottomNavigationBarItem(
                 icon: Icon(Icons.note),
                 label: 'Note',
-                backgroundColor: Colors.blue),
+                backgroundColor: Colors.blue[900]),
             BottomNavigationBarItem(
                 icon: Icon(Icons.settings),
                 label: 'Settings',
-                backgroundColor: Colors.blue)
+                backgroundColor: Colors.blue[900])
           ],
           onTap: (index) {
             setState(() {

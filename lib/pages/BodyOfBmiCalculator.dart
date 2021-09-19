@@ -26,20 +26,20 @@ class _BodyOfBmiCalculatorState extends State<BodyOfBmiCalculator> {
             BottomNavigationBarItem(
               icon: Icon(Icons.home),
               label: 'Home',
-              backgroundColor: Colors.blue,
+              backgroundColor: Colors.blue[900],
             ),
             BottomNavigationBarItem(
                 icon: Icon(Icons.search),
                 label: 'Search',
-                backgroundColor: Colors.blue),
+                backgroundColor: Colors.blue[900]),
             BottomNavigationBarItem(
                 icon: Icon(Icons.note),
                 label: 'Note',
-                backgroundColor: Colors.blue),
+                backgroundColor: Colors.blue[900]),
             BottomNavigationBarItem(
                 icon: Icon(Icons.settings),
                 label: 'Settings',
-                backgroundColor: Colors.blue)
+                backgroundColor: Colors.blue[900]),
           ],
           onTap: (index) {
             setState(() {

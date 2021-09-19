@@ -29,17 +29,20 @@ class _BodyOfVolumeInLiquidState extends State<BodyOfVolumeInLiquid> {
               backgroundColor: Colors.blue,
             ),
             BottomNavigationBarItem(
-                icon: Icon(Icons.search),
-                label: 'Search',
-                backgroundColor: Colors.blue),
+              icon: Icon(Icons.search),
+              label: 'Search',
+              backgroundColor: Colors.blue[900],
+            ),
             BottomNavigationBarItem(
-                icon: Icon(Icons.note),
-                label: 'Note',
-                backgroundColor: Colors.blue),
+              icon: Icon(Icons.note),
+              label: 'Note',
+              backgroundColor: Colors.blue[900],
+            ),
             BottomNavigationBarItem(
-                icon: Icon(Icons.settings),
-                label: 'Settings',
-                backgroundColor: Colors.blue)
+              icon: Icon(Icons.settings),
+              label: 'Settings',
+              backgroundColor: Colors.blue[900],
+            )
           ],
           onTap: (index) {
             setState(() {
