@@ -88,6 +88,11 @@ class _NumberOfTabletsState extends State<NumberOfTablets> {
                           this.currentItemForRequiredDosage =
                               newValue.toString();
                         });
+                        if (stockStrengthCon.text != "" &&
+                            requiredDosageCon.text != "") {
+                          numClick(
+                              stockStrengthCon.text, requiredDosageCon.text);
+                        }
                         print(newValue);
                       },
                       value: currentItemForRequiredDosage,
@@ -143,7 +148,8 @@ class _NumberOfTabletsState extends State<NumberOfTablets> {
                   padding: EdgeInsets.all(15.0),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(5),
-                      color: Colors.cyan[900]),
+                      color:
+                          (total != 0.0) ? Colors.blue[400] : Colors.cyan[900]),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,

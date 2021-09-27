@@ -237,7 +237,8 @@ class _InfusionByUnitState extends State<InfusionByUnit> {
                   padding: EdgeInsets.all(10.0),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(5),
-                      color: Colors.cyan[900]),
+                      color:
+                          (total != 0.0) ? Colors.blue[400] : Colors.cyan[900]),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,

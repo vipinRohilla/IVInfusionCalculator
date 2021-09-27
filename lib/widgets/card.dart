@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_2/styling/size_config.dart';
+import 'package:flutter_application_2/styling/styling.dart';
 
 getCard(
     String buttonText, Color colorData, BuildContext context, Widget myWidget) {
@@ -6,32 +8,34 @@ getCard(
     child: ElevatedButton(
         style: ButtonStyle(
             shape: MaterialStateProperty.all<OutlinedBorder>(
-                RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10))),
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(8))),
             backgroundColor: MaterialStateProperty.all<Color>(colorData),
             minimumSize:
-                MaterialStateProperty.all<Size>(Size(double.infinity, 40))),
+                MaterialStateProperty.all<Size>(Size(double.infinity, 60))),
         onPressed: () {
           Navigator.push(
               context, new MaterialPageRoute(builder: (context) => myWidget));
         },
         child: Padding(
-          padding: EdgeInsets.fromLTRB(0, 10, 0, 5),
+          padding: EdgeInsets.fromLTRB(0, 15, 0, 0),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.end,
+              //   children: [Icon(Icons.favorite_outline_outlined)],
+              // ),
+              // SizedBox(height: 15),
               Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [Icon(Icons.favorite_outline_outlined)],
-              ),
-              SizedBox(height: 15.0),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Text(buttonText,
-                      style: TextStyle(
-                        fontSize: 15.0,
-                        fontWeight: FontWeight.w500,
-                      )),
+                  Expanded(
+                      child: Text(buttonText,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.blue[50],
+                            fontSize: 2.2 * SizeConfig.textMultiplier,
+                            fontWeight: FontWeight.w400,
+                          ))),
                 ],
               )
             ],
