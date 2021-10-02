@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/calculators/childDose.dart';
 import 'package:flutter_application_2/calculators/dose.dart';
+import 'package:flutter_application_2/styling/size_config.dart';
 
 class BodyOfPediatricDosage extends StatefulWidget {
   @override
@@ -10,6 +11,7 @@ class BodyOfPediatricDosage extends StatefulWidget {
 class _BodyOfPediatricDosageState extends State<BodyOfPediatricDosage> {
   List<Widget> containers = [ChildDose(), Dose()];
   int _currentIndex = 0;
+  double myFontSize = 1.9 * SizeConfig.textMultiplier;
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -22,14 +24,14 @@ class _BodyOfPediatricDosageState extends State<BodyOfPediatricDosage> {
           elevation: 1,
           title: Text(
             "Pediatric Dosage",
-            style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+            style: TextStyle(color: Colors.black, fontWeight: FontWeight.w500, fontSize: myFontSize),
           ),
           bottom: TabBar(tabs: <Widget>[
             Tab(
-              child: Text("Child Dose", style: TextStyle(color: Colors.black)),
+              child: Text("Child Dose", style: TextStyle(color: Colors.black, fontSize: myFontSize)),
             ),
             Tab(
-              child: Text("Dose", style: TextStyle(color: Colors.black)),
+              child: Text("Dose", style: TextStyle(color: Colors.black, fontSize: myFontSize)),
             )
           ]),
         ),

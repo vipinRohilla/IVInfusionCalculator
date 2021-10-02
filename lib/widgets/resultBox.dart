@@ -15,7 +15,7 @@
 // //   @override
 // //   Widget build(BuildContext context) {
 // //     return SizedBox(
-// //       height: 100,
+// //       height: 120,
 // //       child: Container(
 // //           padding: EdgeInsets.all(10.0),
 // //           decoration: BoxDecoration(
@@ -28,13 +28,15 @@
 // //               Text("Result : ",
 // //                   style: TextStyle(
 // //                       letterSpacing: 2,
-// //                       fontWeight: FontWeight.bold,
+// fontSize: myFontSize,
+// //                       fontWeight: FontWeight.w500,
 // //                       color: Colors.white)),
 // //               SizedBox(height: 10.0),
 // //               Text("$data",
 // //                   style: TextStyle(
 // //                       letterSpacing: 2,
-// //                       fontWeight: FontWeight.bold,
+// fontSize: myFontSize,
+// //                       fontWeight: FontWeight.w500,
 // //                       color: Colors.white))
 // //             ],
 // //           )),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/calculators/VolumeInLiquid.dart';
 import 'package:flutter_application_2/widgets/appBar.dart';
+import 'package:flutter_application_2/styling/size_config.dart';
 
 class BodyOfVolumeInLiquid extends StatefulWidget {
   @override
@@ -9,6 +10,7 @@ class BodyOfVolumeInLiquid extends StatefulWidget {
 
 class _BodyOfVolumeInLiquidState extends State<BodyOfVolumeInLiquid> {
   int _currentIndex = 0;
+  double myFontSize = 1.9 * SizeConfig.textMultiplier;
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(

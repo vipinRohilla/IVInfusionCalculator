@@ -37,6 +37,6 @@ class SizeConfig {
     heightMultiplier = _blockHeight;
     widthMultiplier = _blockWidth;
 
-    print(_screenWidth);
+    // print(_screenWidth);
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'pages/BodyOfUnitConverter.dart';
 import 'package:flutter_application_2/styling/size_config.dart';
 import 'pages/BodyOfPediatricDosage.dart';
 import 'widgets/appBar.dart';
@@ -21,7 +22,7 @@ final List<String> list = [
   "Volume and Drop Rate",
   "BMI Calculator",
   "BSA Calculator",
-  "Unit Converter"
+  "Unit Converters"
 ];
 
 List<Widget> widgetList = [
@@ -32,7 +33,8 @@ List<Widget> widgetList = [
   BodyOfDosageByWeight(),
   BodyOfIvVolumeAndDropRate(),
   BodyOfBmiCalculator(),
-  BodyOfBsaCalculator()
+  BodyOfBsaCalculator(),
+  BodyOfUnitConverter()
 ];
 
 class GridViewHomeScreen extends StatelessWidget {
@@ -49,27 +51,27 @@ class GridViewHomeScreen extends StatelessWidget {
               body: GridView.count(
                 padding: EdgeInsets.all(10.0),
                 crossAxisCount: 3,
-                mainAxisSpacing: 10,
+                mainAxisSpacing: 20,
                 crossAxisSpacing: 10,
                 children: [
                   getCard(
-                      list[0], containerColor, context, BodyOfInfusionRate()),
+                      list[0], containerColor, context, widgetList[0]),
                   getCard(list[1], containerColor, context,
-                      BodyOfPediatricDosage()),
+                      widgetList[1]),
                   getCard(list[2], containerColor, context,
-                      BodyOfNumberOfTablets()),
+                      widgetList[2]),
                   getCard(
-                      list[3], containerColor, context, BodyOfVolumeInLiquid()),
+                      list[3], containerColor, context, widgetList[3]),
                   getCard(
-                      list[4], containerColor, context, BodyOfDosageByWeight()),
+                      list[4], containerColor, context, widgetList[4]),
                   getCard(list[5], containerColor, context,
-                      BodyOfIvVolumeAndDropRate()),
+                      widgetList[5]),
                   getCard(
-                      list[6], containerColor, context, BodyOfBmiCalculator()),
+                      list[6], containerColor, context, widgetList[6]),
                   getCard(
-                      list[7], containerColor, context, BodyOfBsaCalculator()),
+                      list[7], containerColor, context, widgetList[7]),
                   getCard(
-                      list[8], containerColor, context, BodyOfBsaCalculator()),
+                      list[8], containerColor, context, widgetList[8]),
                   // _contentGridView()
                 ],
               ));

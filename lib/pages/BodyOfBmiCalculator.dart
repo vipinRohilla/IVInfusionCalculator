@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/calculators/BmiCalculator.dart';
+import 'package:flutter_application_2/styling/size_config.dart';
 import 'package:flutter_application_2/widgets/appBar.dart';
 
 class BodyOfBmiCalculator extends StatefulWidget {
@@ -9,6 +10,7 @@ class BodyOfBmiCalculator extends StatefulWidget {
 
 class _BodyOfBmiCalculatorState extends State<BodyOfBmiCalculator> {
   int _currentIndex = 0;
+  double myFontSize = 1.9 * SizeConfig.textMultiplier;
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(

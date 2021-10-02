@@ -42,11 +42,6 @@ class AppTheme {
     bodyText1: _unSelectedTabDark,
   );
 
-  static final TextStyle _buttonTextIV = TextStyle(
-    color: Colors.blue[50],
-    fontSize: 3.5 * SizeConfig.textMultiplier,
-    fontWeight: FontWeight.w400,
-  );
   static final TextStyle _titleLight = TextStyle(
     color: Colors.white,
     fontSize: 3.5 * SizeConfig.textMultiplier,
@@ -70,12 +65,12 @@ class AppTheme {
 
   static final TextStyle _searchLight = TextStyle(
     color: Colors.black,
-    fontSize: 2.3 * SizeConfig.textMultiplier,
+    fontSize: 2.1 * SizeConfig.textMultiplier,
   );
 
   static final TextStyle _selectedTabLight = TextStyle(
     color: Colors.black,
-    fontWeight: FontWeight.bold,
+    fontWeight: FontWeight.w500,
     fontSize: 2 * SizeConfig.textMultiplier,
   );
 

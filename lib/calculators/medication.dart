@@ -27,7 +27,7 @@
 // //             Text(
 // //               "Calulate  the  weight-based  Infusion   dosage  of  certain  durgs",
 // //               style: TextStyle(
-// //                 fontSize: 15.0,
+// //                 fontSize: myFontSize,
 // //                 fontWeight: FontWeight.w600,
 // //                 color: Colors.black,
 // //               ),
@@ -107,14 +107,14 @@
 // //                       // numClick(requiredDosageCon.text, stockStrengthCon.text);
 // //                     },
 // //                     style: getButtonStyle(Colors.blueGrey.shade800),
-// //                     child: Text("Calculate")),
+// //                     child: Text("Calculate", style: TextStyle(fontSize : myFontSize))),
 // //                 SizedBox(height: 10),
 // //                 GetElevatedButton(buttonText: "Clear", colorData: Colors.red),
 // //               ],
 // //             ),
 // //             SizedBox(height: 10),
 // //             SizedBox(
-// //               height: 100,
+// //               height: 120,
 // //               child: Container(
 // //                   padding: EdgeInsets.all(10.0),
 // //                   decoration: BoxDecoration(
@@ -128,13 +128,15 @@
 // //                       Text("Result : ",
 // //                           style: TextStyle(
 // //                               letterSpacing: 2,
-// //                               fontWeight: FontWeight.bold,
+// fontSize: myFontSize,
+// //                               fontWeight: FontWeight.w500,
 // //                               color: Colors.white)),
 // //                       SizedBox(height: 10.0),
 // //                       Text("total",
 // //                           style: TextStyle(
 // //                               letterSpacing: 2,
-// //                               fontWeight: FontWeight.bold,
+// fontSize: myFontSize,
+// //                               fontWeight: FontWeight.w500,
 // //                               color: Colors.white))
 // //                     ],
 // //                   )),

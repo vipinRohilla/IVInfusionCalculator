@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_2/styling/size_config.dart';
 import '../calculators/InfusionByUnit.dart';
 import '../calculators/InfusionByDose.dart';
 
@@ -10,6 +11,7 @@ class BodyOfInfusionRate extends StatefulWidget {
 class _BodyOfInfusionRateState extends State<BodyOfInfusionRate> {
   List<Widget> containers = [InfusionByUnit(), InfusionByDose()];
   int _currentIndex = 0;
+  double myFontSize = 1.9 * SizeConfig.textMultiplier;
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -22,16 +24,16 @@ class _BodyOfInfusionRateState extends State<BodyOfInfusionRate> {
           elevation: 1,
           title: Text(
             "IV Infusion Rate",
-            style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+            style: TextStyle(color: Colors.black, fontWeight: FontWeight.w500,fontSize: myFontSize),
           ),
           bottom: TabBar(tabs: <Widget>[
             Tab(
               child: Text("Infusion by Unit",
-                  style: TextStyle(color: Colors.black)),
+                  style: TextStyle(color: Colors.black, fontSize: myFontSize,)),
             ),
             Tab(
               child: Text("Infusion by Dose",
-                  style: TextStyle(color: Colors.black)),
+                  style: TextStyle(color: Colors.black, fontSize: myFontSize)),
             )
           ]),
         ),

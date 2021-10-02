@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_2/styling/size_config.dart';
 
 getTextFromTextField(
     String hintTextData,
@@ -12,7 +13,7 @@ getTextFromTextField(
     decoration: InputDecoration(
       hintText: hintTextData,
       labelText: labelTextData,
-      labelStyle: TextStyle(fontSize: 16, color: Colors.black),
+      labelStyle: TextStyle(fontSize: 2 * SizeConfig.textMultiplier, color: Colors.black),
       // border: OutlineInputBorder(),
     ),
     keyboardType: TextInputType.number,

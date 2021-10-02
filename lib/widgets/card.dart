@@ -1,15 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/styling/size_config.dart';
-import 'package:flutter_application_2/styling/styling.dart';
-
+// Color(0xFFA7C7E7)
+Color myColor = Colors.blueAccent;
 getCard(
     String buttonText, Color colorData, BuildContext context, Widget myWidget) {
   return Container(
+    decoration: BoxDecoration(
+      boxShadow: [
+        BoxShadow(
+          color: myColor,
+          blurRadius: 5.0,
+          offset: Offset(0.0, 6.0)
+        )
+      ]
+    ),
     child: ElevatedButton(
         style: ButtonStyle(
             shape: MaterialStateProperty.all<OutlinedBorder>(
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(8))),
-            backgroundColor: MaterialStateProperty.all<Color>(colorData),
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
+            backgroundColor: MaterialStateProperty.all<Color>(myColor),
             minimumSize:
                 MaterialStateProperty.all<Size>(Size(double.infinity, 60))),
         onPressed: () {
@@ -21,20 +30,15 @@ getCard(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // Row(
-              //   mainAxisAlignment: MainAxisAlignment.end,
-              //   children: [Icon(Icons.favorite_outline_outlined)],
-              // ),
-              // SizedBox(height: 15),
               Row(
                 children: [
                   Expanded(
                       child: Text(buttonText,
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                            color: Colors.blue[50],
-                            fontSize: 2.2 * SizeConfig.textMultiplier,
-                            fontWeight: FontWeight.w400,
+                            color: Colors.white,
+                            fontSize: 1.8 * SizeConfig.textMultiplier,
+                            fontWeight: FontWeight.w500,
                           ))),
                 ],
               )

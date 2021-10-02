@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_application_2/formulas.dart/allFormulas.dart';
+import 'package:flutter_application_2/styling/size_config.dart';
 import 'package:flutter_application_2/widgets/buttonStyle.dart';
 
 import '../widgets/getTextFromField.dart';
@@ -33,6 +34,7 @@ class _InfusionByUnitState extends State<InfusionByUnit> {
   final requiredDosageCon = new TextEditingController();
   final ivBagVolumeCon = new TextEditingController();
   final unitInIvBagCon = new TextEditingController();
+  double myFontSize = 1.9 * SizeConfig.textMultiplier;
 
   void numClick(String requiredDosage, String ivBagVolume, String unitInIvBag) {
     setState(() {
@@ -95,17 +97,19 @@ class _InfusionByUnitState extends State<InfusionByUnit> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(children: [
-      Container(
-        height: 550,
-        color: Colors.blue[50],
-        child: ListView(
+    return 
+    // ListView(children: [
+    //   Container(
+    //     height: 550,
+    //     color: Colors.blue[50],
+    //     child: 
+        ListView(
           padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
           children: [
             Text(
               "Calulate  infusion  drop  rate  per  minute, flow rate,  and  drop  interval",
               style: TextStyle(
-                fontSize: 15.0,
+                fontSize: myFontSize,
                 fontWeight: FontWeight.w600,
                 color: Colors.black,
               ),
@@ -232,7 +236,7 @@ class _InfusionByUnitState extends State<InfusionByUnit> {
             ),
             SizedBox(height: 10.0),
             SizedBox(
-              height: 100,
+              height: 120,
               child: Container(
                   padding: EdgeInsets.all(10.0),
                   decoration: BoxDecoration(
@@ -246,14 +250,16 @@ class _InfusionByUnitState extends State<InfusionByUnit> {
                       Text("Result : ",
                           style: TextStyle(
                               letterSpacing: 2,
-                              fontWeight: FontWeight.bold,
+fontSize: myFontSize,
+                              fontWeight: FontWeight.w500,
                               color: Colors.white)),
                       SizedBox(height: 10.0),
                       Text(
                           "$total $currentItemForIvBagVolume / $currentItemForRequireDosageLastPerUnit ",
                           style: TextStyle(
                               letterSpacing: 2,
-                              fontWeight: FontWeight.bold,
+fontSize: myFontSize,
+                              fontWeight: FontWeight.w500,
                               color: Colors.white))
                     ],
                   )),
@@ -268,7 +274,7 @@ class _InfusionByUnitState extends State<InfusionByUnit> {
                           unitInIvBagCon.text);
                     },
                     style: getButtonStyle(Colors.blueGrey.shade800),
-                    child: Text("Calculate")),
+                    child: Text("Calculate", style: TextStyle(fontSize : myFontSize))),
                 SizedBox(height: 10),
                 ElevatedButton(
                     onPressed: () {
@@ -280,13 +286,13 @@ class _InfusionByUnitState extends State<InfusionByUnit> {
                       });
                     },
                     style: getButtonStyle(Colors.red.shade600),
-                    child: Text("Clear")),
+                    child: Text("Clear", style: TextStyle(fontSize : myFontSize))),
               ],
             ),
             SizedBox(height: 10),
           ],
-        ),
-      ),
-    ]);
+        );
+      // ),
+    // ]);
   }
 }
