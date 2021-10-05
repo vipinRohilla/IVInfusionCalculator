@@ -50,7 +50,7 @@ class GridViewHomeScreen extends StatelessWidget {
               appBar: getAppBar("IV Infusion Calculator"),
               body: GridView.count(
                 padding: EdgeInsets.all(10.0),
-                crossAxisCount: 3,
+                crossAxisCount: orientation == Orientation.portrait ? 3 : 4,
                 mainAxisSpacing: 20,
                 crossAxisSpacing: 10,
                 children: [

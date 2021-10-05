@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_2/styling/size_config.dart';
 import 'category.dart';
 
 final _rowHeight = 100.0;
-final _borderRadius = BorderRadius.circular(_rowHeight / 2);
 
 class CategoryTile extends StatelessWidget {
   final Category category;
@@ -13,35 +13,35 @@ class CategoryTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double myFontSize = 1.7 * SizeConfig.textMultiplier;
     return Material(
         color: 
             Colors.transparent,
         child: Container(
           height: _rowHeight,
-          child: InkWell(
-            borderRadius: _borderRadius,
-            highlightColor: category.color['highlight'],
-            splashColor: category.color['splash'],
-            onTap: 
+          child: ElevatedButton(
+            onPressed: 
             () => onTap(category),
-            child: Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
+            child:  
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Padding(
                       padding: EdgeInsets.all(16.0),
-                      child: Image.asset(category.iconLocation)),
-                  Center(
-                    child: Text(
-                      category.name,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 24.0),
-                    ),
-                  )
+                      child: Image.asset(category.iconLocation, width: 10* SizeConfig.imageSizeMultiplier, height: 10 *SizeConfig.imageSizeMultiplier,)),
+
+                  // Expanded(
+                      // flex: 1,
+                      // child: 
+                      Text(
+                        category.name,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontSize: myFontSize),
+                      ),
+                  // )
                 ],
               ),
-            ),
           ),
         ));
   }

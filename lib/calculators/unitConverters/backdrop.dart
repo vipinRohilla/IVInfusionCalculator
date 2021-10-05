@@ -109,17 +109,11 @@ class _BackdropTitle extends AnimatedWidget {
 }
 
 /// Builds a Backdrop.
-
 ///
-
 /// A Backdrop widget has two panels, front and back. The front panel is shown
-
 /// by default, and slides down to show the back panel, from which a user
-
 /// can make a selection. The user can also configure the titles for when the
-
 /// front or back panel is showing.
-
 class Backdrop extends StatefulWidget {
   final Category currentCategory;
 
@@ -271,20 +265,20 @@ class _BackdropState extends State<Backdrop>
       ),
     );
   }
-
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xFFA7C7E7),
         elevation: 0.0,
-        leading: IconButton(
+        actions: [IconButton(
           onPressed: _toggleBackdropPanelVisibility,
           icon: AnimatedIcon(
             icon: AnimatedIcons.view_list,
             progress: _controller.view,
           ),
-        ),
+        )],
         title: _BackdropTitle(
           listenable: _controller.view,
           frontTitle: widget.frontTitle,

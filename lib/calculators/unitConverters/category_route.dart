@@ -113,22 +113,11 @@ class _CategoryRouteState extends State<CategoryRoute> {
   }
 
   Widget _buildCategories(Orientation deviceOrientation) {
-    if (deviceOrientation == Orientation.portrait) {
-      return ListView.builder(
-        itemBuilder: (BuildContext context, int index) {
-          var _category = _categories[index];
-          return CategoryTile(
-            category: _category,
-            onTap: 
-                _onCategoryTap,
-          );
-        },
-        itemCount: _categories.length,
-      );
-    } else {
       return GridView.count(
-        crossAxisCount: 2,
-        childAspectRatio: 3.0,
+        crossAxisCount: deviceOrientation == Orientation.portrait ? 3 : 5,
+        childAspectRatio: 1.0,
+        mainAxisSpacing: 5.0,
+        crossAxisSpacing: 5.0,
         children: _categories.map((Category category) {
           return CategoryTile(
             category: category,
@@ -136,7 +125,6 @@ class _CategoryRouteState extends State<CategoryRoute> {
           );
         }).toList(),
       );
-    }
   }
 
   @override
@@ -163,7 +151,8 @@ class _CategoryRouteState extends State<CategoryRoute> {
     return Backdrop(
       currentCategory:
           _currentCategory == null ? _defaultCategory! : 
-          _currentCategory!,
+          _currentCategory!
+          ,
       frontPanel: 
       _currentCategory == null
           ? UnitConverter(category: _defaultCategory!)

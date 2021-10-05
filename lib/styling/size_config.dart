@@ -18,15 +18,18 @@ class SizeConfig {
     if (orientation == Orientation.portrait) {
       _screenWidth = constraints.maxWidth;
       _screenHeight = constraints.maxHeight;
-      isPortrait = true;
-      if (_screenWidth < 450) {
-        isMobilePortrait = true;
-      }
+      // isPortrait = true;
+      // if (_screenWidth < 450) {
+      //   isMobilePortrait = true;
+      // }
+      // print(_screenHeight);
+      
     } else {
       _screenWidth = constraints.maxHeight;
       _screenHeight = constraints.maxWidth;
-      isPortrait = false;
-      isMobilePortrait = false;
+      // print(_screenHeight);
+      // isPortrait = false;
+      // isMobilePortrait = false;
     }
 
     _blockWidth = _screenWidth / 100;
@@ -38,5 +41,6 @@ class SizeConfig {
     widthMultiplier = _blockWidth;
 
     // print(_screenWidth);
+    // print(_screenHeight);
   }
 }

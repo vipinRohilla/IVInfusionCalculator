@@ -1,24 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/calculators/unitConverters/category_route.dart';
+import 'package:flutter_application_2/styling/size_config.dart';
 
+class BodyOfUnitConverter extends StatefulWidget {
+  @override
+  State<BodyOfUnitConverter> createState() => _BodyOfUnitConverterState();
+}
 
-class BodyOfUnitConverter extends StatelessWidget {
+class _BodyOfUnitConverterState extends State<BodyOfUnitConverter> {
+  double myFontSize = 2.1 * SizeConfig.textMultiplier;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: (){
         FocusManager.instance.primaryFocus?.unfocus();
       },
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: "Unit Converter",
-        theme: ThemeData(
-            fontFamily: 'Raleway',
-            textTheme: Theme.of(context)
-                .textTheme
-                .apply(bodyColor: Colors.black, displayColor: Colors.grey[500]),
-            primaryColor: Colors.grey[500], textSelectionTheme: TextSelectionThemeData(selectionColor: Colors.green[500])),
-        home: CategoryRoute(),
+      child: Scaffold(
+        body: 
+          CategoryRoute(),
       ),
     );
   }

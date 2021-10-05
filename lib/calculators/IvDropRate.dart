@@ -88,28 +88,131 @@ class _IvDropRateState extends State<IvDropRate> {
       }
     });
   }
-
-  @override
-  Widget build(BuildContext context) {
-    return 
-    // ListView(children: [
-    //   Container(
-    //     height: 550,
-    //     color: Colors.blue[50],
-    //     child: 
-        ListView(
-          padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
-          children: [
-            Text(
-              "Calulate  IV Drop Rate",
-              style: TextStyle(
-                fontSize: myFontSize,
-                fontWeight: FontWeight.w600,
-                color: Colors.black,
-              ),
+ Widget _landScapeMode(){
+    return  GridView.count(
+      crossAxisCount: 2,
+              childAspectRatio: 4,
+              physics: NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              children: [
+                Row(
+              children: [
+                Flexible(
+                    child: getTextFromTextField(
+                        "Enter Value",
+                        "Required Dose",
+                        unitsForRequiredDosage,
+                        currentItemForRequiredDosage,
+                        requiredDosageCon)),
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: DropdownButtonHideUnderline(
+                    child: DropdownButton<String>(
+                        iconSize: 30.0,
+                        iconEnabledColor: Colors.blue,
+                        items: unitsForRequiredDosage
+                            .map((String dropDownStringItem) {
+                          return DropdownMenuItem<String>(
+                            value: dropDownStringItem,
+                            child: Text(dropDownStringItem),
+                          );
+                        }).toList(),
+                        onChanged: (newValue) {
+                          setState(() {
+                            this.currentItemForRequiredDosage =
+                                newValue.toString();
+                          });
+                          if (requiredDosageCon.text != "" &&
+                              timeCon.text != "" &&
+                              dropFactorCon.text != "") {
+                            numClick(requiredDosageCon.text, timeCon.text,
+                                dropFactorCon.text);
+                          }
+                        },
+                        value: currentItemForRequiredDosage),
+                  ),
+                )
+              ],
             ),
-            SizedBox(height: 19.0),
+
             Row(
+              children: [
+                Flexible(
+                    child: getTextFromTextField("Enter Value", "Time",
+                        unitsForTime, currentItemForTime, timeCon)),
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: DropdownButtonHideUnderline(
+                    child: DropdownButton<String>(
+                        iconSize: 30.0,
+                        iconEnabledColor: Colors.blue,
+                        items: unitsForTime.map((String dropDownStringItem) {
+                          return DropdownMenuItem<String>(
+                            value: dropDownStringItem,
+                            child: Text(dropDownStringItem),
+                          );
+                        }).toList(),
+                        onChanged: (newValue) {
+                          setState(() {
+                            this.currentItemForTime = newValue.toString();
+                          });
+                          if (requiredDosageCon.text != "" &&
+                              timeCon.text != "" &&
+                              dropFactorCon.text != "") {
+                            numClick(requiredDosageCon.text, timeCon.text,
+                                dropFactorCon.text);
+                          }
+                        },
+                        value: currentItemForTime),
+                  ),
+                )
+              ],
+            ),
+
+            Row(
+              children: [
+                Flexible(
+                    child: getTextFromTextField(
+                        "Enter Value",
+                        "Drop Factor",
+                        unitsForDropFactor,
+                        currentItemForDropFactor,
+                        dropFactorCon)),
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: DropdownButtonHideUnderline(
+                    child: DropdownButton<String>(
+                        iconSize: 30.0,
+                        iconEnabledColor: Colors.blue,
+                        items:
+                            unitsForDropFactor.map((String dropDownStringItem) {
+                          return DropdownMenuItem<String>(
+                            value: dropDownStringItem,
+                            child: Text(dropDownStringItem),
+                          );
+                        }).toList(),
+                        onChanged: (newValue) {
+                          setState(() {
+                            this.currentItemForDropFactor = newValue.toString();
+                          });
+                          if (requiredDosageCon.text != "" &&
+                              timeCon.text != "" &&
+                              dropFactorCon.text != "") {
+                            numClick(requiredDosageCon.text, timeCon.text,
+                                dropFactorCon.text);
+                          }
+                        },
+                        value: currentItemForDropFactor),
+                  ),
+                )
+              ],
+            ),
+              ]);
+  }
+
+  Widget _portraitMode(){
+    return Column(children: [
+      Row(
               children: [
                 Flexible(
                     child: getTextFromTextField(
@@ -221,6 +324,31 @@ class _IvDropRateState extends State<IvDropRate> {
                 )
               ],
             ),
+    ],);
+  }
+  @override
+  Widget build(BuildContext context) {
+     double _width = MediaQuery.of(context).size.width;
+     
+    return 
+    // ListView(children: [
+    //   Container(
+    //     height: 550,
+    //     color: Colors.blue[50],
+    //     child: 
+        ListView(
+          padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
+          children: [
+            Text(
+              "Calulate  IV Drop Rate",
+              style: TextStyle(
+                fontSize: myFontSize,
+                fontWeight: FontWeight.w600,
+                color: Colors.black,
+              ),
+            ),
+            SizedBox(height: 19.0),
+            (_width > 500) ? _landScapeMode() : _portraitMode(),
             SizedBox(height: 10.0),
             SizedBox(
               height: 120,
