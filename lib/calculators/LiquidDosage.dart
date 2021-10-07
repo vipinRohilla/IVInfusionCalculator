@@ -76,6 +76,8 @@ class _LiquidDosageState extends State<LiquidDosage> {
               shrinkWrap: true,
               children: [
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Flexible(
                     child: getTextFromTextField(
@@ -84,66 +86,90 @@ class _LiquidDosageState extends State<LiquidDosage> {
                         unitsForRequiredDosage,
                         currentItemForRequiredDosage,
                         requiredDosageCon)),
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: DropdownButtonHideUnderline(
-                    child: DropdownButton<String>(
-                        iconSize: 30.0,
-                        iconEnabledColor: Colors.blue,
-                        items: unitsForRequiredDosage
-                            .map((String dropDownStringItem) {
-                          return DropdownMenuItem<String>(
-                            value: dropDownStringItem,
-                            child: Text(dropDownStringItem),
-                          );
-                        }).toList(),
-                        onChanged: (newValue) {
-                          setState(() {
-                            this.currentItemForRequiredDosage =
-                                newValue.toString();
-                          });
-                          if (requiredDosageCon.text != "" &&
-                              weightCon.text != "") {
-                            numClick(requiredDosageCon.text, weightCon.text);
-                          }
-                        },
-                        value: currentItemForRequiredDosage),
+                Container(
+                height: 59,
+                margin: EdgeInsets.fromLTRB(0, 0, 10, 0),
+                padding: EdgeInsets.fromLTRB(10,0,0,0),
+                decoration: BoxDecoration(
+                  color: Colors.blue[100],
+                  border: Border(
+                    left: BorderSide.none,
+                    top : BorderSide(color: Colors.blue.shade400, width: 1.5),
+                    right: BorderSide(color: Colors.blue.shade400, width: 1.5),
+                    bottom: BorderSide(color: Colors.blue.shade400, width: 1.5),
+                   )
+
                   ),
-                )
-              ],
+                child: DropdownButtonHideUnderline( 
+                  child: DropdownButton<String>(
+                      iconSize: 30.0,
+                      iconEnabledColor: Colors.blue,
+                      items: unitsForRequiredDosage
+                          .map((String dropDownStringItem) {
+                        return DropdownMenuItem<String>(
+                          value: dropDownStringItem,
+                          child: Text(dropDownStringItem),
+                        );
+                      }).toList(),
+                      onChanged: (newValue) {
+                        setState(() {
+                          this.currentItemForRequiredDosage =
+                              newValue.toString();
+                        });
+                        if (requiredDosageCon.text != "" &&
+                            weightCon.text != "") {
+                          numClick(requiredDosageCon.text, weightCon.text);
+                        }
+                      },
+                      value: currentItemForRequiredDosage),
+                ),
+                ) ],
             ),
 
             Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(height: 10.0),
                 Flexible(
                     child: getTextFromTextField("Enter Value", "Body Weight",
                         unitsForWeight, currentItemForWeight, weightCon)),
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: DropdownButtonHideUnderline(
-                    child: DropdownButton<String>(
-                        iconSize: 30.0,
-                        iconEnabledColor: Colors.blue,
-                        items: unitsForWeight.map((String dropDownStringItem) {
-                          return DropdownMenuItem<String>(
-                            value: dropDownStringItem,
-                            child: Text(dropDownStringItem),
-                          );
-                        }).toList(),
-                        onChanged: (newValue) {
-                          setState(() {
-                            this.currentItemForWeight = newValue.toString();
-                          });
-                          if (requiredDosageCon.text != "" &&
-                              weightCon.text != "") {
-                            numClick(requiredDosageCon.text, weightCon.text);
-                          }
-                        },
-                        value: currentItemForWeight),
+                Container(
+                height: 59,
+                margin: EdgeInsets.fromLTRB(0, 0, 10, 0),
+                padding: EdgeInsets.fromLTRB(10,0,0,0),
+                decoration: BoxDecoration(
+                  color: Colors.blue[100],
+                  border: Border(
+                    left: BorderSide.none,
+                    top : BorderSide(color: Colors.blue.shade400, width: 1.5),
+                    right: BorderSide(color: Colors.blue.shade400, width: 1.5),
+                    bottom: BorderSide(color: Colors.blue.shade400, width: 1.5),
+                   )
+
                   ),
-                )
-              ],
+                child: DropdownButtonHideUnderline( 
+                  child: DropdownButton<String>(
+                      iconSize: 30.0,
+                      iconEnabledColor: Colors.blue,
+                      items: unitsForWeight.map((String dropDownStringItem) {
+                        return DropdownMenuItem<String>(
+                          value: dropDownStringItem,
+                          child: Text(dropDownStringItem),
+                        );
+                      }).toList(),
+                      onChanged: (newValue) {
+                        setState(() {
+                          this.currentItemForWeight = newValue.toString();
+                        });
+                        if (requiredDosageCon.text != "" &&
+                            weightCon.text != "") {
+                          numClick(requiredDosageCon.text, weightCon.text);
+                        }
+                      },
+                      value: currentItemForWeight),
+                ),
+                ) ],
             ),
               ]);
   }
@@ -151,6 +177,8 @@ class _LiquidDosageState extends State<LiquidDosage> {
   Widget _portraitMode(){
     return Column(children: [
       Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Flexible(
                     child: getTextFromTextField(
@@ -159,66 +187,90 @@ class _LiquidDosageState extends State<LiquidDosage> {
                         unitsForRequiredDosage,
                         currentItemForRequiredDosage,
                         requiredDosageCon)),
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: DropdownButtonHideUnderline(
-                    child: DropdownButton<String>(
-                        iconSize: 30.0,
-                        iconEnabledColor: Colors.blue,
-                        items: unitsForRequiredDosage
-                            .map((String dropDownStringItem) {
-                          return DropdownMenuItem<String>(
-                            value: dropDownStringItem,
-                            child: Text(dropDownStringItem),
-                          );
-                        }).toList(),
-                        onChanged: (newValue) {
-                          setState(() {
-                            this.currentItemForRequiredDosage =
-                                newValue.toString();
-                          });
-                          if (requiredDosageCon.text != "" &&
-                              weightCon.text != "") {
-                            numClick(requiredDosageCon.text, weightCon.text);
-                          }
-                        },
-                        value: currentItemForRequiredDosage),
+                Container(
+                height: 59,
+                margin: EdgeInsets.fromLTRB(0, 0, 10, 0),
+                padding: EdgeInsets.fromLTRB(10,0,0,0),
+                decoration: BoxDecoration(
+                  color: Colors.blue[100],
+                  border: Border(
+                    left: BorderSide.none,
+                    top : BorderSide(color: Colors.blue.shade400, width: 1.5),
+                    right: BorderSide(color: Colors.blue.shade400, width: 1.5),
+                    bottom: BorderSide(color: Colors.blue.shade400, width: 1.5),
+                   )
+
                   ),
-                )
-              ],
+                child: DropdownButtonHideUnderline( 
+                  child: DropdownButton<String>(
+                      iconSize: 30.0,
+                      iconEnabledColor: Colors.blue,
+                      items: unitsForRequiredDosage
+                          .map((String dropDownStringItem) {
+                        return DropdownMenuItem<String>(
+                          value: dropDownStringItem,
+                          child: Text(dropDownStringItem),
+                        );
+                      }).toList(),
+                      onChanged: (newValue) {
+                        setState(() {
+                          this.currentItemForRequiredDosage =
+                              newValue.toString();
+                        });
+                        if (requiredDosageCon.text != "" &&
+                            weightCon.text != "") {
+                          numClick(requiredDosageCon.text, weightCon.text);
+                        }
+                      },
+                      value: currentItemForRequiredDosage),
+                ),
+                ) ],
             ),
             SizedBox(height: 10.0),
             Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(height: 10.0),
                 Flexible(
                     child: getTextFromTextField("Enter Value", "Body Weight",
                         unitsForWeight, currentItemForWeight, weightCon)),
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: DropdownButtonHideUnderline(
-                    child: DropdownButton<String>(
-                        iconSize: 30.0,
-                        iconEnabledColor: Colors.blue,
-                        items: unitsForWeight.map((String dropDownStringItem) {
-                          return DropdownMenuItem<String>(
-                            value: dropDownStringItem,
-                            child: Text(dropDownStringItem),
-                          );
-                        }).toList(),
-                        onChanged: (newValue) {
-                          setState(() {
-                            this.currentItemForWeight = newValue.toString();
-                          });
-                          if (requiredDosageCon.text != "" &&
-                              weightCon.text != "") {
-                            numClick(requiredDosageCon.text, weightCon.text);
-                          }
-                        },
-                        value: currentItemForWeight),
+                Container(
+                height: 59,
+                margin: EdgeInsets.fromLTRB(0, 0, 10, 0),
+                padding: EdgeInsets.fromLTRB(10,0,0,0),
+                decoration: BoxDecoration(
+                  color: Colors.blue[100],
+                  border: Border(
+                    left: BorderSide.none,
+                    top : BorderSide(color: Colors.blue.shade400, width: 1.5),
+                    right: BorderSide(color: Colors.blue.shade400, width: 1.5),
+                    bottom: BorderSide(color: Colors.blue.shade400, width: 1.5),
+                   )
+
                   ),
-                )
-              ],
+                child: DropdownButtonHideUnderline( 
+                  child: DropdownButton<String>(
+                      iconSize: 30.0,
+                      iconEnabledColor: Colors.blue,
+                      items: unitsForWeight.map((String dropDownStringItem) {
+                        return DropdownMenuItem<String>(
+                          value: dropDownStringItem,
+                          child: Text(dropDownStringItem),
+                        );
+                      }).toList(),
+                      onChanged: (newValue) {
+                        setState(() {
+                          this.currentItemForWeight = newValue.toString();
+                        });
+                        if (requiredDosageCon.text != "" &&
+                            weightCon.text != "") {
+                          numClick(requiredDosageCon.text, weightCon.text);
+                        }
+                      },
+                      value: currentItemForWeight),
+                ),
+                )  ],
             ),
     ],);
   }

@@ -100,17 +100,75 @@ class _BmiCalculatorState extends State<BmiCalculator> {
               shrinkWrap: true,
               children: [
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Flexible(
                     child: getTextFromTextField("Enter Value", "Weight",
                         unitsOfWeight, currentItemOfWeight, weightCon)),
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: DropdownButtonHideUnderline(
-                    child: DropdownButton<String>(
+                Container(
+                height: 59,
+                margin: EdgeInsets.fromLTRB(0, 0, 10, 0),
+                padding: EdgeInsets.fromLTRB(10,0,0,0),
+                decoration: BoxDecoration(
+                  color: Colors.blue[100],
+                  border: Border(
+                    left: BorderSide.none,
+                    top : BorderSide(color: Colors.blue.shade400, width: 1.5),
+                    right: BorderSide(color: Colors.blue.shade400, width: 1.5),
+                    bottom: BorderSide(color: Colors.blue.shade400, width: 1.5),
+                   )
+
+                  ),
+                child: DropdownButtonHideUnderline( 
+                  child: DropdownButton<String>(
+                    iconSize: 30.0,
+                    iconEnabledColor: Colors.blue,
+                    items: unitsOfWeight.map((String dropDownStringItem) {
+                      return DropdownMenuItem<String>(
+                        value: dropDownStringItem,
+                        child: Text(dropDownStringItem),
+                      );
+                    }).toList(),
+                    onChanged: (newValue) {
+                      setState(() {
+                        this.currentItemOfWeight = newValue.toString();
+                      });
+                      if (weightCon.text != "" && heightCon.text != "") {
+                        numClick(weightCon.text, heightCon.text);
+                      }
+                    },
+                    value: currentItemOfWeight,
+                  ),
+                ),
+                )],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Flexible(
+                    child: getTextFromTextField("Enter Value", "Height",
+                        unitsOfHeight, currentItemOfHeight, heightCon)),
+                Container(
+                height: 59,
+                margin: EdgeInsets.fromLTRB(0, 0, 10, 0),
+                padding: EdgeInsets.fromLTRB(10,0,0,0),
+                decoration: BoxDecoration(
+                  color: Colors.blue[100],
+                  border: Border(
+                    left: BorderSide.none,
+                    top : BorderSide(color: Colors.blue.shade400, width: 1.5),
+                    right: BorderSide(color: Colors.blue.shade400, width: 1.5),
+                    bottom: BorderSide(color: Colors.blue.shade400, width: 1.5),
+                   )
+
+                  ),
+                child: DropdownButtonHideUnderline( 
+                  child: DropdownButton<String>(
                       iconSize: 30.0,
                       iconEnabledColor: Colors.blue,
-                      items: unitsOfWeight.map((String dropDownStringItem) {
+                      items: unitsOfHeight.map((String dropDownStringItem) {
                         return DropdownMenuItem<String>(
                           value: dropDownStringItem,
                           child: Text(dropDownStringItem),
@@ -118,64 +176,91 @@ class _BmiCalculatorState extends State<BmiCalculator> {
                       }).toList(),
                       onChanged: (newValue) {
                         setState(() {
-                          this.currentItemOfWeight = newValue.toString();
+                          this.currentItemOfHeight = newValue.toString();
                         });
                         if (weightCon.text != "" && heightCon.text != "") {
                           numClick(weightCon.text, heightCon.text);
                         }
                       },
-                      value: currentItemOfWeight,
-                    ),
-                  ),
-                )
-              ],
-            ),
-            Row(
-              children: [
-                Flexible(
-                    child: getTextFromTextField("Enter Value", "Height",
-                        unitsOfHeight, currentItemOfHeight, heightCon)),
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: DropdownButtonHideUnderline(
-                    child: DropdownButton<String>(
-                        iconSize: 30.0,
-                        iconEnabledColor: Colors.blue,
-                        items: unitsOfHeight.map((String dropDownStringItem) {
-                          return DropdownMenuItem<String>(
-                            value: dropDownStringItem,
-                            child: Text(dropDownStringItem),
-                          );
-                        }).toList(),
-                        onChanged: (newValue) {
-                          setState(() {
-                            this.currentItemOfHeight = newValue.toString();
-                          });
-                          if (weightCon.text != "" && heightCon.text != "") {
-                            numClick(weightCon.text, heightCon.text);
-                          }
-                        },
-                        value: currentItemOfHeight),
-                  ),
-                )
-              ],
+                      value: currentItemOfHeight),
+                ),
+                )],
             ),
               ]);
   }
   Widget _portraitMode(){
     return Column(children: [
       Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Flexible(
                     child: getTextFromTextField("Enter Value", "Weight",
                         unitsOfWeight, currentItemOfWeight, weightCon)),
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: DropdownButtonHideUnderline(
-                    child: DropdownButton<String>(
+                Container(
+                height: 59,
+                margin: EdgeInsets.fromLTRB(0, 0, 10, 0),
+                padding: EdgeInsets.fromLTRB(10,0,0,0),
+                decoration: BoxDecoration(
+                  color: Colors.blue[100],
+                  border: Border(
+                    left: BorderSide.none,
+                    top : BorderSide(color: Colors.blue.shade400, width: 1.5),
+                    right: BorderSide(color: Colors.blue.shade400, width: 1.5),
+                    bottom: BorderSide(color: Colors.blue.shade400, width: 1.5),
+                   )
+
+                  ),
+                child: DropdownButtonHideUnderline( 
+                  child: DropdownButton<String>(
+                    iconSize: 30.0,
+                    iconEnabledColor: Colors.blue,
+                    items: unitsOfWeight.map((String dropDownStringItem) {
+                      return DropdownMenuItem<String>(
+                        value: dropDownStringItem,
+                        child: Text(dropDownStringItem),
+                      );
+                    }).toList(),
+                    onChanged: (newValue) {
+                      setState(() {
+                        this.currentItemOfWeight = newValue.toString();
+                      });
+                      if (weightCon.text != "" && heightCon.text != "") {
+                        numClick(weightCon.text, heightCon.text);
+                      }
+                    },
+                    value: currentItemOfWeight,
+                  ),
+                ),
+                )],
+            ),
+            SizedBox(height: 10.0),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Flexible(
+                    child: getTextFromTextField("Enter Value", "Height",
+                        unitsOfHeight, currentItemOfHeight, heightCon)),
+                Container(
+                height: 59,
+                margin: EdgeInsets.fromLTRB(0, 0, 10, 0),
+                padding: EdgeInsets.fromLTRB(10,0,0,0),
+                decoration: BoxDecoration(
+                  color: Colors.blue[100],
+                  border: Border(
+                    left: BorderSide.none,
+                    top : BorderSide(color: Colors.blue.shade400, width: 1.5),
+                    right: BorderSide(color: Colors.blue.shade400, width: 1.5),
+                    bottom: BorderSide(color: Colors.blue.shade400, width: 1.5),
+                   )
+
+                  ),
+                child: DropdownButtonHideUnderline( 
+                  child: DropdownButton<String>(
                       iconSize: 30.0,
                       iconEnabledColor: Colors.blue,
-                      items: unitsOfWeight.map((String dropDownStringItem) {
+                      items: unitsOfHeight.map((String dropDownStringItem) {
                         return DropdownMenuItem<String>(
                           value: dropDownStringItem,
                           child: Text(dropDownStringItem),
@@ -183,48 +268,15 @@ class _BmiCalculatorState extends State<BmiCalculator> {
                       }).toList(),
                       onChanged: (newValue) {
                         setState(() {
-                          this.currentItemOfWeight = newValue.toString();
+                          this.currentItemOfHeight = newValue.toString();
                         });
                         if (weightCon.text != "" && heightCon.text != "") {
                           numClick(weightCon.text, heightCon.text);
                         }
                       },
-                      value: currentItemOfWeight,
-                    ),
-                  ),
-                )
-              ],
-            ),
-            SizedBox(height: 10.0),
-            Row(
-              children: [
-                Flexible(
-                    child: getTextFromTextField("Enter Value", "Height",
-                        unitsOfHeight, currentItemOfHeight, heightCon)),
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: DropdownButtonHideUnderline(
-                    child: DropdownButton<String>(
-                        iconSize: 30.0,
-                        iconEnabledColor: Colors.blue,
-                        items: unitsOfHeight.map((String dropDownStringItem) {
-                          return DropdownMenuItem<String>(
-                            value: dropDownStringItem,
-                            child: Text(dropDownStringItem),
-                          );
-                        }).toList(),
-                        onChanged: (newValue) {
-                          setState(() {
-                            this.currentItemOfHeight = newValue.toString();
-                          });
-                          if (weightCon.text != "" && heightCon.text != "") {
-                            numClick(weightCon.text, heightCon.text);
-                          }
-                        },
-                        value: currentItemOfHeight),
-                  ),
-                )
-              ],
+                      value: currentItemOfHeight),
+                ),
+                )],
             ),
     ],);
   }

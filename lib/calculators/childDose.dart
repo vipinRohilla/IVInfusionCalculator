@@ -71,6 +71,8 @@ class _ChildDoseState extends State<ChildDose> {
               children: [
 
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Flexible(
                     child: getTextFromTextField(
@@ -79,34 +81,47 @@ class _ChildDoseState extends State<ChildDose> {
                         unitsForChildWeight,
                         currentItemForChildWeight,
                         weightCon)),
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: DropdownButtonHideUnderline(
-                    child: DropdownButton<String>(
-                        iconSize: 30.0,
-                        iconEnabledColor: Colors.blue,
-                        items: unitsForChildWeight
-                            .map((String dropDownStringItem) {
-                          return DropdownMenuItem<String>(
-                            value: dropDownStringItem,
-                            child: Text(dropDownStringItem),
-                          );
-                        }).toList(),
-                        onChanged: (newValue) {
-                          setState(() {
-                            this.currentItemForChildWeight =
-                                newValue.toString();
-                          });
-                          if (weightCon.text != "" && adultDoseCon.text != "") {
-                            numClick(weightCon.text, adultDoseCon.text);
-                          }
-                        },
-                        value: currentItemForChildWeight),
+                Container(
+                height: 59,
+                margin: EdgeInsets.fromLTRB(0, 0, 10, 0),
+                padding: EdgeInsets.fromLTRB(10,0,0,0),
+                decoration: BoxDecoration(
+                  color: Colors.blue[100],
+                  border: Border(
+                    left: BorderSide.none,
+                    top : BorderSide(color: Colors.blue.shade400, width: 1.5),
+                    right: BorderSide(color: Colors.blue.shade400, width: 1.5),
+                    bottom: BorderSide(color: Colors.blue.shade400, width: 1.5),
+                   )
+
                   ),
-                )
-              ],
+                child: DropdownButtonHideUnderline( 
+                  child: DropdownButton<String>(
+                      iconSize: 30.0,
+                      iconEnabledColor: Colors.blue,
+                      items: unitsForChildWeight
+                          .map((String dropDownStringItem) {
+                        return DropdownMenuItem<String>(
+                          value: dropDownStringItem,
+                          child: Text(dropDownStringItem),
+                        );
+                      }).toList(),
+                      onChanged: (newValue) {
+                        setState(() {
+                          this.currentItemForChildWeight =
+                              newValue.toString();
+                        });
+                        if (weightCon.text != "" && adultDoseCon.text != "") {
+                          numClick(weightCon.text, adultDoseCon.text);
+                        }
+                      },
+                      value: currentItemForChildWeight),
+                ),
+                )],
             ),
             Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Flexible(
                     child: getTextFromTextField(
@@ -115,32 +130,43 @@ class _ChildDoseState extends State<ChildDose> {
                         unitsForAverageAdultDose,
                         currentItemForAverageAdultDose,
                         adultDoseCon)),
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: DropdownButtonHideUnderline(
-                    child: DropdownButton<String>(
-                        iconSize: 30.0,
-                        iconEnabledColor: Colors.blue,
-                        items: unitsForAverageAdultDose
-                            .map((String dropDownStringItem) {
-                          return DropdownMenuItem<String>(
-                            value: dropDownStringItem,
-                            child: Text(dropDownStringItem),
-                          );
-                        }).toList(),
-                        onChanged: (newValue) {
-                          setState(() {
-                            this.currentItemForAverageAdultDose =
-                                newValue.toString();
-                          });
-                          if (weightCon.text != "" && adultDoseCon.text != "") {
-                            numClick(weightCon.text, adultDoseCon.text);
-                          }
-                        },
-                        value: currentItemForAverageAdultDose),
+                Container(
+                height: 59,
+                margin: EdgeInsets.fromLTRB(0, 0, 10, 0),
+                padding: EdgeInsets.fromLTRB(10,0,0,0),
+                decoration: BoxDecoration(
+                  color: Colors.blue[100],
+                  border: Border(
+                    left: BorderSide.none,
+                    top : BorderSide(color: Colors.blue.shade400, width: 1.5),
+                    right: BorderSide(color: Colors.blue.shade400, width: 1.5),
+                    bottom: BorderSide(color: Colors.blue.shade400, width: 1.5),
+                   )
+
                   ),
-                )
-              ],
+                child: DropdownButtonHideUnderline( 
+                  child: DropdownButton<String>(
+                      iconSize: 30.0,
+                      iconEnabledColor: Colors.blue,
+                      items: unitsForAverageAdultDose
+                          .map((String dropDownStringItem) {
+                        return DropdownMenuItem<String>(
+                          value: dropDownStringItem,
+                          child: Text(dropDownStringItem),
+                        );
+                      }).toList(),
+                      onChanged: (newValue) {
+                        setState(() {
+                          this.currentItemForAverageAdultDose =
+                              newValue.toString();
+                        });
+                        if (weightCon.text != "" && adultDoseCon.text != "") {
+                          numClick(weightCon.text, adultDoseCon.text);
+                        }
+                      },
+                      value: currentItemForAverageAdultDose),
+                ),
+                )],
             ),
               ]);
   }
@@ -148,6 +174,8 @@ class _ChildDoseState extends State<ChildDose> {
   Widget _portraitMode(){
     return Column(children: [
       Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Flexible(
                     child: getTextFromTextField(
@@ -156,35 +184,48 @@ class _ChildDoseState extends State<ChildDose> {
                         unitsForChildWeight,
                         currentItemForChildWeight,
                         weightCon)),
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: DropdownButtonHideUnderline(
-                    child: DropdownButton<String>(
-                        iconSize: 30.0,
-                        iconEnabledColor: Colors.blue,
-                        items: unitsForChildWeight
-                            .map((String dropDownStringItem) {
-                          return DropdownMenuItem<String>(
-                            value: dropDownStringItem,
-                            child: Text(dropDownStringItem),
-                          );
-                        }).toList(),
-                        onChanged: (newValue) {
-                          setState(() {
-                            this.currentItemForChildWeight =
-                                newValue.toString();
-                          });
-                          if (weightCon.text != "" && adultDoseCon.text != "") {
-                            numClick(weightCon.text, adultDoseCon.text);
-                          }
-                        },
-                        value: currentItemForChildWeight),
+                Container(
+                height: 59,
+                margin: EdgeInsets.fromLTRB(0, 0, 10, 0),
+                padding: EdgeInsets.fromLTRB(10,0,0,0),
+                decoration: BoxDecoration(
+                  color: Colors.blue[100],
+                  border: Border(
+                    left: BorderSide.none,
+                    top : BorderSide(color: Colors.blue.shade400, width: 1.5),
+                    right: BorderSide(color: Colors.blue.shade400, width: 1.5),
+                    bottom: BorderSide(color: Colors.blue.shade400, width: 1.5),
+                   )
+
                   ),
-                )
-              ],
+                child: DropdownButtonHideUnderline( 
+                  child: DropdownButton<String>(
+                      iconSize: 30.0,
+                      iconEnabledColor: Colors.blue,
+                      items: unitsForChildWeight
+                          .map((String dropDownStringItem) {
+                        return DropdownMenuItem<String>(
+                          value: dropDownStringItem,
+                          child: Text(dropDownStringItem),
+                        );
+                      }).toList(),
+                      onChanged: (newValue) {
+                        setState(() {
+                          this.currentItemForChildWeight =
+                              newValue.toString();
+                        });
+                        if (weightCon.text != "" && adultDoseCon.text != "") {
+                          numClick(weightCon.text, adultDoseCon.text);
+                        }
+                      },
+                      value: currentItemForChildWeight),
+                ),
+                )],
             ),
             SizedBox(height: 10.0),
             Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Flexible(
                     child: getTextFromTextField(
@@ -193,32 +234,43 @@ class _ChildDoseState extends State<ChildDose> {
                         unitsForAverageAdultDose,
                         currentItemForAverageAdultDose,
                         adultDoseCon)),
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: DropdownButtonHideUnderline(
-                    child: DropdownButton<String>(
-                        iconSize: 30.0,
-                        iconEnabledColor: Colors.blue,
-                        items: unitsForAverageAdultDose
-                            .map((String dropDownStringItem) {
-                          return DropdownMenuItem<String>(
-                            value: dropDownStringItem,
-                            child: Text(dropDownStringItem),
-                          );
-                        }).toList(),
-                        onChanged: (newValue) {
-                          setState(() {
-                            this.currentItemForAverageAdultDose =
-                                newValue.toString();
-                          });
-                          if (weightCon.text != "" && adultDoseCon.text != "") {
-                            numClick(weightCon.text, adultDoseCon.text);
-                          }
-                        },
-                        value: currentItemForAverageAdultDose),
+                Container(
+                height: 59,
+                margin: EdgeInsets.fromLTRB(0, 0, 10, 0),
+                padding: EdgeInsets.fromLTRB(10,0,0,0),
+                decoration: BoxDecoration(
+                  color: Colors.blue[100],
+                  border: Border(
+                    left: BorderSide.none,
+                    top : BorderSide(color: Colors.blue.shade400, width: 1.5),
+                    right: BorderSide(color: Colors.blue.shade400, width: 1.5),
+                    bottom: BorderSide(color: Colors.blue.shade400, width: 1.5),
+                   )
+
                   ),
-                )
-              ],
+                child: DropdownButtonHideUnderline( 
+                  child: DropdownButton<String>(
+                      iconSize: 30.0,
+                      iconEnabledColor: Colors.blue,
+                      items: unitsForAverageAdultDose
+                          .map((String dropDownStringItem) {
+                        return DropdownMenuItem<String>(
+                          value: dropDownStringItem,
+                          child: Text(dropDownStringItem),
+                        );
+                      }).toList(),
+                      onChanged: (newValue) {
+                        setState(() {
+                          this.currentItemForAverageAdultDose =
+                              newValue.toString();
+                        });
+                        if (weightCon.text != "" && adultDoseCon.text != "") {
+                          numClick(weightCon.text, adultDoseCon.text);
+                        }
+                      },
+                      value: currentItemForAverageAdultDose),
+                ),
+                )],
             ),
     ],);
   }

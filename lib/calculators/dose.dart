@@ -83,6 +83,8 @@ class _DoseState extends State<Dose> {
               shrinkWrap: true,
               children: [
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Flexible(
                       child: getTextFromTextField(
@@ -91,38 +93,51 @@ class _DoseState extends State<Dose> {
                           unitsForStockStrength,
                           currentItemForStockStrength,
                           stockStrengthCon)),
-                  Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: DropdownButtonHideUnderline(
-                      child: DropdownButton<String>(
-                          iconSize: 30.0,
-                          iconEnabledColor: Colors.blue,
-                          items: unitsForStockStrength
-                              .map((String dropDownStringItem) {
-                            return DropdownMenuItem<String>(
-                              value: dropDownStringItem,
-                              child: Text(dropDownStringItem),
-                            );
-                          }).toList(),
-                          onChanged: (newValue) {
-                            setState(() {
-                              this.currentItemForStockStrength =
-                                  newValue.toString();
-                            });
-                            if (stockStrengthCon.text != "" &&
-                                stockVolumeCon.text != "" &&
-                                requiredDosageCon.text != "" &&
-                                weightCon.text != "") {
-                              numClick(stockStrengthCon.text, stockVolumeCon.text,
-                                  requiredDosageCon.text, weightCon.text);
-                            }
-                          },
-                          value: currentItemForStockStrength),
-                    ),
-                  )
-                ],
+                  Container(
+                  height: 59,
+                  margin: EdgeInsets.fromLTRB(0, 0, 10, 0),
+                padding: EdgeInsets.fromLTRB(10,0,0,0),
+                  decoration: BoxDecoration(
+                  color: Colors.blue[100],
+                  border: Border(
+                    left: BorderSide.none,
+                    top : BorderSide(color: Colors.blue.shade400, width: 1.5),
+                    right: BorderSide(color: Colors.blue.shade400, width: 1.5),
+                    bottom: BorderSide(color: Colors.blue.shade400, width: 1.5),
+                   )
+
+                  ),
+                  child: DropdownButtonHideUnderline( 
+                    child: DropdownButton<String>(
+                        iconSize: 30.0,
+                        iconEnabledColor: Colors.blue,
+                        items: unitsForStockStrength
+                            .map((String dropDownStringItem) {
+                          return DropdownMenuItem<String>(
+                            value: dropDownStringItem,
+                            child: Text(dropDownStringItem),
+                          );
+                        }).toList(),
+                        onChanged: (newValue) {
+                          setState(() {
+                            this.currentItemForStockStrength =
+                                newValue.toString();
+                          });
+                          if (stockStrengthCon.text != "" &&
+                              stockVolumeCon.text != "" &&
+                              requiredDosageCon.text != "" &&
+                              weightCon.text != "") {
+                            numClick(stockStrengthCon.text, stockVolumeCon.text,
+                                requiredDosageCon.text, weightCon.text);
+                          }
+                        },
+                        value: currentItemForStockStrength),
+                  ),
+                  )],
               ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Flexible(
                       child: getTextFromTextField(
@@ -131,38 +146,51 @@ class _DoseState extends State<Dose> {
                           unitsForStockVolume,
                           currentItemForStockVolume,
                           stockVolumeCon)),
-                  Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: DropdownButtonHideUnderline(
-                      child: DropdownButton<String>(
-                          iconSize: 30.0,
-                          iconEnabledColor: Colors.blue,
-                          items: unitsForStockVolume
-                              .map((String dropDownStringItem) {
-                            return DropdownMenuItem<String>(
-                              value: dropDownStringItem,
-                              child: Text(dropDownStringItem),
-                            );
-                          }).toList(),
-                          onChanged: (newValue) {
-                            setState(() {
-                              this.currentItemForStockVolume =
-                                  newValue.toString();
-                            });
-                            if (stockStrengthCon.text != "" &&
-                                stockVolumeCon.text != "" &&
-                                requiredDosageCon.text != "" &&
-                                weightCon.text != "") {
-                              numClick(stockStrengthCon.text, stockVolumeCon.text,
-                                  requiredDosageCon.text, weightCon.text);
-                            }
-                          },
-                          value: currentItemForStockVolume),
-                    ),
-                  )
-                ],
+                  Container(
+                  height: 59,
+                  margin: EdgeInsets.fromLTRB(0, 0, 10, 0),
+                padding: EdgeInsets.fromLTRB(10,0,0,0),
+                  decoration: BoxDecoration(
+                  color: Colors.blue[100],
+                  border: Border(
+                    left: BorderSide.none,
+                    top : BorderSide(color: Colors.blue.shade400, width: 1.5),
+                    right: BorderSide(color: Colors.blue.shade400, width: 1.5),
+                    bottom: BorderSide(color: Colors.blue.shade400, width: 1.5),
+                   )
+
+                  ),
+                  child: DropdownButtonHideUnderline( 
+                    child: DropdownButton<String>(
+                        iconSize: 30.0,
+                        iconEnabledColor: Colors.blue,
+                        items: unitsForStockVolume
+                            .map((String dropDownStringItem) {
+                          return DropdownMenuItem<String>(
+                            value: dropDownStringItem,
+                            child: Text(dropDownStringItem),
+                          );
+                        }).toList(),
+                        onChanged: (newValue) {
+                          setState(() {
+                            this.currentItemForStockVolume =
+                                newValue.toString();
+                          });
+                          if (stockStrengthCon.text != "" &&
+                              stockVolumeCon.text != "" &&
+                              requiredDosageCon.text != "" &&
+                              weightCon.text != "") {
+                            numClick(stockStrengthCon.text, stockVolumeCon.text,
+                                requiredDosageCon.text, weightCon.text);
+                          }
+                        },
+                        value: currentItemForStockVolume),
+                  ),
+                  )],
               ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Flexible(
                       child: getTextFromTextField(
@@ -171,38 +199,51 @@ class _DoseState extends State<Dose> {
                           unitsForRequiredDosage,
                           currentItemForRequiredDosage,
                           requiredDosageCon)),
-                  Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: DropdownButtonHideUnderline(
-                      child: DropdownButton<String>(
-                          iconSize: 30.0,
-                          iconEnabledColor: Colors.blue,
-                          items: unitsForRequiredDosage
-                              .map((String dropDownStringItem) {
-                            return DropdownMenuItem<String>(
-                              value: dropDownStringItem,
-                              child: Text(dropDownStringItem),
-                            );
-                          }).toList(),
-                          onChanged: (newValue) {
-                            setState(() {
-                              this.currentItemForRequiredDosage =
-                                  newValue.toString();
-                            });
-                            if (stockStrengthCon.text != "" &&
-                                stockVolumeCon.text != "" &&
-                                requiredDosageCon.text != "" &&
-                                weightCon.text != "") {
-                              numClick(stockStrengthCon.text, stockVolumeCon.text,
-                                  requiredDosageCon.text, weightCon.text);
-                            }
-                          },
-                          value: currentItemForRequiredDosage),
-                    ),
-                  )
-                ],
+                  Container(
+                  height: 59,
+                  margin: EdgeInsets.fromLTRB(0, 0, 10, 0),
+                padding: EdgeInsets.fromLTRB(10,0,0,0),
+                  decoration: BoxDecoration(
+                  color: Colors.blue[100],
+                  border: Border(
+                    left: BorderSide.none,
+                    top : BorderSide(color: Colors.blue.shade400, width: 1.5),
+                    right: BorderSide(color: Colors.blue.shade400, width: 1.5),
+                    bottom: BorderSide(color: Colors.blue.shade400, width: 1.5),
+                   )
+
+                  ),
+                  child: DropdownButtonHideUnderline( 
+                    child: DropdownButton<String>(
+                        iconSize: 30.0,
+                        iconEnabledColor: Colors.blue,
+                        items: unitsForRequiredDosage
+                            .map((String dropDownStringItem) {
+                          return DropdownMenuItem<String>(
+                            value: dropDownStringItem,
+                            child: Text(dropDownStringItem),
+                          );
+                        }).toList(),
+                        onChanged: (newValue) {
+                          setState(() {
+                            this.currentItemForRequiredDosage =
+                                newValue.toString();
+                          });
+                          if (stockStrengthCon.text != "" &&
+                              stockVolumeCon.text != "" &&
+                              requiredDosageCon.text != "" &&
+                              weightCon.text != "") {
+                            numClick(stockStrengthCon.text, stockVolumeCon.text,
+                                requiredDosageCon.text, weightCon.text);
+                          }
+                        },
+                        value: currentItemForRequiredDosage),
+                  ),
+                  )],
               ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Flexible(
                       child: getTextFromTextField(
@@ -211,35 +252,46 @@ class _DoseState extends State<Dose> {
                           unitsForBodyWeight,
                           currentItemForBodyWeight,
                           weightCon)),
-                  Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: DropdownButtonHideUnderline(
-                      child: DropdownButton<String>(
-                          iconSize: 30.0,
-                          iconEnabledColor: Colors.blue,
-                          items:
-                              unitsForBodyWeight.map((String dropDownStringItem) {
-                            return DropdownMenuItem<String>(
-                              value: dropDownStringItem,
-                              child: Text(dropDownStringItem),
-                            );
-                          }).toList(),
-                          onChanged: (newValue) {
-                            setState(() {
-                              this.currentItemForBodyWeight = newValue.toString();
-                            });
-                            if (stockStrengthCon.text != "" &&
-                                stockVolumeCon.text != "" &&
-                                requiredDosageCon.text != "" &&
-                                weightCon.text != "") {
-                              numClick(stockStrengthCon.text, stockVolumeCon.text,
-                                  requiredDosageCon.text, weightCon.text);
-                            }
-                          },
-                          value: currentItemForBodyWeight),
-                    ),
-                  )
-                ],
+                  Container(
+                  height: 59,
+                  margin: EdgeInsets.fromLTRB(0, 0, 10, 0),
+                padding: EdgeInsets.fromLTRB(10,0,0,0),
+                  decoration: BoxDecoration(
+                  color: Colors.blue[100],
+                  border: Border(
+                    left: BorderSide.none,
+                    top : BorderSide(color: Colors.blue.shade400, width: 1.5),
+                    right: BorderSide(color: Colors.blue.shade400, width: 1.5),
+                    bottom: BorderSide(color: Colors.blue.shade400, width: 1.5),
+                   )
+
+                  ),
+                  child: DropdownButtonHideUnderline( 
+                    child: DropdownButton<String>(
+                        iconSize: 30.0,
+                        iconEnabledColor: Colors.blue,
+                        items:
+                            unitsForBodyWeight.map((String dropDownStringItem) {
+                          return DropdownMenuItem<String>(
+                            value: dropDownStringItem,
+                            child: Text(dropDownStringItem),
+                          );
+                        }).toList(),
+                        onChanged: (newValue) {
+                          setState(() {
+                            this.currentItemForBodyWeight = newValue.toString();
+                          });
+                          if (stockStrengthCon.text != "" &&
+                              stockVolumeCon.text != "" &&
+                              requiredDosageCon.text != "" &&
+                              weightCon.text != "") {
+                            numClick(stockStrengthCon.text, stockVolumeCon.text,
+                                requiredDosageCon.text, weightCon.text);
+                          }
+                        },
+                        value: currentItemForBodyWeight),
+                  ),
+                  )],
               ),
               ]);
   }
@@ -247,6 +299,8 @@ class _DoseState extends State<Dose> {
   Widget _portraitMode(){
     return Column(children: [
       Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Flexible(
                       child: getTextFromTextField(
@@ -255,39 +309,52 @@ class _DoseState extends State<Dose> {
                           unitsForStockStrength,
                           currentItemForStockStrength,
                           stockStrengthCon)),
-                  Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: DropdownButtonHideUnderline(
-                      child: DropdownButton<String>(
-                          iconSize: 30.0,
-                          iconEnabledColor: Colors.blue,
-                          items: unitsForStockStrength
-                              .map((String dropDownStringItem) {
-                            return DropdownMenuItem<String>(
-                              value: dropDownStringItem,
-                              child: Text(dropDownStringItem),
-                            );
-                          }).toList(),
-                          onChanged: (newValue) {
-                            setState(() {
-                              this.currentItemForStockStrength =
-                                  newValue.toString();
-                            });
-                            if (stockStrengthCon.text != "" &&
-                                stockVolumeCon.text != "" &&
-                                requiredDosageCon.text != "" &&
-                                weightCon.text != "") {
-                              numClick(stockStrengthCon.text, stockVolumeCon.text,
-                                  requiredDosageCon.text, weightCon.text);
-                            }
-                          },
-                          value: currentItemForStockStrength),
-                    ),
-                  )
-                ],
+                  Container(
+                  height: 59,
+                  margin: EdgeInsets.fromLTRB(0, 0, 10, 0),
+                padding: EdgeInsets.fromLTRB(10,0,0,0),
+                  decoration: BoxDecoration(
+                  color: Colors.blue[100],
+                  border: Border(
+                    left: BorderSide.none,
+                    top : BorderSide(color: Colors.blue.shade400, width: 1.5),
+                    right: BorderSide(color: Colors.blue.shade400, width: 1.5),
+                    bottom: BorderSide(color: Colors.blue.shade400, width: 1.5),
+                   )
+
+                  ),
+                  child: DropdownButtonHideUnderline( 
+                    child: DropdownButton<String>(
+                        iconSize: 30.0,
+                        iconEnabledColor: Colors.blue,
+                        items: unitsForStockStrength
+                            .map((String dropDownStringItem) {
+                          return DropdownMenuItem<String>(
+                            value: dropDownStringItem,
+                            child: Text(dropDownStringItem),
+                          );
+                        }).toList(),
+                        onChanged: (newValue) {
+                          setState(() {
+                            this.currentItemForStockStrength =
+                                newValue.toString();
+                          });
+                          if (stockStrengthCon.text != "" &&
+                              stockVolumeCon.text != "" &&
+                              requiredDosageCon.text != "" &&
+                              weightCon.text != "") {
+                            numClick(stockStrengthCon.text, stockVolumeCon.text,
+                                requiredDosageCon.text, weightCon.text);
+                          }
+                        },
+                        value: currentItemForStockStrength),
+                  ),
+                  )],
               ),
               SizedBox(height: 10.0),
               Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Flexible(
                       child: getTextFromTextField(
@@ -296,39 +363,52 @@ class _DoseState extends State<Dose> {
                           unitsForStockVolume,
                           currentItemForStockVolume,
                           stockVolumeCon)),
-                  Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: DropdownButtonHideUnderline(
-                      child: DropdownButton<String>(
-                          iconSize: 30.0,
-                          iconEnabledColor: Colors.blue,
-                          items: unitsForStockVolume
-                              .map((String dropDownStringItem) {
-                            return DropdownMenuItem<String>(
-                              value: dropDownStringItem,
-                              child: Text(dropDownStringItem),
-                            );
-                          }).toList(),
-                          onChanged: (newValue) {
-                            setState(() {
-                              this.currentItemForStockVolume =
-                                  newValue.toString();
-                            });
-                            if (stockStrengthCon.text != "" &&
-                                stockVolumeCon.text != "" &&
-                                requiredDosageCon.text != "" &&
-                                weightCon.text != "") {
-                              numClick(stockStrengthCon.text, stockVolumeCon.text,
-                                  requiredDosageCon.text, weightCon.text);
-                            }
-                          },
-                          value: currentItemForStockVolume),
-                    ),
-                  )
-                ],
+                  Container(
+                  height: 59,
+                  margin: EdgeInsets.fromLTRB(0, 0, 10, 0),
+                padding: EdgeInsets.fromLTRB(10,0,0,0),
+                  decoration: BoxDecoration(
+                  color: Colors.blue[100],
+                  border: Border(
+                    left: BorderSide.none,
+                    top : BorderSide(color: Colors.blue.shade400, width: 1.5),
+                    right: BorderSide(color: Colors.blue.shade400, width: 1.5),
+                    bottom: BorderSide(color: Colors.blue.shade400, width: 1.5),
+                   )
+
+                  ),
+                  child: DropdownButtonHideUnderline( 
+                    child: DropdownButton<String>(
+                        iconSize: 30.0,
+                        iconEnabledColor: Colors.blue,
+                        items: unitsForStockVolume
+                            .map((String dropDownStringItem) {
+                          return DropdownMenuItem<String>(
+                            value: dropDownStringItem,
+                            child: Text(dropDownStringItem),
+                          );
+                        }).toList(),
+                        onChanged: (newValue) {
+                          setState(() {
+                            this.currentItemForStockVolume =
+                                newValue.toString();
+                          });
+                          if (stockStrengthCon.text != "" &&
+                              stockVolumeCon.text != "" &&
+                              requiredDosageCon.text != "" &&
+                              weightCon.text != "") {
+                            numClick(stockStrengthCon.text, stockVolumeCon.text,
+                                requiredDosageCon.text, weightCon.text);
+                          }
+                        },
+                        value: currentItemForStockVolume),
+                  ),
+                  )],
               ),
               SizedBox(height: 10.0),
               Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Flexible(
                       child: getTextFromTextField(
@@ -337,39 +417,52 @@ class _DoseState extends State<Dose> {
                           unitsForRequiredDosage,
                           currentItemForRequiredDosage,
                           requiredDosageCon)),
-                  Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: DropdownButtonHideUnderline(
-                      child: DropdownButton<String>(
-                          iconSize: 30.0,
-                          iconEnabledColor: Colors.blue,
-                          items: unitsForRequiredDosage
-                              .map((String dropDownStringItem) {
-                            return DropdownMenuItem<String>(
-                              value: dropDownStringItem,
-                              child: Text(dropDownStringItem),
-                            );
-                          }).toList(),
-                          onChanged: (newValue) {
-                            setState(() {
-                              this.currentItemForRequiredDosage =
-                                  newValue.toString();
-                            });
-                            if (stockStrengthCon.text != "" &&
-                                stockVolumeCon.text != "" &&
-                                requiredDosageCon.text != "" &&
-                                weightCon.text != "") {
-                              numClick(stockStrengthCon.text, stockVolumeCon.text,
-                                  requiredDosageCon.text, weightCon.text);
-                            }
-                          },
-                          value: currentItemForRequiredDosage),
-                    ),
-                  )
-                ],
+                  Container(
+                  height: 59,
+                  margin: EdgeInsets.fromLTRB(0, 0, 10, 0),
+                padding: EdgeInsets.fromLTRB(10,0,0,0),
+                  decoration: BoxDecoration(
+                  color: Colors.blue[100],
+                  border: Border(
+                    left: BorderSide.none,
+                    top : BorderSide(color: Colors.blue.shade400, width: 1.5),
+                    right: BorderSide(color: Colors.blue.shade400, width: 1.5),
+                    bottom: BorderSide(color: Colors.blue.shade400, width: 1.5),
+                   )
+
+                  ),
+                  child: DropdownButtonHideUnderline( 
+                    child: DropdownButton<String>(
+                        iconSize: 30.0,
+                        iconEnabledColor: Colors.blue,
+                        items: unitsForRequiredDosage
+                            .map((String dropDownStringItem) {
+                          return DropdownMenuItem<String>(
+                            value: dropDownStringItem,
+                            child: Text(dropDownStringItem),
+                          );
+                        }).toList(),
+                        onChanged: (newValue) {
+                          setState(() {
+                            this.currentItemForRequiredDosage =
+                                newValue.toString();
+                          });
+                          if (stockStrengthCon.text != "" &&
+                              stockVolumeCon.text != "" &&
+                              requiredDosageCon.text != "" &&
+                              weightCon.text != "") {
+                            numClick(stockStrengthCon.text, stockVolumeCon.text,
+                                requiredDosageCon.text, weightCon.text);
+                          }
+                        },
+                        value: currentItemForRequiredDosage),
+                  ),
+                  )],
               ),
               SizedBox(height: 10.0),
               Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Flexible(
                       child: getTextFromTextField(
@@ -378,35 +471,46 @@ class _DoseState extends State<Dose> {
                           unitsForBodyWeight,
                           currentItemForBodyWeight,
                           weightCon)),
-                  Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: DropdownButtonHideUnderline(
-                      child: DropdownButton<String>(
-                          iconSize: 30.0,
-                          iconEnabledColor: Colors.blue,
-                          items:
-                              unitsForBodyWeight.map((String dropDownStringItem) {
-                            return DropdownMenuItem<String>(
-                              value: dropDownStringItem,
-                              child: Text(dropDownStringItem),
-                            );
-                          }).toList(),
-                          onChanged: (newValue) {
-                            setState(() {
-                              this.currentItemForBodyWeight = newValue.toString();
-                            });
-                            if (stockStrengthCon.text != "" &&
-                                stockVolumeCon.text != "" &&
-                                requiredDosageCon.text != "" &&
-                                weightCon.text != "") {
-                              numClick(stockStrengthCon.text, stockVolumeCon.text,
-                                  requiredDosageCon.text, weightCon.text);
-                            }
-                          },
-                          value: currentItemForBodyWeight),
-                    ),
-                  )
-                ],
+                  Container(
+                  height: 59,
+                  margin: EdgeInsets.fromLTRB(0, 0, 10, 0),
+                padding: EdgeInsets.fromLTRB(10,0,0,0),
+                  decoration: BoxDecoration(
+                  color: Colors.blue[100],
+                  border: Border(
+                    left: BorderSide.none,
+                    top : BorderSide(color: Colors.blue.shade400, width: 1.5),
+                    right: BorderSide(color: Colors.blue.shade400, width: 1.5),
+                    bottom: BorderSide(color: Colors.blue.shade400, width: 1.5),
+                   )
+
+                  ),
+                  child: DropdownButtonHideUnderline( 
+                    child: DropdownButton<String>(
+                        iconSize: 30.0,
+                        iconEnabledColor: Colors.blue,
+                        items:
+                            unitsForBodyWeight.map((String dropDownStringItem) {
+                          return DropdownMenuItem<String>(
+                            value: dropDownStringItem,
+                            child: Text(dropDownStringItem),
+                          );
+                        }).toList(),
+                        onChanged: (newValue) {
+                          setState(() {
+                            this.currentItemForBodyWeight = newValue.toString();
+                          });
+                          if (stockStrengthCon.text != "" &&
+                              stockVolumeCon.text != "" &&
+                              requiredDosageCon.text != "" &&
+                              weightCon.text != "") {
+                            numClick(stockStrengthCon.text, stockVolumeCon.text,
+                                requiredDosageCon.text, weightCon.text);
+                          }
+                        },
+                        value: currentItemForBodyWeight),
+                  ),
+                  )],
               ),
     ],);
   }

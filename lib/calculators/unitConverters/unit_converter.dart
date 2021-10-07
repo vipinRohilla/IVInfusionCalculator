@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'category.dart';
 import 'unit.dart';
-const _padding = EdgeInsets.all(16.0);
+const _padding = EdgeInsets.all(14.0);
 
 class UnitConverter extends StatefulWidget {
   final Category category;
@@ -16,12 +16,13 @@ class _UnitConverterState extends State<UnitConverter> {
   late Unit _fromValue;
   late Unit _toValue;
   double _inputValue = 0.0;
-  String _convertedValue = "";
+  String _convertedValue = "0";
   final Category category;
   bool _showValidationError = false;
   late List<DropdownMenuItem> _unitMenuItems;
   final _inputKey = GlobalKey(debugLabel: 'inputText');
   bool _showErrorUI = false;
+  bool selectedTextField = false;
 
   @override
   void initState() {
@@ -133,12 +134,12 @@ class _UnitConverterState extends State<UnitConverter> {
 
   Widget _createDropDown(String currentValue, ValueChanged<dynamic> onChnaged) {
     return Container(
-      margin: EdgeInsets.only(top: 16.0),
-      padding: EdgeInsets.symmetric(vertical: 8.0),
+      // margin: EdgeInsets.only(top: 16.0),
+      padding: EdgeInsets.symmetric(vertical: 7.3),
       decoration: BoxDecoration(
-          // color: Colors.blue[50],
-          border: Border.all(color: Colors.grey, width: 1.0),
-          borderRadius: BorderRadius.circular(5.0)
+          // color: Colors.blue[100],
+          // border: Border.all(color: Colors.grey, width: 1.0),
+          borderRadius: BorderRadius.circular(0.0)
               
           ),
       child: Theme(
@@ -189,26 +190,43 @@ class _UnitConverterState extends State<UnitConverter> {
     }
     final inputBox = Padding(
       padding: _padding,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          TextField(
-            key: _inputKey,
-            style: Theme.of(context).textTheme.headline6,
-            decoration: InputDecoration(
-              labelStyle: Theme.of(context).textTheme.headline6,
-              labelText: "Input",
-              errorText: _showValidationError ? "Invalid Number Entered" : null,
-              border:
-                  OutlineInputBorder(borderRadius: BorderRadius.circular(5.0)
-                  )
-                  
-            ),
-            keyboardType: TextInputType.number,
-            onChanged: _updateInputValue,
-          ),
-          _createDropDown(_fromValue.name, _updateFromConversion)
-        ],
+      child: Container(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            // Flexible(
+              // child: 
+              Container(
+                child: _createDropDown(_fromValue.name, _updateFromConversion)
+                ),
+              Container(
+                padding: EdgeInsets.all(17),
+                child: TextFormField(
+                  textAlign: TextAlign.end,
+                  key: _inputKey,
+                  style: Theme.of(context).textTheme.headline6,
+                  decoration: InputDecoration(
+                    suffixText: _fromValue.name[_fromValue.name.length-3] == "(" 
+                    ? " " + _fromValue.name.substring(_fromValue.name.length-2, _fromValue.name.length-1) 
+                    : " " + _fromValue.name.substring(_fromValue.name.length-3, _fromValue.name.length-1),
+                    labelStyle: Theme.of(context).textTheme.headline6,
+                    // labelText: "Input",
+
+                    errorText: _showValidationError ? "Invalid Number Entered" : null,
+                    // border:
+                    //     OutlineInputBorder(borderRadius: BorderRadius.circular(0.0)
+                    //     )
+                        
+                  ),
+                  keyboardType: TextInputType.number,
+                  onChanged: _updateInputValue,
+                ),
+              ),
+            // ),
+            // Container(child: _createDropDown(_fromValue.name, _updateFromConversion))
+          ],
+        ),
       ),
     );
 
@@ -216,28 +234,51 @@ class _UnitConverterState extends State<UnitConverter> {
     final outputBox = Padding(
       padding: _padding,
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          InputDecorator(
-            child: Text(
-              _convertedValue,
-              style: Theme.of(context).textTheme.headline6,
+          // Flexible(
+            // child: 
+            Container(child: _createDropDown(_toValue.name, _updateToConversion)),
+            Container(
+              padding: EdgeInsets.all(17),
+              child: InputDecorator(
+                textAlign: TextAlign.end,
+                child: Text(
+                  _convertedValue,
+                  textAlign: TextAlign.end,
+                  style: Theme.of(context).textTheme.headline6,
+                ),
+                decoration: InputDecoration(
+                  suffixText: _toValue.name[_toValue.name.length-3] == "(" 
+                    ? " " + _toValue.name.substring(_toValue.name.length-2, _toValue.name.length-1) 
+                    : " " + _toValue.name.substring(_toValue.name.length-3, _toValue.name.length-1),
+                  suffixStyle: TextStyle(fontSize: 21,),
+                    // labelText: "Output",
+                    labelStyle: Theme.of(context).textTheme.headline6,
+                    // labelStyle: TextStyle(
+
+                    // )
+                    // border: OutlineInputBorder(
+                    //     borderRadius: BorderRadius.circular(0.0))
+                        ),
+              ),
             ),
-            decoration: InputDecoration(
-                labelText: "Output",
-                labelStyle: Theme.of(context).textTheme.headline6,
-                border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(5.0))),
-          ),
-          _createDropDown(_toValue.name, _updateToConversion),
+          // ),
+          // Container(child: _createDropDown(_toValue.name, _updateToConversion)),
         ],
       ),
     );
 
+    
     final converter = Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[inputBox, arrows, outputBox],
     );
+    // final secondConverter = Column(
+    //   crossAxisAlignment: CrossAxisAlignment.stretch,
+    //   children: <Widget>[outputBox, arrows, inputBox],
+    // );
     return Scaffold(
       body: Padding(
         padding: _padding,

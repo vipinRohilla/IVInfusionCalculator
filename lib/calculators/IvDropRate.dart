@@ -96,6 +96,8 @@ class _IvDropRateState extends State<IvDropRate> {
               shrinkWrap: true,
               children: [
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Flexible(
                     child: getTextFromTextField(
@@ -104,72 +106,98 @@ class _IvDropRateState extends State<IvDropRate> {
                         unitsForRequiredDosage,
                         currentItemForRequiredDosage,
                         requiredDosageCon)),
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: DropdownButtonHideUnderline(
-                    child: DropdownButton<String>(
-                        iconSize: 30.0,
-                        iconEnabledColor: Colors.blue,
-                        items: unitsForRequiredDosage
-                            .map((String dropDownStringItem) {
-                          return DropdownMenuItem<String>(
-                            value: dropDownStringItem,
-                            child: Text(dropDownStringItem),
-                          );
-                        }).toList(),
-                        onChanged: (newValue) {
-                          setState(() {
-                            this.currentItemForRequiredDosage =
-                                newValue.toString();
-                          });
-                          if (requiredDosageCon.text != "" &&
-                              timeCon.text != "" &&
-                              dropFactorCon.text != "") {
-                            numClick(requiredDosageCon.text, timeCon.text,
-                                dropFactorCon.text);
-                          }
-                        },
-                        value: currentItemForRequiredDosage),
+                Container(
+                height: 59,
+                margin: EdgeInsets.fromLTRB(0, 0, 10, 0),
+                padding: EdgeInsets.fromLTRB(10,0,0,0),
+                decoration: BoxDecoration(
+                  color: Colors.blue[100],
+                  border: Border(
+                    left: BorderSide.none,
+                    top : BorderSide(color: Colors.blue.shade400, width: 1.5),
+                    right: BorderSide(color: Colors.blue.shade400, width: 1.5),
+                    bottom: BorderSide(color: Colors.blue.shade400, width: 1.5),
+                   )
+
                   ),
-                )
-              ],
+                child: DropdownButtonHideUnderline( 
+                  child: DropdownButton<String>(
+                      iconSize: 30.0,
+                      iconEnabledColor: Colors.blue,
+                      items: unitsForRequiredDosage
+                          .map((String dropDownStringItem) {
+                        return DropdownMenuItem<String>(
+                          value: dropDownStringItem,
+                          child: Text(dropDownStringItem),
+                        );
+                      }).toList(),
+                      onChanged: (newValue) {
+                        setState(() {
+                          this.currentItemForRequiredDosage =
+                              newValue.toString();
+                        });
+                        if (requiredDosageCon.text != "" &&
+                            timeCon.text != "" &&
+                            dropFactorCon.text != "") {
+                          numClick(requiredDosageCon.text, timeCon.text,
+                              dropFactorCon.text);
+                        }
+                      },
+                      value: currentItemForRequiredDosage),
+                ),
+                )],
             ),
 
             Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Flexible(
                     child: getTextFromTextField("Enter Value", "Time",
                         unitsForTime, currentItemForTime, timeCon)),
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: DropdownButtonHideUnderline(
-                    child: DropdownButton<String>(
-                        iconSize: 30.0,
-                        iconEnabledColor: Colors.blue,
-                        items: unitsForTime.map((String dropDownStringItem) {
-                          return DropdownMenuItem<String>(
-                            value: dropDownStringItem,
-                            child: Text(dropDownStringItem),
-                          );
-                        }).toList(),
-                        onChanged: (newValue) {
-                          setState(() {
-                            this.currentItemForTime = newValue.toString();
-                          });
-                          if (requiredDosageCon.text != "" &&
-                              timeCon.text != "" &&
-                              dropFactorCon.text != "") {
-                            numClick(requiredDosageCon.text, timeCon.text,
-                                dropFactorCon.text);
-                          }
-                        },
-                        value: currentItemForTime),
+                Container(
+                height: 59,
+                margin: EdgeInsets.fromLTRB(0, 0, 10, 0),
+                padding: EdgeInsets.fromLTRB(10,0,0,0),
+                decoration: BoxDecoration(
+                  color: Colors.blue[100],
+                  border: Border(
+                    left: BorderSide.none,
+                    top : BorderSide(color: Colors.blue.shade400, width: 1.5),
+                    right: BorderSide(color: Colors.blue.shade400, width: 1.5),
+                    bottom: BorderSide(color: Colors.blue.shade400, width: 1.5),
+                   )
+
                   ),
-                )
-              ],
+                child: DropdownButtonHideUnderline( 
+                  child: DropdownButton<String>(
+                      iconSize: 30.0,
+                      iconEnabledColor: Colors.blue,
+                      items: unitsForTime.map((String dropDownStringItem) {
+                        return DropdownMenuItem<String>(
+                          value: dropDownStringItem,
+                          child: Text(dropDownStringItem),
+                        );
+                      }).toList(),
+                      onChanged: (newValue) {
+                        setState(() {
+                          this.currentItemForTime = newValue.toString();
+                        });
+                        if (requiredDosageCon.text != "" &&
+                            timeCon.text != "" &&
+                            dropFactorCon.text != "") {
+                          numClick(requiredDosageCon.text, timeCon.text,
+                              dropFactorCon.text);
+                        }
+                      },
+                      value: currentItemForTime),
+                ),
+                )],
             ),
 
             Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Flexible(
                     child: getTextFromTextField(
@@ -178,34 +206,45 @@ class _IvDropRateState extends State<IvDropRate> {
                         unitsForDropFactor,
                         currentItemForDropFactor,
                         dropFactorCon)),
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: DropdownButtonHideUnderline(
-                    child: DropdownButton<String>(
-                        iconSize: 30.0,
-                        iconEnabledColor: Colors.blue,
-                        items:
-                            unitsForDropFactor.map((String dropDownStringItem) {
-                          return DropdownMenuItem<String>(
-                            value: dropDownStringItem,
-                            child: Text(dropDownStringItem),
-                          );
-                        }).toList(),
-                        onChanged: (newValue) {
-                          setState(() {
-                            this.currentItemForDropFactor = newValue.toString();
-                          });
-                          if (requiredDosageCon.text != "" &&
-                              timeCon.text != "" &&
-                              dropFactorCon.text != "") {
-                            numClick(requiredDosageCon.text, timeCon.text,
-                                dropFactorCon.text);
-                          }
-                        },
-                        value: currentItemForDropFactor),
+                Container(
+                height: 59,
+                margin: EdgeInsets.fromLTRB(0, 0, 10, 0),
+                padding: EdgeInsets.fromLTRB(10,0,0,0),
+                decoration: BoxDecoration(
+                  color: Colors.blue[100],
+                  border: Border(
+                    left: BorderSide.none,
+                    top : BorderSide(color: Colors.blue.shade400, width: 1.5),
+                    right: BorderSide(color: Colors.blue.shade400, width: 1.5),
+                    bottom: BorderSide(color: Colors.blue.shade400, width: 1.5),
+                   )
+
                   ),
-                )
-              ],
+                child: DropdownButtonHideUnderline( 
+                  child: DropdownButton<String>(
+                      iconSize: 30.0,
+                      iconEnabledColor: Colors.blue,
+                      items:
+                          unitsForDropFactor.map((String dropDownStringItem) {
+                        return DropdownMenuItem<String>(
+                          value: dropDownStringItem,
+                          child: Text(dropDownStringItem),
+                        );
+                      }).toList(),
+                      onChanged: (newValue) {
+                        setState(() {
+                          this.currentItemForDropFactor = newValue.toString();
+                        });
+                        if (requiredDosageCon.text != "" &&
+                            timeCon.text != "" &&
+                            dropFactorCon.text != "") {
+                          numClick(requiredDosageCon.text, timeCon.text,
+                              dropFactorCon.text);
+                        }
+                      },
+                      value: currentItemForDropFactor),
+                ),
+                )],
             ),
               ]);
   }
@@ -213,6 +252,8 @@ class _IvDropRateState extends State<IvDropRate> {
   Widget _portraitMode(){
     return Column(children: [
       Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Flexible(
                     child: getTextFromTextField(
@@ -221,72 +262,98 @@ class _IvDropRateState extends State<IvDropRate> {
                         unitsForRequiredDosage,
                         currentItemForRequiredDosage,
                         requiredDosageCon)),
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: DropdownButtonHideUnderline(
-                    child: DropdownButton<String>(
-                        iconSize: 30.0,
-                        iconEnabledColor: Colors.blue,
-                        items: unitsForRequiredDosage
-                            .map((String dropDownStringItem) {
-                          return DropdownMenuItem<String>(
-                            value: dropDownStringItem,
-                            child: Text(dropDownStringItem),
-                          );
-                        }).toList(),
-                        onChanged: (newValue) {
-                          setState(() {
-                            this.currentItemForRequiredDosage =
-                                newValue.toString();
-                          });
-                          if (requiredDosageCon.text != "" &&
-                              timeCon.text != "" &&
-                              dropFactorCon.text != "") {
-                            numClick(requiredDosageCon.text, timeCon.text,
-                                dropFactorCon.text);
-                          }
-                        },
-                        value: currentItemForRequiredDosage),
+                Container(
+                height: 59,
+                margin: EdgeInsets.fromLTRB(0, 0, 10, 0),
+                padding: EdgeInsets.fromLTRB(10,0,0,0),
+                decoration: BoxDecoration(
+                  color: Colors.blue[100],
+                  border: Border(
+                    left: BorderSide.none,
+                    top : BorderSide(color: Colors.blue.shade400, width: 1.5),
+                    right: BorderSide(color: Colors.blue.shade400, width: 1.5),
+                    bottom: BorderSide(color: Colors.blue.shade400, width: 1.5),
+                   )
+
                   ),
-                )
-              ],
+                child: DropdownButtonHideUnderline( 
+                  child: DropdownButton<String>(
+                      iconSize: 30.0,
+                      iconEnabledColor: Colors.blue,
+                      items: unitsForRequiredDosage
+                          .map((String dropDownStringItem) {
+                        return DropdownMenuItem<String>(
+                          value: dropDownStringItem,
+                          child: Text(dropDownStringItem),
+                        );
+                      }).toList(),
+                      onChanged: (newValue) {
+                        setState(() {
+                          this.currentItemForRequiredDosage =
+                              newValue.toString();
+                        });
+                        if (requiredDosageCon.text != "" &&
+                            timeCon.text != "" &&
+                            dropFactorCon.text != "") {
+                          numClick(requiredDosageCon.text, timeCon.text,
+                              dropFactorCon.text);
+                        }
+                      },
+                      value: currentItemForRequiredDosage),
+                ),
+                )],
             ),
             SizedBox(height: 10.0),
             Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Flexible(
                     child: getTextFromTextField("Enter Value", "Time",
                         unitsForTime, currentItemForTime, timeCon)),
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: DropdownButtonHideUnderline(
-                    child: DropdownButton<String>(
-                        iconSize: 30.0,
-                        iconEnabledColor: Colors.blue,
-                        items: unitsForTime.map((String dropDownStringItem) {
-                          return DropdownMenuItem<String>(
-                            value: dropDownStringItem,
-                            child: Text(dropDownStringItem),
-                          );
-                        }).toList(),
-                        onChanged: (newValue) {
-                          setState(() {
-                            this.currentItemForTime = newValue.toString();
-                          });
-                          if (requiredDosageCon.text != "" &&
-                              timeCon.text != "" &&
-                              dropFactorCon.text != "") {
-                            numClick(requiredDosageCon.text, timeCon.text,
-                                dropFactorCon.text);
-                          }
-                        },
-                        value: currentItemForTime),
+                Container(
+                height: 59,
+                margin: EdgeInsets.fromLTRB(0, 0, 10, 0),
+                padding: EdgeInsets.fromLTRB(10,0,0,0),
+                decoration: BoxDecoration(
+                  color: Colors.blue[100],
+                  border: Border(
+                    left: BorderSide.none,
+                    top : BorderSide(color: Colors.blue.shade400, width: 1.5),
+                    right: BorderSide(color: Colors.blue.shade400, width: 1.5),
+                    bottom: BorderSide(color: Colors.blue.shade400, width: 1.5),
+                   )
+
                   ),
-                )
-              ],
+                child: DropdownButtonHideUnderline( 
+                  child: DropdownButton<String>(
+                      iconSize: 30.0,
+                      iconEnabledColor: Colors.blue,
+                      items: unitsForTime.map((String dropDownStringItem) {
+                        return DropdownMenuItem<String>(
+                          value: dropDownStringItem,
+                          child: Text(dropDownStringItem),
+                        );
+                      }).toList(),
+                      onChanged: (newValue) {
+                        setState(() {
+                          this.currentItemForTime = newValue.toString();
+                        });
+                        if (requiredDosageCon.text != "" &&
+                            timeCon.text != "" &&
+                            dropFactorCon.text != "") {
+                          numClick(requiredDosageCon.text, timeCon.text,
+                              dropFactorCon.text);
+                        }
+                      },
+                      value: currentItemForTime),
+                ),
+                )],
             ),
             SizedBox(height: 10.0),
             Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Flexible(
                     child: getTextFromTextField(
@@ -295,34 +362,45 @@ class _IvDropRateState extends State<IvDropRate> {
                         unitsForDropFactor,
                         currentItemForDropFactor,
                         dropFactorCon)),
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: DropdownButtonHideUnderline(
-                    child: DropdownButton<String>(
-                        iconSize: 30.0,
-                        iconEnabledColor: Colors.blue,
-                        items:
-                            unitsForDropFactor.map((String dropDownStringItem) {
-                          return DropdownMenuItem<String>(
-                            value: dropDownStringItem,
-                            child: Text(dropDownStringItem),
-                          );
-                        }).toList(),
-                        onChanged: (newValue) {
-                          setState(() {
-                            this.currentItemForDropFactor = newValue.toString();
-                          });
-                          if (requiredDosageCon.text != "" &&
-                              timeCon.text != "" &&
-                              dropFactorCon.text != "") {
-                            numClick(requiredDosageCon.text, timeCon.text,
-                                dropFactorCon.text);
-                          }
-                        },
-                        value: currentItemForDropFactor),
+                Container(
+                height: 59,
+                margin: EdgeInsets.fromLTRB(0, 0, 10, 0),
+                padding: EdgeInsets.fromLTRB(10,0,0,0),
+                decoration: BoxDecoration(
+                  color: Colors.blue[100],
+                  border: Border(
+                    left: BorderSide.none,
+                    top : BorderSide(color: Colors.blue.shade400, width: 1.5),
+                    right: BorderSide(color: Colors.blue.shade400, width: 1.5),
+                    bottom: BorderSide(color: Colors.blue.shade400, width: 1.5),
+                   )
+
                   ),
-                )
-              ],
+                child: DropdownButtonHideUnderline( 
+                  child: DropdownButton<String>(
+                      iconSize: 30.0,
+                      iconEnabledColor: Colors.blue,
+                      items:
+                          unitsForDropFactor.map((String dropDownStringItem) {
+                        return DropdownMenuItem<String>(
+                          value: dropDownStringItem,
+                          child: Text(dropDownStringItem),
+                        );
+                      }).toList(),
+                      onChanged: (newValue) {
+                        setState(() {
+                          this.currentItemForDropFactor = newValue.toString();
+                        });
+                        if (requiredDosageCon.text != "" &&
+                            timeCon.text != "" &&
+                            dropFactorCon.text != "") {
+                          numClick(requiredDosageCon.text, timeCon.text,
+                              dropFactorCon.text);
+                        }
+                      },
+                      value: currentItemForDropFactor),
+                ),
+                )],
             ),
     ],);
   }
