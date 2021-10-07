@@ -5,7 +5,7 @@ getAppBar(String titleData) {
   double myFontSize = 2.1 * SizeConfig.textMultiplier;
   return AppBar(
     iconTheme: IconThemeData(color: Colors.blue),
-    backgroundColor: Colors.white,
+    backgroundColor: Colors.blue.shade50,
     elevation: 1,
     title: Text(
       titleData,

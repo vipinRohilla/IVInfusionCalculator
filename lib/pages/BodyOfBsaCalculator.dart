@@ -16,7 +16,7 @@ class _BodyOfBsaCalculatorState extends State<BodyOfBsaCalculator> {
     return DefaultTabController(
       length: 3,
       child: Scaffold(
-        backgroundColor: Colors.blue[50],
+        backgroundColor: Colors.white,
         appBar: getAppBar("BSA Calculator"),
         body: BsaCalculator(),
         bottomNavigationBar: BottomNavigationBar(

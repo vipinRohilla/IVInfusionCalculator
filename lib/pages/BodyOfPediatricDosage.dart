@@ -17,7 +17,7 @@ class _BodyOfPediatricDosageState extends State<BodyOfPediatricDosage> {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
-        backgroundColor: Colors.blue[50],
+        backgroundColor: Colors.white,
         appBar: AppBar(
           iconTheme: IconThemeData(color: Colors.blue),
           backgroundColor: Colors.blue[50],

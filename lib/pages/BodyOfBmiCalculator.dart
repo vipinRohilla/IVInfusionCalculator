@@ -16,7 +16,7 @@ class _BodyOfBmiCalculatorState extends State<BodyOfBmiCalculator> {
     return DefaultTabController(
       length: 3,
       child: Scaffold(
-        backgroundColor: Colors.blue[50],
+        backgroundColor: Colors.white,
         appBar: getAppBar("BMI Calculator"),
         body: BmiCalculator(),
         // body: Body(),

@@ -16,7 +16,7 @@ class _BodyOfVolumeInLiquidState extends State<BodyOfVolumeInLiquid> {
     return DefaultTabController(
       length: 3,
       child: Scaffold(
-        backgroundColor: Colors.blue[50],
+        backgroundColor: Colors.white,
         appBar: getAppBar("Volume in Liquid"),
         body: VolumeInLiquid(),
         // body: Body(),

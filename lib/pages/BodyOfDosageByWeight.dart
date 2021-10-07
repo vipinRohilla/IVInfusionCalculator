@@ -18,7 +18,7 @@ class _BodyOfDosageByWeightState extends State<BodyOfDosageByWeight> {
     return DefaultTabController(
       length: 3,
       child: Scaffold(
-        backgroundColor: Colors.blue[50],
+        backgroundColor: Colors.white,
         appBar: AppBar(
           iconTheme: IconThemeData(color: Colors.blue),
           backgroundColor: Colors.blue[50],

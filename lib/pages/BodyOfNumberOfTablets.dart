@@ -14,7 +14,7 @@ class _BodyOfNumberOfTabletsState extends State<BodyOfNumberOfTablets> {
     return DefaultTabController(
       length: 3,
       child: Scaffold(
-        backgroundColor: Colors.blue[50],
+        backgroundColor: Colors.white,
         appBar: getAppBar("Number of Tablets"),
         body: NumberOfTablets(),
         bottomNavigationBar: BottomNavigationBar(
