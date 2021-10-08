@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_2/calculators/unitConverters/suffixTextInTextField.dart';
+import 'package:flutter_application_2/styling/size_config.dart';
 import 'category.dart';
 import 'unit.dart';
 const _padding = EdgeInsets.all(14.0);
@@ -23,12 +25,18 @@ class _UnitConverterState extends State<UnitConverter> {
   final _inputKey = GlobalKey(debugLabel: 'inputText');
   bool _showErrorUI = false;
   bool selectedTextField = false;
-
+  String myFromValue = "";
+  String myToValue = "";
   @override
   void initState() {
     super.initState();
     _createDropdownMenuItems();
     _setDefaults();
+    // print("debug");
+    setState(() {
+        myFromValue = getSuffixText(_fromValue.name);
+        myToValue = getSuffixText(_toValue.name);
+      });
   }
 
   @override
@@ -96,11 +104,12 @@ class _UnitConverterState extends State<UnitConverter> {
       },
       orElse: null,
     );
-  }
+  } 
 
   void _updateFromConversion(dynamic unitName) {
     setState(() {
       _fromValue = _getUnit(unitName);
+      myFromValue = getSuffixText(_fromValue.name);
     });
     // to change the input according to current from conversion unit
     _updateConversion();
@@ -109,6 +118,7 @@ class _UnitConverterState extends State<UnitConverter> {
   void _updateToConversion(dynamic unitName) {
     setState(() {
       _toValue = _getUnit(unitName);
+      myToValue = getSuffixText(_toValue.name);
     });
     // to change the input according to current from conversion unit
     _updateConversion();
@@ -207,9 +217,12 @@ class _UnitConverterState extends State<UnitConverter> {
                   key: _inputKey,
                   style: Theme.of(context).textTheme.headline6,
                   decoration: InputDecoration(
-                    suffixText: _fromValue.name[_fromValue.name.length-3] == "(" 
-                    ? " " + _fromValue.name.substring(_fromValue.name.length-2, _fromValue.name.length-1) 
-                    : " " + _fromValue.name.substring(_fromValue.name.length-3, _fromValue.name.length-1),
+                    suffixText: " " + myFromValue,
+                    // _fromValue.name,
+                    // [
+                    //   _fromValue.name.length-3] == "(" 
+                    // ? " " + _fromValue.name.substring(_fromValue.name.length-2, _fromValue.name.length-1) 
+                    // : " " + _fromValue.name.substring(_fromValue.name.length-3, _fromValue.name.length-1),
                     labelStyle: Theme.of(context).textTheme.headline6,
                     // labelText: "Input",
 
@@ -230,7 +243,43 @@ class _UnitConverterState extends State<UnitConverter> {
       ),
     );
 
-    final arrows = Text("To",textAlign: TextAlign.center, style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w500),);
+    final arrows = GestureDetector(
+      onTap: (){
+        setState(() {
+          Unit _tempOne = _toValue;
+          _toValue= _fromValue;
+          _fromValue = _tempOne;
+
+          String _tempTwo = myFromValue;
+          myFromValue = myToValue;
+          myToValue = _tempTwo;
+        });
+        _updateConversion();
+      },
+      child : 
+        RotatedBox(
+      quarterTurns: 1,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Icon(
+            Icons.compare_arrows,
+            size: 40.0,
+          ),
+          RotatedBox(
+      quarterTurns: -1,
+      child: Text("Tap to swap Units",
+            style: TextStyle(fontSize: 2* SizeConfig.textMultiplier),
+            ),
+        )
+        ],
+      ),
+
+
+        ));
+
+
     final outputBox = Padding(
       padding: _padding,
       child: Column(
@@ -250,9 +299,10 @@ class _UnitConverterState extends State<UnitConverter> {
                   style: Theme.of(context).textTheme.headline6,
                 ),
                 decoration: InputDecoration(
-                  suffixText: _toValue.name[_toValue.name.length-3] == "(" 
-                    ? " " + _toValue.name.substring(_toValue.name.length-2, _toValue.name.length-1) 
-                    : " " + _toValue.name.substring(_toValue.name.length-3, _toValue.name.length-1),
+                  suffixText: " " + myToValue,
+                  // [_toValue.name.length-3] == "(" 
+                  //   ? " " + _toValue.name.substring(_toValue.name.length-2, _toValue.name.length-1) 
+                  //   : " " + _toValue.name.substring(_toValue.name.length-3, _toValue.name.length-1),
                   suffixStyle: TextStyle(fontSize: 21,),
                     // labelText: "Output",
                     labelStyle: Theme.of(context).textTheme.headline6,
@@ -292,7 +342,7 @@ class _UnitConverterState extends State<UnitConverter> {
               return SingleChildScrollView(
                 child: Center(
                   child: Container(
-                    width: 450.0,
+                    // width: 450.0,
                     child: converter,
                   ),
                 ),

@@ -4,7 +4,7 @@
 
         {
 
-            "name": "Meter(m)",
+            "name": "Meter",
 
             "conversion": 1.0,
 
@@ -14,7 +14,7 @@
 
         {
 
-            "name": "Millimeter(mm)",
+            "name": "Millimeter",
 
             "conversion": 1000.0
 
@@ -22,7 +22,7 @@
 
         {
 
-            "name": "Centimeter(cm)",
+            "name": "Centimeter",
 
             "conversion": 100.0
 
@@ -30,7 +30,7 @@
 
         {
 
-            "name": "Kilometer(Km)",
+            "name": "Kilometer",
 
             "conversion": 0.001
 
@@ -38,7 +38,7 @@
 
         {
 
-            "name": "Inch(in)",
+            "name": "Inch",
 
             "conversion": 39.3701
 
@@ -46,7 +46,7 @@
 
         {
 
-            "name": "Foot(ft)",
+            "name": "Foot",
 
             "conversion": 3.28084
 
@@ -54,7 +54,7 @@
 
         {
 
-            "name": "Yard(yd)",
+            "name": "Yard",
 
             "conversion": 1.09361
 
@@ -62,7 +62,7 @@
 
         {
 
-            "name": "Mile(mi)",
+            "name": "Mile",
 
             "conversion": 0.000621371
 
