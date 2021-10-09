@@ -71,105 +71,111 @@ class _LiquidDosageState extends State<LiquidDosage> {
  Widget _landScapeMode(){
     return  GridView.count(
       crossAxisCount: 2,
-              childAspectRatio: 4,
+               childAspectRatio: 3,
               physics: NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 8, 0, 0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Flexible(
-                    child: getTextFromTextField(
-                        "Enter Value",
-                        "Required Dosage",
-                        unitsForRequiredDosage,
-                        currentItemForRequiredDosage,
-                        requiredDosageCon)),
-                Container(
-                height: 59,
-                margin: EdgeInsets.fromLTRB(0, 0, 10, 0),
-                padding: EdgeInsets.fromLTRB(10,0,0,0),
-                decoration: BoxDecoration(
-                  color: Colors.blue[100],
-                  border: Border(
-                    left: BorderSide.none,
-                    top : BorderSide(color: Colors.blue.shade400, width: 1.5),
-                    right: BorderSide(color: Colors.blue.shade400, width: 1.5),
-                    bottom: BorderSide(color: Colors.blue.shade400, width: 1.5),
-                   )
+                  Flexible(
+                      child: getTextFromTextField(
+                          "Enter Value",
+                          "Required Dosage",
+                          unitsForRequiredDosage,
+                          currentItemForRequiredDosage,
+                          requiredDosageCon)),
+                  Container(
+                   
+                  margin: EdgeInsets.fromLTRB(0, 0, 10, 0),
+                  padding: EdgeInsets.fromLTRB(10,0,0,0),
+                  decoration: BoxDecoration(
+                    color: Colors.blue[100],
+                    border: Border(
+                      left: BorderSide.none,
+                      top : BorderSide(color: Colors.blue.shade400, width: 1.5),
+                      right: BorderSide(color: Colors.blue.shade400, width: 1.5),
+                      bottom: BorderSide(color: Colors.blue.shade400, width: 1.5),
+                     )
 
+                    ),
+                  child: DropdownButtonHideUnderline( 
+                    child: DropdownButton<String>(
+                        iconSize: 30.0,
+                        iconEnabledColor: Colors.blue,
+                        items: unitsForRequiredDosage
+                            .map((String dropDownStringItem) {
+                          return DropdownMenuItem<String>(
+                            value: dropDownStringItem,
+                            child: Text(dropDownStringItem),
+                          );
+                        }).toList(),
+                        onChanged: (newValue) {
+                          setState(() {
+                            this.currentItemForRequiredDosage =
+                                newValue.toString();
+                          });
+                          if (requiredDosageCon.text != "" &&
+                              weightCon.text != "") {
+                            numClick(requiredDosageCon.text, weightCon.text);
+                          }
+                        },
+                        value: currentItemForRequiredDosage),
                   ),
-                child: DropdownButtonHideUnderline( 
-                  child: DropdownButton<String>(
-                      iconSize: 30.0,
-                      iconEnabledColor: Colors.blue,
-                      items: unitsForRequiredDosage
-                          .map((String dropDownStringItem) {
-                        return DropdownMenuItem<String>(
-                          value: dropDownStringItem,
-                          child: Text(dropDownStringItem),
-                        );
-                      }).toList(),
-                      onChanged: (newValue) {
-                        setState(() {
-                          this.currentItemForRequiredDosage =
-                              newValue.toString();
-                        });
-                        if (requiredDosageCon.text != "" &&
-                            weightCon.text != "") {
-                          numClick(requiredDosageCon.text, weightCon.text);
-                        }
-                      },
-                      value: currentItemForRequiredDosage),
-                ),
-                ) ],
+                  ) ],
             ),
-
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(height: 10.0),
-                Flexible(
-                    child: getTextFromTextField("Enter Value", "Body Weight",
-                        unitsForWeight, currentItemForWeight, weightCon)),
-                Container(
-                height: 59,
-                margin: EdgeInsets.fromLTRB(0, 0, 10, 0),
-                padding: EdgeInsets.fromLTRB(10,0,0,0),
-                decoration: BoxDecoration(
-                  color: Colors.blue[100],
-                  border: Border(
-                    left: BorderSide.none,
-                    top : BorderSide(color: Colors.blue.shade400, width: 1.5),
-                    right: BorderSide(color: Colors.blue.shade400, width: 1.5),
-                    bottom: BorderSide(color: Colors.blue.shade400, width: 1.5),
-                   )
-
-                  ),
-                child: DropdownButtonHideUnderline( 
-                  child: DropdownButton<String>(
-                      iconSize: 30.0,
-                      iconEnabledColor: Colors.blue,
-                      items: unitsForWeight.map((String dropDownStringItem) {
-                        return DropdownMenuItem<String>(
-                          value: dropDownStringItem,
-                          child: Text(dropDownStringItem),
-                        );
-                      }).toList(),
-                      onChanged: (newValue) {
-                        setState(() {
-                          this.currentItemForWeight = newValue.toString();
-                        });
-                        if (requiredDosageCon.text != "" &&
-                            weightCon.text != "") {
-                          numClick(requiredDosageCon.text, weightCon.text);
-                        }
-                      },
-                      value: currentItemForWeight),
                 ),
-                ) ],
+
+            Padding(
+              padding: const EdgeInsets.fromLTRB(0, 8, 0, 0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: 10.0),
+                  Flexible(
+                      child: getTextFromTextField("Enter Value", "Body Weight",
+                          unitsForWeight, currentItemForWeight, weightCon)),
+                  Container(
+                   
+                  margin: EdgeInsets.fromLTRB(0, 0, 10, 0),
+                  padding: EdgeInsets.fromLTRB(10,0,0,0),
+                  decoration: BoxDecoration(
+                    color: Colors.blue[100],
+                    border: Border(
+                      left: BorderSide.none,
+                      top : BorderSide(color: Colors.blue.shade400, width: 1.5),
+                      right: BorderSide(color: Colors.blue.shade400, width: 1.5),
+                      bottom: BorderSide(color: Colors.blue.shade400, width: 1.5),
+                     )
+
+                    ),
+                  child: DropdownButtonHideUnderline( 
+                    child: DropdownButton<String>(
+                        iconSize: 30.0,
+                        iconEnabledColor: Colors.blue,
+                        items: unitsForWeight.map((String dropDownStringItem) {
+                          return DropdownMenuItem<String>(
+                            value: dropDownStringItem,
+                            child: Text(dropDownStringItem),
+                          );
+                        }).toList(),
+                        onChanged: (newValue) {
+                          setState(() {
+                            this.currentItemForWeight = newValue.toString();
+                          });
+                          if (requiredDosageCon.text != "" &&
+                              weightCon.text != "") {
+                            numClick(requiredDosageCon.text, weightCon.text);
+                          }
+                        },
+                        value: currentItemForWeight),
+                  ),
+                  ) ],
+              ),
             ),
               ]);
   }
@@ -188,7 +194,7 @@ class _LiquidDosageState extends State<LiquidDosage> {
                         currentItemForRequiredDosage,
                         requiredDosageCon)),
                 Container(
-                height: 59,
+                 
                 margin: EdgeInsets.fromLTRB(0, 0, 10, 0),
                 padding: EdgeInsets.fromLTRB(10,0,0,0),
                 decoration: BoxDecoration(
@@ -236,7 +242,7 @@ class _LiquidDosageState extends State<LiquidDosage> {
                     child: getTextFromTextField("Enter Value", "Body Weight",
                         unitsForWeight, currentItemForWeight, weightCon)),
                 Container(
-                height: 59,
+                 
                 margin: EdgeInsets.fromLTRB(0, 0, 10, 0),
                 padding: EdgeInsets.fromLTRB(10,0,0,0),
                 decoration: BoxDecoration(

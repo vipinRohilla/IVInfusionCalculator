@@ -91,160 +91,169 @@ class _IvDropRateState extends State<IvDropRate> {
  Widget _landScapeMode(){
     return  GridView.count(
       crossAxisCount: 2,
-              childAspectRatio: 4,
+               childAspectRatio: 3,
               physics: NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 8, 0, 0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Flexible(
-                    child: getTextFromTextField(
-                        "Enter Value",
-                        "Required Dose",
-                        unitsForRequiredDosage,
-                        currentItemForRequiredDosage,
-                        requiredDosageCon)),
-                Container(
-                height: 59,
-                margin: EdgeInsets.fromLTRB(0, 0, 10, 0),
-                padding: EdgeInsets.fromLTRB(10,0,0,0),
-                decoration: BoxDecoration(
-                  color: Colors.blue[100],
-                  border: Border(
-                    left: BorderSide.none,
-                    top : BorderSide(color: Colors.blue.shade400, width: 1.5),
-                    right: BorderSide(color: Colors.blue.shade400, width: 1.5),
-                    bottom: BorderSide(color: Colors.blue.shade400, width: 1.5),
-                   )
+                  Flexible(
+                      child: getTextFromTextField(
+                          "Enter Value",
+                          "Required Dose",
+                          unitsForRequiredDosage,
+                          currentItemForRequiredDosage,
+                          requiredDosageCon)),
+                  Container(
+                   
+                  margin: EdgeInsets.fromLTRB(0, 0, 10, 0),
+                  padding: EdgeInsets.fromLTRB(10,0,0,0),
+                  decoration: BoxDecoration(
+                    color: Colors.blue[100],
+                    border: Border(
+                      left: BorderSide.none,
+                      top : BorderSide(color: Colors.blue.shade400, width: 1.5),
+                      right: BorderSide(color: Colors.blue.shade400, width: 1.5),
+                      bottom: BorderSide(color: Colors.blue.shade400, width: 1.5),
+                     )
 
+                    ),
+                  child: DropdownButtonHideUnderline( 
+                    child: DropdownButton<String>(
+                        iconSize: 30.0,
+                        iconEnabledColor: Colors.blue,
+                        items: unitsForRequiredDosage
+                            .map((String dropDownStringItem) {
+                          return DropdownMenuItem<String>(
+                            value: dropDownStringItem,
+                            child: Text(dropDownStringItem),
+                          );
+                        }).toList(),
+                        onChanged: (newValue) {
+                          setState(() {
+                            this.currentItemForRequiredDosage =
+                                newValue.toString();
+                          });
+                          if (requiredDosageCon.text != "" &&
+                              timeCon.text != "" &&
+                              dropFactorCon.text != "") {
+                            numClick(requiredDosageCon.text, timeCon.text,
+                                dropFactorCon.text);
+                          }
+                        },
+                        value: currentItemForRequiredDosage),
                   ),
-                child: DropdownButtonHideUnderline( 
-                  child: DropdownButton<String>(
-                      iconSize: 30.0,
-                      iconEnabledColor: Colors.blue,
-                      items: unitsForRequiredDosage
-                          .map((String dropDownStringItem) {
-                        return DropdownMenuItem<String>(
-                          value: dropDownStringItem,
-                          child: Text(dropDownStringItem),
-                        );
-                      }).toList(),
-                      onChanged: (newValue) {
-                        setState(() {
-                          this.currentItemForRequiredDosage =
-                              newValue.toString();
-                        });
-                        if (requiredDosageCon.text != "" &&
-                            timeCon.text != "" &&
-                            dropFactorCon.text != "") {
-                          numClick(requiredDosageCon.text, timeCon.text,
-                              dropFactorCon.text);
-                        }
-                      },
-                      value: currentItemForRequiredDosage),
+                  )],
+            ),
                 ),
-                )],
+
+            Padding(
+              padding: const EdgeInsets.fromLTRB(0, 8, 0, 0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Flexible(
+                      child: getTextFromTextField("Enter Value", "Time",
+                          unitsForTime, currentItemForTime, timeCon)),
+                  Container(
+                   
+                  margin: EdgeInsets.fromLTRB(0, 0, 10, 0),
+                  padding: EdgeInsets.fromLTRB(10,0,0,0),
+                  decoration: BoxDecoration(
+                    color: Colors.blue[100],
+                    border: Border(
+                      left: BorderSide.none,
+                      top : BorderSide(color: Colors.blue.shade400, width: 1.5),
+                      right: BorderSide(color: Colors.blue.shade400, width: 1.5),
+                      bottom: BorderSide(color: Colors.blue.shade400, width: 1.5),
+                     )
+
+                    ),
+                  child: DropdownButtonHideUnderline( 
+                    child: DropdownButton<String>(
+                        iconSize: 30.0,
+                        iconEnabledColor: Colors.blue,
+                        items: unitsForTime.map((String dropDownStringItem) {
+                          return DropdownMenuItem<String>(
+                            value: dropDownStringItem,
+                            child: Text(dropDownStringItem),
+                          );
+                        }).toList(),
+                        onChanged: (newValue) {
+                          setState(() {
+                            this.currentItemForTime = newValue.toString();
+                          });
+                          if (requiredDosageCon.text != "" &&
+                              timeCon.text != "" &&
+                              dropFactorCon.text != "") {
+                            numClick(requiredDosageCon.text, timeCon.text,
+                                dropFactorCon.text);
+                          }
+                        },
+                        value: currentItemForTime),
+                  ),
+                  )],
+              ),
             ),
 
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Flexible(
-                    child: getTextFromTextField("Enter Value", "Time",
-                        unitsForTime, currentItemForTime, timeCon)),
-                Container(
-                height: 59,
-                margin: EdgeInsets.fromLTRB(0, 0, 10, 0),
-                padding: EdgeInsets.fromLTRB(10,0,0,0),
-                decoration: BoxDecoration(
-                  color: Colors.blue[100],
-                  border: Border(
-                    left: BorderSide.none,
-                    top : BorderSide(color: Colors.blue.shade400, width: 1.5),
-                    right: BorderSide(color: Colors.blue.shade400, width: 1.5),
-                    bottom: BorderSide(color: Colors.blue.shade400, width: 1.5),
-                   )
+            Padding(
+              padding: const EdgeInsets.fromLTRB(0, 8, 0, 0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Flexible(
+                      child: getTextFromTextField(
+                          "Enter Value",
+                          "Drop Factor",
+                          unitsForDropFactor,
+                          currentItemForDropFactor,
+                          dropFactorCon)),
+                  Container(
+                   
+                  margin: EdgeInsets.fromLTRB(0, 0, 10, 0),
+                  padding: EdgeInsets.fromLTRB(10,0,0,0),
+                  decoration: BoxDecoration(
+                    color: Colors.blue[100],
+                    border: Border(
+                      left: BorderSide.none,
+                      top : BorderSide(color: Colors.blue.shade400, width: 1.5),
+                      right: BorderSide(color: Colors.blue.shade400, width: 1.5),
+                      bottom: BorderSide(color: Colors.blue.shade400, width: 1.5),
+                     )
 
+                    ),
+                  child: DropdownButtonHideUnderline( 
+                    child: DropdownButton<String>(
+                        iconSize: 30.0,
+                        iconEnabledColor: Colors.blue,
+                        items:
+                            unitsForDropFactor.map((String dropDownStringItem) {
+                          return DropdownMenuItem<String>(
+                            value: dropDownStringItem,
+                            child: Text(dropDownStringItem),
+                          );
+                        }).toList(),
+                        onChanged: (newValue) {
+                          setState(() {
+                            this.currentItemForDropFactor = newValue.toString();
+                          });
+                          if (requiredDosageCon.text != "" &&
+                              timeCon.text != "" &&
+                              dropFactorCon.text != "") {
+                            numClick(requiredDosageCon.text, timeCon.text,
+                                dropFactorCon.text);
+                          }
+                        },
+                        value: currentItemForDropFactor),
                   ),
-                child: DropdownButtonHideUnderline( 
-                  child: DropdownButton<String>(
-                      iconSize: 30.0,
-                      iconEnabledColor: Colors.blue,
-                      items: unitsForTime.map((String dropDownStringItem) {
-                        return DropdownMenuItem<String>(
-                          value: dropDownStringItem,
-                          child: Text(dropDownStringItem),
-                        );
-                      }).toList(),
-                      onChanged: (newValue) {
-                        setState(() {
-                          this.currentItemForTime = newValue.toString();
-                        });
-                        if (requiredDosageCon.text != "" &&
-                            timeCon.text != "" &&
-                            dropFactorCon.text != "") {
-                          numClick(requiredDosageCon.text, timeCon.text,
-                              dropFactorCon.text);
-                        }
-                      },
-                      value: currentItemForTime),
-                ),
-                )],
-            ),
-
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Flexible(
-                    child: getTextFromTextField(
-                        "Enter Value",
-                        "Drop Factor",
-                        unitsForDropFactor,
-                        currentItemForDropFactor,
-                        dropFactorCon)),
-                Container(
-                height: 59,
-                margin: EdgeInsets.fromLTRB(0, 0, 10, 0),
-                padding: EdgeInsets.fromLTRB(10,0,0,0),
-                decoration: BoxDecoration(
-                  color: Colors.blue[100],
-                  border: Border(
-                    left: BorderSide.none,
-                    top : BorderSide(color: Colors.blue.shade400, width: 1.5),
-                    right: BorderSide(color: Colors.blue.shade400, width: 1.5),
-                    bottom: BorderSide(color: Colors.blue.shade400, width: 1.5),
-                   )
-
-                  ),
-                child: DropdownButtonHideUnderline( 
-                  child: DropdownButton<String>(
-                      iconSize: 30.0,
-                      iconEnabledColor: Colors.blue,
-                      items:
-                          unitsForDropFactor.map((String dropDownStringItem) {
-                        return DropdownMenuItem<String>(
-                          value: dropDownStringItem,
-                          child: Text(dropDownStringItem),
-                        );
-                      }).toList(),
-                      onChanged: (newValue) {
-                        setState(() {
-                          this.currentItemForDropFactor = newValue.toString();
-                        });
-                        if (requiredDosageCon.text != "" &&
-                            timeCon.text != "" &&
-                            dropFactorCon.text != "") {
-                          numClick(requiredDosageCon.text, timeCon.text,
-                              dropFactorCon.text);
-                        }
-                      },
-                      value: currentItemForDropFactor),
-                ),
-                )],
+                  )],
+              ),
             ),
               ]);
   }
@@ -263,7 +272,7 @@ class _IvDropRateState extends State<IvDropRate> {
                         currentItemForRequiredDosage,
                         requiredDosageCon)),
                 Container(
-                height: 59,
+                 
                 margin: EdgeInsets.fromLTRB(0, 0, 10, 0),
                 padding: EdgeInsets.fromLTRB(10,0,0,0),
                 decoration: BoxDecoration(
@@ -312,7 +321,7 @@ class _IvDropRateState extends State<IvDropRate> {
                     child: getTextFromTextField("Enter Value", "Time",
                         unitsForTime, currentItemForTime, timeCon)),
                 Container(
-                height: 59,
+                 
                 margin: EdgeInsets.fromLTRB(0, 0, 10, 0),
                 padding: EdgeInsets.fromLTRB(10,0,0,0),
                 decoration: BoxDecoration(
@@ -363,7 +372,7 @@ class _IvDropRateState extends State<IvDropRate> {
                         currentItemForDropFactor,
                         dropFactorCon)),
                 Container(
-                height: 59,
+                 
                 margin: EdgeInsets.fromLTRB(0, 0, 10, 0),
                 padding: EdgeInsets.fromLTRB(10,0,0,0),
                 decoration: BoxDecoration(

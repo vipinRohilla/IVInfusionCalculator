@@ -70,95 +70,101 @@ class _BsaCalculatorState extends State<BsaCalculator> {
   Widget _landScapeMode(){
     return GridView.count(
       crossAxisCount: 2,
-              childAspectRatio: 4,
+               childAspectRatio: 3,
               physics: NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(0, 8, 0, 0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Flexible(
-                    child: getTextFromTextField("Enter Value", "Weight",
-                        unitsForWeight, currentItemForWeight, weightCon)),
+                      child: getTextFromTextField("Enter Value", "Weight",
+                          unitsForWeight, currentItemForWeight, weightCon)),
                 Container(
-                height: 59,
+                 
                 margin: EdgeInsets.fromLTRB(0, 0, 10, 0),
                 padding: EdgeInsets.fromLTRB(10,0,0,0),
                 decoration: BoxDecoration(
                   color: Colors.blue[100],
                   border: Border(
-                    left: BorderSide.none,
-                    top : BorderSide(color: Colors.blue.shade400, width: 1.5),
-                    right: BorderSide(color: Colors.blue.shade400, width: 1.5),
-                    bottom: BorderSide(color: Colors.blue.shade400, width: 1.5),
+                      left: BorderSide.none,
+                      top : BorderSide(color: Colors.blue.shade400, width: 1.5),
+                      right: BorderSide(color: Colors.blue.shade400, width: 1.5),
+                      bottom: BorderSide(color: Colors.blue.shade400, width: 1.5),
                    )
 
                   ),
                 child: DropdownButtonHideUnderline( 
                   child: DropdownButton<String>(
-                      iconSize: 30.0,
-                      iconEnabledColor: Colors.blue,
-                      items: unitsForWeight.map((String dropDownStringItem) {
-                        return DropdownMenuItem<String>(
-                          value: dropDownStringItem,
-                          child: Text(dropDownStringItem),
-                        );
-                      }).toList(),
-                      onChanged: (newValue) {
-                        setState(() {
-                          this.currentItemForWeight = newValue.toString();
-                        });
-                        if (weightCon.text != "" && heightCon.text != "") {
-                          numClick(weightCon.text, heightCon.text);
-                        }
-                      },
-                      value: currentItemForWeight),
+                        iconSize: 30.0,
+                        iconEnabledColor: Colors.blue,
+                        items: unitsForWeight.map((String dropDownStringItem) {
+                          return DropdownMenuItem<String>(
+                            value: dropDownStringItem,
+                            child: Text(dropDownStringItem),
+                          );
+                        }).toList(),
+                        onChanged: (newValue) {
+                          setState(() {
+                            this.currentItemForWeight = newValue.toString();
+                          });
+                          if (weightCon.text != "" && heightCon.text != "") {
+                            numClick(weightCon.text, heightCon.text);
+                          }
+                        },
+                        value: currentItemForWeight),
                 ),
                 )],
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Flexible(
-                    child: getTextFromTextField("Enter Value", "Height",
-                        unitsForHeight, currentItemForHeight, heightCon)),
-                Container(
-                height: 59,
-                margin: EdgeInsets.fromLTRB(0, 0, 10, 0),
-                padding: EdgeInsets.fromLTRB(10,0,0,0),
-                decoration: BoxDecoration(
-                  color: Colors.blue[100],
-                  border: Border(
-                    left: BorderSide.none,
-                    top : BorderSide(color: Colors.blue.shade400, width: 1.5),
-                    right: BorderSide(color: Colors.blue.shade400, width: 1.5),
-                    bottom: BorderSide(color: Colors.blue.shade400, width: 1.5),
-                   )
+                    ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(0, 8, 0, 0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Flexible(
+                      child: getTextFromTextField("Enter Value", "Height",
+                          unitsForHeight, currentItemForHeight, heightCon)),
+                  Container(
+                   
+                  margin: EdgeInsets.fromLTRB(0, 0, 10, 0),
+                  padding: EdgeInsets.fromLTRB(10,0,0,0),
+                  decoration: BoxDecoration(
+                    color: Colors.blue[100],
+                    border: Border(
+                      left: BorderSide.none,
+                      top : BorderSide(color: Colors.blue.shade400, width: 1.5),
+                      right: BorderSide(color: Colors.blue.shade400, width: 1.5),
+                      bottom: BorderSide(color: Colors.blue.shade400, width: 1.5),
+                     )
 
+                    ),
+                  child: DropdownButtonHideUnderline( 
+                    child: DropdownButton<String>(
+                        iconSize: 30.0,
+                        iconEnabledColor: Colors.blue,
+                        items: unitsForHeight.map((String dropDownStringItem) {
+                          return DropdownMenuItem<String>(
+                            value: dropDownStringItem,
+                            child: Text(dropDownStringItem),
+                          );
+                        }).toList(),
+                        onChanged: (newValue) {
+                          setState(() {
+                            this.currentItemForHeight = newValue.toString();
+                          });
+                          if (weightCon.text != "" && heightCon.text != "") {
+                            numClick(weightCon.text, heightCon.text);
+                          }
+                        },
+                        value: currentItemForHeight),
                   ),
-                child: DropdownButtonHideUnderline( 
-                  child: DropdownButton<String>(
-                      iconSize: 30.0,
-                      iconEnabledColor: Colors.blue,
-                      items: unitsForHeight.map((String dropDownStringItem) {
-                        return DropdownMenuItem<String>(
-                          value: dropDownStringItem,
-                          child: Text(dropDownStringItem),
-                        );
-                      }).toList(),
-                      onChanged: (newValue) {
-                        setState(() {
-                          this.currentItemForHeight = newValue.toString();
-                        });
-                        if (weightCon.text != "" && heightCon.text != "") {
-                          numClick(weightCon.text, heightCon.text);
-                        }
-                      },
-                      value: currentItemForHeight),
-                ),
-                )],
+                  )],
+              ),
             ),
               ]
       ) ;
@@ -173,7 +179,7 @@ class _BsaCalculatorState extends State<BsaCalculator> {
                     child: getTextFromTextField("Enter Value", "Weight",
                         unitsForWeight, currentItemForWeight, weightCon)),
                 Container(
-                height: 59,
+                 
                 margin: EdgeInsets.fromLTRB(0, 0, 10, 0),
                 padding: EdgeInsets.fromLTRB(10,0,0,0),
                 decoration: BoxDecoration(
@@ -217,7 +223,7 @@ class _BsaCalculatorState extends State<BsaCalculator> {
                     child: getTextFromTextField("Enter Value", "Height",
                         unitsForHeight, currentItemForHeight, heightCon)),
                 Container(
-                height: 59,
+                 
                 margin: EdgeInsets.fromLTRB(0, 0, 10, 0),
                 padding: EdgeInsets.fromLTRB(10,0,0,0),
                 decoration: BoxDecoration(

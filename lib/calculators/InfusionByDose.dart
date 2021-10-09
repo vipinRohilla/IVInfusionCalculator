@@ -93,164 +93,173 @@ class _InfusionByDoseState extends State<InfusionByDose> {
  Widget _landScapeMode(){
     return  GridView.count(
       crossAxisCount: 2,
-              childAspectRatio: 4,
+              childAspectRatio: 3,
               physics: NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 8, 0, 0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Flexible(
-                    child: getTextFromTextField(
-                        "Enter Value",
-                        "Required Dose",
-                        unitsForRequiredDosage,
-                        currentItemForRequiredDosage,
-                        requiredDosageCon)),
-                Container(
-                height: 59,
-                margin: EdgeInsets.fromLTRB(0, 0, 10, 0),
-                padding: EdgeInsets.fromLTRB(10,0,0,0),
-                decoration: BoxDecoration(
-                  color: Colors.blue[100],
-                  border: Border(
-                    left: BorderSide.none,
-                    top : BorderSide(color: Colors.blue.shade400, width: 1.5),
-                    right: BorderSide(color: Colors.blue.shade400, width: 1.5),
-                    bottom: BorderSide(color: Colors.blue.shade400, width: 1.5),
-                   )
+                  Flexible(
+                      child: getTextFromTextField(
+                          "Enter Value",
+                          "Required Dose",
+                          unitsForRequiredDosage,
+                          currentItemForRequiredDosage,
+                          requiredDosageCon)),
+                  Container(
+                   
+                  margin: EdgeInsets.fromLTRB(0, 0, 10, 0),
+                  padding: EdgeInsets.fromLTRB(10,0,0,0),
+                  decoration: BoxDecoration(
+                    color: Colors.blue[100],
+                    border: Border(
+                      left: BorderSide.none,
+                      top : BorderSide(color: Colors.blue.shade400, width: 1.5),
+                      right: BorderSide(color: Colors.blue.shade400, width: 1.5),
+                      bottom: BorderSide(color: Colors.blue.shade400, width: 1.5),
+                     )
 
+                    ),
+                  child: DropdownButtonHideUnderline( 
+                    child: DropdownButton<String>(
+                        iconSize: 30.0,
+                        iconEnabledColor: Colors.blue,
+                        items: unitsForRequiredDosage
+                            .map((String dropDownStringItem) {
+                          return DropdownMenuItem<String>(
+                            value: dropDownStringItem,
+                            child: Text(dropDownStringItem),
+                          );
+                        }).toList(),
+                        onChanged: (newValue) {
+                          setState(() {
+                            this.currentItemForRequiredDosage =
+                                newValue.toString();
+                          });
+                          if (requiredDosageCon.text != "" &&
+                              ivBagVolumeCon.text != "" &&
+                              doseInIvBagCon.text != "") {
+                            numClick(requiredDosageCon.text,
+                                ivBagVolumeCon.text, doseInIvBagCon.text);
+                          }
+                        },
+                        value: currentItemForRequiredDosage),
                   ),
-                child: DropdownButtonHideUnderline( 
-                  child: DropdownButton<String>(
-                      iconSize: 30.0,
-                      iconEnabledColor: Colors.blue,
-                      items: unitsForRequiredDosage
-                          .map((String dropDownStringItem) {
-                        return DropdownMenuItem<String>(
-                          value: dropDownStringItem,
-                          child: Text(dropDownStringItem),
-                        );
-                      }).toList(),
-                      onChanged: (newValue) {
-                        setState(() {
-                          this.currentItemForRequiredDosage =
-                              newValue.toString();
-                        });
-                        if (requiredDosageCon.text != "" &&
-                            ivBagVolumeCon.text != "" &&
-                            doseInIvBagCon.text != "") {
-                          numClick(requiredDosageCon.text,
-                              ivBagVolumeCon.text, doseInIvBagCon.text);
-                        }
-                      },
-                      value: currentItemForRequiredDosage),
-                ),
-                )],
+                  )],
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Flexible(
-                    child: getTextFromTextField(
-                        "Enter Value",
-                        "IV Bag Volume",
-                        unitsForIvBagVolume,
-                        currentItemForIvBagVolume,
-                        ivBagVolumeCon)),
-                Container(
-                height: 59,
-                margin: EdgeInsets.fromLTRB(0, 0, 10, 0),
-                padding: EdgeInsets.fromLTRB(10,0,0,0),
-                decoration: BoxDecoration(
-                  color: Colors.blue[100],
-                  border: Border(
-                    left: BorderSide.none,
-                    top : BorderSide(color: Colors.blue.shade400, width: 1.5),
-                    right: BorderSide(color: Colors.blue.shade400, width: 1.5),
-                    bottom: BorderSide(color: Colors.blue.shade400, width: 1.5),
-                   )
-
-                  ),
-                child: DropdownButtonHideUnderline( 
-                  child: DropdownButton<String>(
-                      iconSize: 30.0,
-                      iconEnabledColor: Colors.blue,
-                      items: unitsForIvBagVolume
-                          .map((String dropDownStringItem) {
-                        return DropdownMenuItem<String>(
-                          value: dropDownStringItem,
-                          child: Text(dropDownStringItem),
-                        );
-                      }).toList(),
-                      onChanged: (newValue) {
-                        setState(() {
-                          this.currentItemForIvBagVolume =
-                              newValue.toString();
-                        });
-                        if (requiredDosageCon.text != "" &&
-                            ivBagVolumeCon.text != "" &&
-                            doseInIvBagCon.text != "") {
-                          numClick(requiredDosageCon.text,
-                              ivBagVolumeCon.text, doseInIvBagCon.text);
-                        }
-                      },
-                      value: currentItemForIvBagVolume),
                 ),
-                )],
+            Padding(
+              padding: const EdgeInsets.fromLTRB(0, 8, 0, 0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Flexible(
+                      child: getTextFromTextField(
+                          "Enter Value",
+                          "IV Bag Volume",
+                          unitsForIvBagVolume,
+                          currentItemForIvBagVolume,
+                          ivBagVolumeCon)),
+                  Container(
+                   
+                  margin: EdgeInsets.fromLTRB(0, 0, 10, 0),
+                  padding: EdgeInsets.fromLTRB(10,0,0,0),
+                  decoration: BoxDecoration(
+                    color: Colors.blue[100],
+                    border: Border(
+                      left: BorderSide.none,
+                      top : BorderSide(color: Colors.blue.shade400, width: 1.5),
+                      right: BorderSide(color: Colors.blue.shade400, width: 1.5),
+                      bottom: BorderSide(color: Colors.blue.shade400, width: 1.5),
+                     )
+
+                    ),
+                  child: DropdownButtonHideUnderline( 
+                    child: DropdownButton<String>(
+                        iconSize: 30.0,
+                        iconEnabledColor: Colors.blue,
+                        items: unitsForIvBagVolume
+                            .map((String dropDownStringItem) {
+                          return DropdownMenuItem<String>(
+                            value: dropDownStringItem,
+                            child: Text(dropDownStringItem),
+                          );
+                        }).toList(),
+                        onChanged: (newValue) {
+                          setState(() {
+                            this.currentItemForIvBagVolume =
+                                newValue.toString();
+                          });
+                          if (requiredDosageCon.text != "" &&
+                              ivBagVolumeCon.text != "" &&
+                              doseInIvBagCon.text != "") {
+                            numClick(requiredDosageCon.text,
+                                ivBagVolumeCon.text, doseInIvBagCon.text);
+                          }
+                        },
+                        value: currentItemForIvBagVolume),
+                  ),
+                  )],
+              ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Flexible(
-                    child: getTextFromTextField(
-                        "Enter Value",
-                        "Dose in IV Bag",
-                        unitsForDoseIvBag,
-                        currentItemForDoseIvBag,
-                        doseInIvBagCon)),
-                Container(
-                height: 59,
-                margin: EdgeInsets.fromLTRB(0, 0, 10, 0),
-                padding: EdgeInsets.fromLTRB(10,0,0,0),
-                decoration: BoxDecoration(
-                  color: Colors.blue[100],
-                  border: Border(
-                    left: BorderSide.none,
-                    top : BorderSide(color: Colors.blue.shade400, width: 1.5),
-                    right: BorderSide(color: Colors.blue.shade400, width: 1.5),
-                    bottom: BorderSide(color: Colors.blue.shade400, width: 1.5),
-                   )
+            Padding(
+              padding: const EdgeInsets.fromLTRB(0, 8, 0, 0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Flexible(
+                      child: getTextFromTextField(
+                          "Enter Value",
+                          "Dose in IV Bag",
+                          unitsForDoseIvBag,
+                          currentItemForDoseIvBag,
+                          doseInIvBagCon)),
+                  Container(
+                   
+                  margin: EdgeInsets.fromLTRB(0, 0, 10, 0),
+                  padding: EdgeInsets.fromLTRB(10,0,0,0),
+                  decoration: BoxDecoration(
+                    color: Colors.blue[100],
+                    border: Border(
+                      left: BorderSide.none,
+                      top : BorderSide(color: Colors.blue.shade400, width: 1.5),
+                      right: BorderSide(color: Colors.blue.shade400, width: 1.5),
+                      bottom: BorderSide(color: Colors.blue.shade400, width: 1.5),
+                     )
 
+                    ),
+                  child: DropdownButtonHideUnderline( 
+                    child: DropdownButton<String>(
+                        iconSize: 30.0,
+                        iconEnabledColor: Colors.blue,
+                        items:
+                            unitsForDoseIvBag.map((String dropDownStringItem) {
+                          return DropdownMenuItem<String>(
+                            value: dropDownStringItem,
+                            child: Text(dropDownStringItem),
+                          );
+                        }).toList(),
+                        onChanged: (newValue) {
+                          setState(() {
+                            this.currentItemForDoseIvBag = newValue.toString();
+                          });
+                          if (requiredDosageCon.text != "" &&
+                              ivBagVolumeCon.text != "" &&
+                              doseInIvBagCon.text != "") {
+                            numClick(requiredDosageCon.text,
+                                ivBagVolumeCon.text, doseInIvBagCon.text);
+                          }
+                        },
+                        value: currentItemForDoseIvBag),
                   ),
-                child: DropdownButtonHideUnderline( 
-                  child: DropdownButton<String>(
-                      iconSize: 30.0,
-                      iconEnabledColor: Colors.blue,
-                      items:
-                          unitsForDoseIvBag.map((String dropDownStringItem) {
-                        return DropdownMenuItem<String>(
-                          value: dropDownStringItem,
-                          child: Text(dropDownStringItem),
-                        );
-                      }).toList(),
-                      onChanged: (newValue) {
-                        setState(() {
-                          this.currentItemForDoseIvBag = newValue.toString();
-                        });
-                        if (requiredDosageCon.text != "" &&
-                            ivBagVolumeCon.text != "" &&
-                            doseInIvBagCon.text != "") {
-                          numClick(requiredDosageCon.text,
-                              ivBagVolumeCon.text, doseInIvBagCon.text);
-                        }
-                      },
-                      value: currentItemForDoseIvBag),
-                ),
-                )],
+                  )],
+              ),
             ),
               ]);
   }
@@ -270,7 +279,7 @@ class _InfusionByDoseState extends State<InfusionByDose> {
                         currentItemForRequiredDosage,
                         requiredDosageCon)),
                 Container(
-                height: 59,
+                 
                 margin: EdgeInsets.fromLTRB(0, 0, 10, 0),
                 padding: EdgeInsets.fromLTRB(10,0,0,0),
                 decoration: BoxDecoration(
@@ -323,7 +332,7 @@ class _InfusionByDoseState extends State<InfusionByDose> {
                         currentItemForIvBagVolume,
                         ivBagVolumeCon)),
                 Container(
-                height: 59,
+                 
                 margin: EdgeInsets.fromLTRB(0, 0, 10, 0),
                 padding: EdgeInsets.fromLTRB(10,0,0,0),
                 decoration: BoxDecoration(
@@ -376,7 +385,7 @@ class _InfusionByDoseState extends State<InfusionByDose> {
                         currentItemForDoseIvBag,
                         doseInIvBagCon)),
                 Container(
-                height: 59,
+                 
                 margin: EdgeInsets.fromLTRB(0, 0, 10, 0),
                 padding: EdgeInsets.fromLTRB(10,0,0,0),
                 decoration: BoxDecoration(

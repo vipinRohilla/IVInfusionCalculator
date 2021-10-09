@@ -68,73 +68,28 @@ class _TabletDosageState extends State<TabletDosage> {
  Widget _landScapeMode(){
     return  GridView.count(
       crossAxisCount: 2,
-              childAspectRatio: 4,
+               childAspectRatio: 3,
               physics: NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 8, 0, 0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Flexible(
-                    child: getTextFromTextField(
-                        "Enter Value",
-                        "Required Dosage",
-                        unitsForRequiredDosage,
-                        currentItemForRequiredDosage,
-                        requiredDosageCon)),
-                Container(
-                  height: 59,
-                  margin: EdgeInsets.fromLTRB(0, 0, 10, 0),
-                padding: EdgeInsets.fromLTRB(10,0,0,0),
-                  decoration: BoxDecoration(
-                color: Colors.blue[100],
-                border: Border(
-                  left: BorderSide.none,
-                  top : BorderSide(color: Colors.blue.shade400, width: 1.5),
-                  right: BorderSide(color: Colors.blue.shade400, width: 1.5),
-                  bottom: BorderSide(color: Colors.blue.shade400, width: 1.5),
-                 )
-
-                ),
-                  child: DropdownButtonHideUnderline( 
-                  child: DropdownButton<String>(
-                    iconSize: 30.0,
-                    iconEnabledColor: Colors.blue,
-                    items: unitsForRequiredDosage
-                        .map((String dropDownStringItem) {
-                      return DropdownMenuItem<String>(
-                        value: dropDownStringItem,
-                        child: Text(dropDownStringItem),
-                      );
-                    }).toList(),
-                    onChanged: (newValue) {
-                      setState(() {
-                        this.currentItemForRequiredDosage =
-                            newValue.toString();
-                      });
-                      if (weightCon.text != "" &&
-                          requiredDosageCon.text != "") {
-                        numClick(weightCon.text, requiredDosageCon.text);
-                      }
-                    },
-                    value: currentItemForRequiredDosage,
-                  ),
-                ))],
-            ),
-
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Flexible(
-                    child: getTextFromTextField("Enter Value", "Body Weight",
-                        unitsForWeight, currentItemForWeight, weightCon)),
-                Container(
-                height: 59,
-                margin: EdgeInsets.fromLTRB(0, 0, 10, 0),
-                padding: EdgeInsets.fromLTRB(10,0,0,0),
-                decoration: BoxDecoration(
+                  Flexible(
+                      child: getTextFromTextField(
+                          "Enter Value",
+                          "Required Dosage",
+                          unitsForRequiredDosage,
+                          currentItemForRequiredDosage,
+                          requiredDosageCon)),
+                  Container(
+                     
+                    margin: EdgeInsets.fromLTRB(0, 0, 10, 0),
+                  padding: EdgeInsets.fromLTRB(10,0,0,0),
+                    decoration: BoxDecoration(
                   color: Colors.blue[100],
                   border: Border(
                     left: BorderSide.none,
@@ -144,11 +99,12 @@ class _TabletDosageState extends State<TabletDosage> {
                    )
 
                   ),
-                child: DropdownButtonHideUnderline( 
-                  child: DropdownButton<String>(
+                    child: DropdownButtonHideUnderline( 
+                    child: DropdownButton<String>(
                       iconSize: 30.0,
                       iconEnabledColor: Colors.blue,
-                      items: unitsForWeight.map((String dropDownStringItem) {
+                      items: unitsForRequiredDosage
+                          .map((String dropDownStringItem) {
                         return DropdownMenuItem<String>(
                           value: dropDownStringItem,
                           child: Text(dropDownStringItem),
@@ -156,16 +112,66 @@ class _TabletDosageState extends State<TabletDosage> {
                       }).toList(),
                       onChanged: (newValue) {
                         setState(() {
-                          this.currentItemForWeight = newValue.toString();
+                          this.currentItemForRequiredDosage =
+                              newValue.toString();
                         });
                         if (weightCon.text != "" &&
                             requiredDosageCon.text != "") {
                           numClick(weightCon.text, requiredDosageCon.text);
                         }
                       },
-                      value: currentItemForWeight),
+                      value: currentItemForRequiredDosage,
+                    ),
+                  ))],
+            ),
                 ),
-                )  ],
+
+            Padding(
+              padding: const EdgeInsets.fromLTRB(0, 8, 0, 0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Flexible(
+                      child: getTextFromTextField("Enter Value", "Body Weight",
+                          unitsForWeight, currentItemForWeight, weightCon)),
+                  Container(
+                   
+                  margin: EdgeInsets.fromLTRB(0, 0, 10, 0),
+                  padding: EdgeInsets.fromLTRB(10,0,0,0),
+                  decoration: BoxDecoration(
+                    color: Colors.blue[100],
+                    border: Border(
+                      left: BorderSide.none,
+                      top : BorderSide(color: Colors.blue.shade400, width: 1.5),
+                      right: BorderSide(color: Colors.blue.shade400, width: 1.5),
+                      bottom: BorderSide(color: Colors.blue.shade400, width: 1.5),
+                     )
+
+                    ),
+                  child: DropdownButtonHideUnderline( 
+                    child: DropdownButton<String>(
+                        iconSize: 30.0,
+                        iconEnabledColor: Colors.blue,
+                        items: unitsForWeight.map((String dropDownStringItem) {
+                          return DropdownMenuItem<String>(
+                            value: dropDownStringItem,
+                            child: Text(dropDownStringItem),
+                          );
+                        }).toList(),
+                        onChanged: (newValue) {
+                          setState(() {
+                            this.currentItemForWeight = newValue.toString();
+                          });
+                          if (weightCon.text != "" &&
+                              requiredDosageCon.text != "") {
+                            numClick(weightCon.text, requiredDosageCon.text);
+                          }
+                        },
+                        value: currentItemForWeight),
+                  ),
+                  )  ],
+              ),
             ),
               ]);
   }
@@ -184,7 +190,7 @@ class _TabletDosageState extends State<TabletDosage> {
                         currentItemForRequiredDosage,
                         requiredDosageCon)),
                 Container(
-                  height: 59,
+                   
                   margin: EdgeInsets.fromLTRB(0, 0, 10, 0),
                 padding: EdgeInsets.fromLTRB(10,0,0,0),
                   decoration: BoxDecoration(
@@ -231,7 +237,7 @@ class _TabletDosageState extends State<TabletDosage> {
                     child: getTextFromTextField("Enter Value", "Body Weight",
                         unitsForWeight, currentItemForWeight, weightCon)),
                 Container(
-                height: 59,
+                 
                 margin: EdgeInsets.fromLTRB(0, 0, 10, 0),
                 padding: EdgeInsets.fromLTRB(10,0,0,0),
                 decoration: BoxDecoration(
