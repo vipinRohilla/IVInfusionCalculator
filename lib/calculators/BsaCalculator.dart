@@ -179,7 +179,6 @@ class _BsaCalculatorState extends State<BsaCalculator> {
                     child: getTextFromTextField("Enter Value", "Weight",
                         unitsForWeight, currentItemForWeight, weightCon)),
                 Container(
-                 
                 margin: EdgeInsets.fromLTRB(0, 0, 10, 0),
                 padding: EdgeInsets.fromLTRB(10,0,0,0),
                 decoration: BoxDecoration(

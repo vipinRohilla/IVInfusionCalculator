@@ -204,7 +204,6 @@ class _BmiCalculatorState extends State<BmiCalculator> {
                     child: getTextFromTextField("Enter Value", "Weight",
                         unitsOfWeight, currentItemOfWeight, weightCon)),
                 Container(
-                 
                 margin: EdgeInsets.fromLTRB(0, 0, 10, 0),
                 padding: EdgeInsets.fromLTRB(10,0,0,0),
                 decoration: BoxDecoration(
@@ -215,7 +214,7 @@ class _BmiCalculatorState extends State<BmiCalculator> {
                     right: BorderSide(color: Colors.blue.shade400, width: 1.5),
                     bottom: BorderSide(color: Colors.blue.shade400, width: 1.5),
                    )
-
+                
                   ),
                 child: DropdownButtonHideUnderline( 
                   child: DropdownButton<String>(
